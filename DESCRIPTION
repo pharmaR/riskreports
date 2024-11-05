@@ -1,13 +1,16 @@
 Package: riskreports
-Title: What the Package Does (One Line, Title Case)
+Title: Package Validation Reports
 Version: 0.0.0.9000
 Authors@R: c(
     person("Lluís", "Revilla Sancho", , "lluis.revilla_sancho@roche.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9747-2570")),
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
   )
-Description: What the package does (one paragraph).
+Description: Documents package checks for validation in a pharmaceutic context.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+Suggests: 
+    spelling
+Language: en-US
