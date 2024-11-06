@@ -1,0 +1,46 @@
+Package: riskmetric
+Type: Package
+Title: Risk Metrics to Evaluating R Packages
+Description: Facilities for assessing R packages against a number of metrics to 
+    help quantify their robustness.
+Version: 0.2.4
+Authors@R: c(
+    person("R Validation Hub", role = c("aut"), email = "psi.aims.r.validation@gmail.com"),
+    person("Doug", "Kelkhoff", role = c("aut"), email = "doug.kelkhoff@gmail.com"),
+    person("Marly", "Gotti", role = c("aut")), 
+    person("Eli", "Miller", role = c("cre", "aut"), email = "eli.miller@atorusresearch.com"), 
+    person("Kevin", "K", role = c("aut")), 
+    person("Yilong", "Zhang", role = c("aut")),
+    person("Eric", "Milliman", role = c("aut")),
+    person("Juliane", "Manitz", role = c("aut")),
+    person("Mark", "Padgham", role = c("ctb")),
+    person("PSI special interest group Application and Implementation of Methodologies in Statistics", role = c("cph")))
+URL: https://pharmar.github.io/riskmetric/,
+        https://github.com/pharmaR/riskmetric
+BugReports: https://github.com/pharmaR/riskmetric/issues
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports: backports, utils, tools, xml2, httr, curl, urltools, memoise,
+        BiocManager, cranlogs, covr, vctrs, pillar, tibble, pkgload,
+        devtools
+Suggests: knitr, rmarkdown, withr, magrittr, dplyr, testthat, webmockr,
+        jsonlite
+RoxygenNote: 7.2.3
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+NeedsCompilation: no
+Packaged: 2024-01-09 15:31:18 UTC; eli.miller
+Author: R Validation Hub [aut],
+  Doug Kelkhoff [aut],
+  Marly Gotti [aut],
+  Eli Miller [cre, aut],
+  Kevin K [aut],
+  Yilong Zhang [aut],
+  Eric Milliman [aut],
+  Juliane Manitz [aut],
+  Mark Padgham [ctb],
+  PSI special interest group Application and Implementation of
+    Methodologies in Statistics [cph]
+Maintainer: Eli Miller <eli.miller@atorusresearch.com>
+Repository: CRAN
+Date/Publication: 2024-01-09 15:50:02 UTC

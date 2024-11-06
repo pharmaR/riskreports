@@ -1,0 +1,122 @@
+all_assessments         A default list of assessments to perform for
+                        each package
+as_pkg_metric           Convert an object to a 'pkg_metric'
+assess_covr_coverage    Assess a package code coverage using the 'covr'
+                        package
+assess_dependencies     Assessment of dependency footprint for a
+                        specific package
+assess_downloads_1yr    Assess a package for the number of downloads in
+                        the past year
+assess_export_help      Assess a package for availability of
+                        documentation for exported values
+assess_exported_namespace
+                        Assess a package's results from running R CMD
+                        check
+assess_has_bug_reports_url
+                        Assess a package for the presence of a url
+                        field where bugs can be reported.
+assess_has_examples     Assess a package for the presence of example or
+                        usage fields in function documentation
+assess_has_maintainer   Assess a package for an associated maintainer
+assess_has_news         Assess a package for the presence of a NEWS
+                        file
+assess_has_source_control
+                        Assess a package for an associated source
+                        control url
+assess_has_vignettes    Assess a package for the presence of Vignettes
+                        files
+assess_has_website      Assess a package for an associated website url
+assess_last_30_bugs_status
+                        Assess how many recent BugReports have been
+                        closed
+assess_license          Assess a package for an acceptable license
+assess_news_current     Assess a package for an up-to-date NEWS file
+assess_r_cmd_check      Assess a package's results from running R CMD
+                        check
+assess_remote_checks    Assess package checks from CRAN/Bioc or R CMD
+                        check
+assess_reverse_dependencies
+                        Generate list of Reverse Dependencies for a
+                        package
+assess_size_codebase    Assess a package for size of code base
+assessment_error_as_warning
+                        Error handler for assessments to deescalate
+                        errors to warnings
+assessment_error_empty
+                        Error handler for assessments with safe
+                        fallback
+assessment_error_throw
+                        Error handler for assessments to throw error
+                        immediately
+get_assessments         Get a specific set of assess_* functions for
+                        pkg_assess
+metric_score            Score a package metric
+metric_score.pkg_metric_covr_coverage
+                        Score a package for unit test coverage
+metric_score.pkg_metric_dependencies
+                        Score a package for dependencies
+metric_score.pkg_metric_downloads_1yr
+                        Defining an Assessment Scoring Function
+metric_score.pkg_metric_export_help
+                        Score a package for availability of
+                        documentation for exported values
+metric_score.pkg_metric_exported_namespace
+                        Score a package for the number of exported
+                        objects
+metric_score.pkg_metric_has_bug_reports_url
+                        Score a package for the presence of a bug
+                        report url
+metric_score.pkg_metric_has_examples
+                        Score a package for the presence of a example
+                        or usage fields
+metric_score.pkg_metric_has_maintainer
+                        Score a package for inclusion of an associated
+                        maintainer
+metric_score.pkg_metric_has_news
+                        Score a package for the presence of a NEWS file
+metric_score.pkg_metric_has_source_control
+                        Score a package for inclusion of an associated
+                        source control url
+metric_score.pkg_metric_has_vignettes
+                        Score a package for the presence of a Vignettes
+                        file
+metric_score.pkg_metric_has_website
+                        Score a package for inclusion of an associated
+                        website url
+metric_score.pkg_metric_last_30_bugs_status
+                        Score a package for number of recently opened
+                        BugReports that are now closed
+metric_score.pkg_metric_license
+                        Score a package for acceptable license
+metric_score.pkg_metric_news_current
+                        Score a package for NEWS files updated to
+                        current version
+metric_score.pkg_metric_r_cmd_check
+                        Score a package based on R CMD check results
+                        run locally
+metric_score.pkg_metric_remote_checks
+                        Score a package based on R CMD check results
+                        run by BioC or CRAN
+metric_score.pkg_metric_reverse_dependencies
+                        Scoring method for number of reverse
+                        dependencies a package has
+metric_score.pkg_metric_size_codebase
+                        Score a package for number of lines of code
+pkg_assess              Apply assess_* family of functions to a package
+                        reference
+pkg_metric              A helper for structuring assessment return
+                        objects for dispatch with the score function
+pkg_ref                 Create a package reference
+pkg_ref_cache           S3 generic to calculate a 'pkg_ref' field
+pkg_ref_class_hierarchy
+                        The 'pkg_ref' subclass hierarchy, used for
+                        pkg_ref object creation with a specified
+                        subclass
+pkg_score               Score a package assessment, collapsing results
+                        into a single numeric
+score_error_NA          Score error handler to silently return NA
+score_error_default     Default score error handling, emitting a
+                        warning and returning 0
+score_error_zero        Score error handler to silently return 0
+summarize_scores        Summarize a default set of assessments into a
+                        single risk score

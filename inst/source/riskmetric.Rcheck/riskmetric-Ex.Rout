@@ -1,0 +1,1050 @@
+
+R version 4.4.1 (2024-06-14 ucrt) -- "Race for Your Life"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "riskmetric"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> options(pager = "console")
+> base::assign(".ExTimings", "riskmetric-Ex.timings", pos = 'CheckExEnv')
+> base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+> base::assign(".format_ptime",
++ function(x) {
++   if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
++   if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
++   options(OutDec = '.')
++   format(x[1L:3L], digits = 7L)
++ },
++ pos = 'CheckExEnv')
+> 
+> ### * </HEADER>
+> library('riskmetric')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("assess_covr_coverage")
+> ### * assess_covr_coverage
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_covr_coverage
+> ### Title: Assess a package code coverage using the 'covr' package
+> ### Aliases: assess_covr_coverage
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_covr_coverage(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_covr_coverage", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_dependencies")
+> ### * assess_dependencies
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_dependencies
+> ### Title: Assessment of dependency footprint for a specific package
+> ### Aliases: assess_dependencies
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_dependencies(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_dependencies", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_downloads_1yr")
+> ### * assess_downloads_1yr
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_downloads_1yr
+> ### Title: Assess a package for the number of downloads in the past year
+> ### Aliases: assess_downloads_1yr
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_downloads_1yr(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_downloads_1yr", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_export_help")
+> ### * assess_export_help
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_export_help
+> ### Title: Assess a package for availability of documentation for exported
+> ###   values
+> ### Aliases: assess_export_help
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_export_help(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_export_help", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_exported_namespace")
+> ### * assess_exported_namespace
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_exported_namespace
+> ### Title: Assess a package's results from running R CMD check
+> ### Aliases: assess_exported_namespace
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_exported_namespace(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_exported_namespace", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_has_bug_reports_url")
+> ### * assess_has_bug_reports_url
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_has_bug_reports_url
+> ### Title: Assess a package for the presence of a url field where bugs can
+> ###   be reported.
+> ### Aliases: assess_has_bug_reports_url
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_has_bug_reports_url(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_has_bug_reports_url", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_has_examples")
+> ### * assess_has_examples
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_has_examples
+> ### Title: Assess a package for the presence of example or usage fields in
+> ###   function documentation
+> ### Aliases: assess_has_examples
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_has_examples(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_has_examples", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_has_maintainer")
+> ### * assess_has_maintainer
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_has_maintainer
+> ### Title: Assess a package for an associated maintainer
+> ### Aliases: assess_has_maintainer
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_has_maintainer(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_has_maintainer", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_has_news")
+> ### * assess_has_news
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_has_news
+> ### Title: Assess a package for the presence of a NEWS file
+> ### Aliases: assess_has_news
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_has_news(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_has_news", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_has_source_control")
+> ### * assess_has_source_control
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_has_source_control
+> ### Title: Assess a package for an associated source control url
+> ### Aliases: assess_has_source_control
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_has_source_control(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_has_source_control", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_has_vignettes")
+> ### * assess_has_vignettes
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_has_vignettes
+> ### Title: Assess a package for the presence of Vignettes files
+> ### Aliases: assess_has_vignettes
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_has_vignettes(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_has_vignettes", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_has_website")
+> ### * assess_has_website
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_has_website
+> ### Title: Assess a package for an associated website url
+> ### Aliases: assess_has_website
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_has_website(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_has_website", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_last_30_bugs_status")
+> ### * assess_last_30_bugs_status
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_last_30_bugs_status
+> ### Title: Assess how many recent BugReports have been closed
+> ### Aliases: assess_last_30_bugs_status
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_last_30_bugs_status(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_last_30_bugs_status", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_license")
+> ### * assess_license
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_license
+> ### Title: Assess a package for an acceptable license
+> ### Aliases: assess_license
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_license(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_license", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_news_current")
+> ### * assess_news_current
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_news_current
+> ### Title: Assess a package for an up-to-date NEWS file
+> ### Aliases: assess_news_current
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_news_current(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_news_current", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_r_cmd_check")
+> ### * assess_r_cmd_check
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_r_cmd_check
+> ### Title: Assess a package's results from running R CMD check
+> ### Aliases: assess_r_cmd_check
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_r_cmd_check(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_r_cmd_check", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_remote_checks")
+> ### * assess_remote_checks
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_remote_checks
+> ### Title: Assess package checks from CRAN/Bioc or R CMD check
+> ### Aliases: assess_remote_checks
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_remote_checks(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_remote_checks", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_reverse_dependencies")
+> ### * assess_reverse_dependencies
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_reverse_dependencies
+> ### Title: Generate list of Reverse Dependencies for a package
+> ### Aliases: assess_reverse_dependencies
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_reverse_dependencies(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_reverse_dependencies", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("assess_size_codebase")
+> ### * assess_size_codebase
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: assess_size_codebase
+> ### Title: Assess a package for size of code base
+> ### Aliases: assess_size_codebase
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D assess_size_codebase(pkg_ref("riskmetric"))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("assess_size_codebase", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_covr_coverage")
+> ### * metric_score.pkg_metric_covr_coverage
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_covr_coverage
+> ### Title: Score a package for unit test coverage
+> ### Aliases: metric_score.pkg_metric_covr_coverage
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_covr_coverage(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_covr_coverage", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_dependencies")
+> ### * metric_score.pkg_metric_dependencies
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_dependencies
+> ### Title: Score a package for dependencies
+> ### Aliases: metric_score.pkg_metric_dependencies
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_dependencies(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_dependencies", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_downloads_1yr")
+> ### * metric_score.pkg_metric_downloads_1yr
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_downloads_1yr
+> ### Title: Defining an Assessment Scoring Function
+> ### Aliases: metric_score.pkg_metric_downloads_1yr
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_downloads_1yr(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_downloads_1yr", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_export_help")
+> ### * metric_score.pkg_metric_export_help
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_export_help
+> ### Title: Score a package for availability of documentation for exported
+> ###   values
+> ### Aliases: metric_score.pkg_metric_export_help
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_export_help(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_export_help", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_exported_namespace")
+> ### * metric_score.pkg_metric_exported_namespace
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_exported_namespace
+> ### Title: Score a package for the number of exported objects
+> ### Aliases: metric_score.pkg_metric_exported_namespace
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_exported_namespace(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_exported_namespace", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_has_bug_reports_url")
+> ### * metric_score.pkg_metric_has_bug_reports_url
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_has_bug_reports_url
+> ### Title: Score a package for the presence of a bug report url
+> ### Aliases: metric_score.pkg_metric_has_bug_reports_url
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_has_bug_reports_url(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_has_bug_reports_url", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_has_examples")
+> ### * metric_score.pkg_metric_has_examples
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_has_examples
+> ### Title: Score a package for the presence of a example or usage fields
+> ### Aliases: metric_score.pkg_metric_has_examples
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_has_examples(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_has_examples", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_has_maintainer")
+> ### * metric_score.pkg_metric_has_maintainer
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_has_maintainer
+> ### Title: Score a package for inclusion of an associated maintainer
+> ### Aliases: metric_score.pkg_metric_has_maintainer
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_has_maintainer(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_has_maintainer", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_has_news")
+> ### * metric_score.pkg_metric_has_news
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_has_news
+> ### Title: Score a package for the presence of a NEWS file
+> ### Aliases: metric_score.pkg_metric_has_news
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_has_news(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_has_news", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_has_source_control")
+> ### * metric_score.pkg_metric_has_source_control
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_has_source_control
+> ### Title: Score a package for inclusion of an associated source control
+> ###   url
+> ### Aliases: metric_score.pkg_metric_has_source_control
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_has_source_control(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_has_source_control", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_has_vignettes")
+> ### * metric_score.pkg_metric_has_vignettes
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_has_vignettes
+> ### Title: Score a package for the presence of a Vignettes file
+> ### Aliases: metric_score.pkg_metric_has_vignettes
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_has_vignettes(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_has_vignettes", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_has_website")
+> ### * metric_score.pkg_metric_has_website
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_has_website
+> ### Title: Score a package for inclusion of an associated website url
+> ### Aliases: metric_score.pkg_metric_has_website
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_has_website(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_has_website", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_last_30_bugs_status")
+> ### * metric_score.pkg_metric_last_30_bugs_status
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_last_30_bugs_status
+> ### Title: Score a package for number of recently opened BugReports that
+> ###   are now closed
+> ### Aliases: metric_score.pkg_metric_last_30_bugs_status
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_last_30_bugs_status(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_last_30_bugs_status", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_license")
+> ### * metric_score.pkg_metric_license
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_license
+> ### Title: Score a package for acceptable license
+> ### Aliases: metric_score.pkg_metric_license
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_license(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_license", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_news_current")
+> ### * metric_score.pkg_metric_news_current
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_news_current
+> ### Title: Score a package for NEWS files updated to current version
+> ### Aliases: metric_score.pkg_metric_news_current
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_news_current(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_news_current", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_r_cmd_check")
+> ### * metric_score.pkg_metric_r_cmd_check
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_r_cmd_check
+> ### Title: Score a package based on R CMD check results run locally
+> ### Aliases: metric_score.pkg_metric_r_cmd_check
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_r_cmd_check(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_r_cmd_check", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_remote_checks")
+> ### * metric_score.pkg_metric_remote_checks
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_remote_checks
+> ### Title: Score a package based on R CMD check results run by BioC or CRAN
+> ### Aliases: metric_score.pkg_metric_remote_checks
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_remote_checks(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_remote_checks", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_reverse_dependencies")
+> ### * metric_score.pkg_metric_reverse_dependencies
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_reverse_dependencies
+> ### Title: Scoring method for number of reverse dependencies a package has
+> ### Aliases: metric_score.pkg_metric_reverse_dependencies
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_reverse_dependencies(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_reverse_dependencies", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metric_score.pkg_metric_size_codebase")
+> ### * metric_score.pkg_metric_size_codebase
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metric_score.pkg_metric_size_codebase
+> ### Title: Score a package for number of lines of code
+> ### Aliases: metric_score.pkg_metric_size_codebase
+> 
+> ### ** Examples
+> 
+> ## Not run: metric_score(assess_size_codebase(pkg_ref("riskmetric")))
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metric_score.pkg_metric_size_codebase", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("pkg_ref")
+> ### * pkg_ref
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: pkg_ref
+> ### Title: Create a package reference
+> ### Aliases: pkg_ref pkg_install pkg_source pkg_cran pkg_bioc pkg_missing
+> ###   pkg_library as_pkg_ref
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D # riskmetric will check for installed packages by default
+> ##D ref_1 <- pkg_ref("utils")
+> ##D ref_1$source # returns 'pkg_install'
+> ##D 
+> ##D # lib.loc can be used to specify a library for pkg_install
+> ##D ref_3 <- pkg_ref("utils", source = "pkg_install", lib.loc = .libPaths()[1])
+> ##D 
+> ##D # You can also override this behavior with a source argument
+> ##D ref_2 <- pkg_ref("utils", source = "pkg_cran_remote")
+> ##D ref_2$source  # returns 'pkg_cran_remote'
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("pkg_ref", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("pkg_score")
+> ### * pkg_score
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: pkg_score
+> ### Title: Score a package assessment, collapsing results into a single
+> ###   numeric
+> ### Aliases: pkg_score
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D 
+> ##D # scoring a single assessment
+> ##D metric_score(assess_has_news(pkg_ref("riskmetric")))
+> ##D 
+> ##D # scoring many assessments as a tibble
+> ##D library(dplyr)
+> ##D pkg_score(pkg_assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
+> ##D 
+> ## End(Not run)
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("pkg_score", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("riskmetric_metadata_caching")
+> ### * riskmetric_metadata_caching
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: pkg_ref_cache
+> ### Title: S3 generic to calculate a 'pkg_ref' field
+> ### Aliases: pkg_ref_cache
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D # implementing a new field called "first_letter" that is consistently derived
+> ##D # across all pkg_ref objects:
+> ##D 
+> ##D   pkg_ref_cache.first_letter <- function(x, name, ...) {
+> ##D     substring(x$name, 1, 1)
+> ##D   }
+> ##D 
+> ##D   x <- pkg_ref("riskmetric")
+> ##D   x$first_letter
+> ##D 
+> ##D 
+> ##D 
+> ##D # implementing a new field called "subclass_enum" that dispatches on
+> ##D # the subclass of the pkg_ref object:
+> ##D 
+> ##D   pkg_ref_cache.subclass_enum <- function(x, name, ...) {
+> ##D     UseMethod("pkg_ref_cache.subclass_enum")
+> ##D   }
+> ##D 
+> ##D   pkg_ref_cache.subclass_enum.pkg_ref <- function(x, name, ...) {
+> ##D     0
+> ##D   }
+> ##D 
+> ##D   pkg_ref_cache.subclass_enum.pkg_install <- function(x, name, ...) {
+> ##D     1
+> ##D   }
+> ##D 
+> ##D   x$subclass_enum
+> ## End(Not run)
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("riskmetric_metadata_caching", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("roxygen_assess_family")
+> ### * roxygen_assess_family
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: roxygen_assess_family
+> ### Title: Helper for creating a roxygen header from template for assess_*
+> ###   functions
+> ### Aliases: roxygen_assess_family
+> ### Keywords: internal
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D #' @eval roxygen_assess_family(
+> ##D #'   "has_news",
+> ##D #'   "an integer value indicating the number of discovered NEWS files")
+> ## End(Not run)
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("roxygen_assess_family", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("roxygen_assess_family_catalog")
+> ### * roxygen_assess_family_catalog
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: roxygen_assess_family_catalog
+> ### Title: Helper for creating a roxygen itemized list for assess_*
+> ###   functions
+> ### Aliases: roxygen_assess_family_catalog
+> ### Keywords: internal
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D   #' @eval assess_family_catalog_roxygen()
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("roxygen_assess_family_catalog", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("roxygen_score_family")
+> ### * roxygen_score_family
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: roxygen_score_family
+> ### Title: Helper for creating a roxygen header from template for score.*
+> ###   functions
+> ### Aliases: roxygen_score_family
+> ### Keywords: internal
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D #' @eval roxygen_score_family("has_news")
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("roxygen_score_family", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("summarize_scores")
+> ### * summarize_scores
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: summarize_scores
+> ### Title: Summarize a default set of assessments into a single risk score
+> ### Aliases: summarize_scores
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D library(dplyr)
+> ##D summarize_scores(pkg_score(pkg_assess(as_tibble(pkg_ref("riskmetric")))))
+> ##D 
+> ##D library(dplyr)
+> ##D pkg_ref("riskmetric") %>%
+> ##D   pkg_assess() %>%
+> ##D   pkg_score() %>%
+> ##D   summarize_scores()
+> ## End(Not run)
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("summarize_scores", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.37 0.03 2.36 NA NA 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')
