@@ -1,0 +1,3413 @@
+\nonstopmode{}
+\documentclass[a4paper]{book}
+\usepackage[times,inconsolata,hyper]{Rd}
+\usepackage{makeidx}
+\makeatletter\@ifl@t@r\fmtversion{2018/04/01}{}{\usepackage[utf8]{inputenc}}\makeatother
+% \usepackage{graphicx} % @USE GRAPHICX@
+\makeindex{}
+\begin{document}
+\chapter*{}
+\begin{center}
+{\textbf{\huge Package `riskmetric'}}
+\par\bigskip{\large \today}
+\end{center}
+\ifthenelse{\boolean{Rd@use@hyper}}{\hypersetup{pdftitle = {riskmetric: Risk Metrics to Evaluating R Packages}}}{}
+\ifthenelse{\boolean{Rd@use@hyper}}{\hypersetup{pdfauthor = {R Validation Hub; Doug Kelkhoff; Marly Gotti; Eli Miller; Kevin K; Yilong Zhang; Eric Milliman; Juliane Manitz}}}{}
+\begin{description}
+\raggedright{}
+\item[Type]\AsIs{Package}
+\item[Title]\AsIs{Risk Metrics to Evaluating R Packages}
+\item[Description]\AsIs{Facilities for assessing R packages against a number of metrics to 
+help quantify their robustness.}
+\item[Version]\AsIs{0.2.4}
+\item[URL]\AsIs{}\url{https://pharmar.github.io/riskmetric/}\AsIs{,
+}\url{https://github.com/pharmaR/riskmetric}\AsIs{}
+\item[BugReports]\AsIs{}\url{https://github.com/pharmaR/riskmetric/issues}\AsIs{}
+\item[License]\AsIs{MIT + file LICENSE}
+\item[Encoding]\AsIs{UTF-8}
+\item[Imports]\AsIs{backports, utils, tools, xml2, httr, curl, urltools, memoise,
+BiocManager, cranlogs, covr, vctrs, pillar, tibble, pkgload,
+devtools}
+\item[Suggests]\AsIs{knitr, rmarkdown, withr, magrittr, dplyr, testthat, webmockr,
+jsonlite}
+\item[RoxygenNote]\AsIs{7.2.3}
+\item[VignetteBuilder]\AsIs{knitr}
+\item[Config/testthat/edition]\AsIs{3}
+\item[NeedsCompilation]\AsIs{no}
+\item[Author]\AsIs{R Validation Hub [aut],
+Doug Kelkhoff [aut],
+Marly Gotti [aut],
+Eli Miller [cre, aut],
+Kevin K [aut],
+Yilong Zhang [aut],
+Eric Milliman [aut],
+Juliane Manitz [aut],
+Mark Padgham [ctb],
+PSI special interest group Application and Implementation of
+  Methodologies in Statistics [cph]}
+\item[Maintainer]\AsIs{Eli Miller }\email{eli.miller@atorusresearch.com}\AsIs{}
+\item[Repository]\AsIs{CRAN}
+\item[Date/Publication]\AsIs{2024-01-09 15:50:02 UTC}
+\end{description}
+\Rdcontents{Contents}
+\HeaderA{.tools}{Accessor for tools namespace}{.tools}
+\keyword{internal}{.tools}
+%
+\begin{Description}
+used internally for
+- tools:::.news\_reader\_default
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+.tools()
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+tools namespace
+\end{Value}
+\HeaderA{allow\_mutation}{a wrapper to assert that a pkg\_ref has been permitted to do an additional mutation, used to handle recursive initialization of cached fields}{allow.Rul.mutation}
+\keyword{internal}{allow\_mutation}
+%
+\begin{Description}
+a wrapper to assert that a pkg\_ref has been permitted to do an additional
+mutation, used to handle recursive initialization of cached fields
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+allow_mutation(x, expr, envir = parent.frame())
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} object
+
+\item[\code{expr}] an expression to evaluate, and possible do a mutation within
+
+\item[\code{envir}] an environment in which the expression is to be evaluated
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+the result of \code{expr}
+\end{Value}
+\HeaderA{all\_assessments}{A default list of assessments to perform for each package}{all.Rul.assessments}
+%
+\begin{Description}
+A default list of assessments to perform for each package
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+all_assessments()
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+a list of assess\_* functions exported from riskmetric
+\end{Value}
+\HeaderA{assessment\_error\_as\_warning}{Error handler for assessments to deescalate errors to warnings}{assessment.Rul.error.Rul.as.Rul.warning}
+\keyword{assessment error handlers}{assessment\_error\_as\_warning}
+%
+\begin{Description}
+Error handler for assessments to deescalate errors to warnings
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assessment_error_as_warning(e, name, assessment)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{e}] an error raised during a package reference assessment
+
+\item[\code{name}] the name of the package whose package reference assessment raised
+the error
+
+\item[\code{assessment}] the name of the assessment function which raised the error
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a pkg\_metric object of pkg\_metric\_error subclass
+\end{Value}
+%
+\begin{SeeAlso}
+Other assessment error handlers: 
+\code{\LinkA{assessment\_error\_empty}{assessment.Rul.error.Rul.empty}()},
+\code{\LinkA{assessment\_error\_throw}{assessment.Rul.error.Rul.throw}()}
+\end{SeeAlso}
+\HeaderA{assessment\_error\_empty}{Error handler for assessments with safe fallback}{assessment.Rul.error.Rul.empty}
+\keyword{assessment error handlers}{assessment\_error\_empty}
+%
+\begin{Description}
+Error handler for assessments with safe fallback
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assessment_error_empty(e, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{e}] an error raised during a package reference assessment
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a pkg\_metric object of pkg\_metric\_error subclass
+\end{Value}
+%
+\begin{SeeAlso}
+Other assessment error handlers: 
+\code{\LinkA{assessment\_error\_as\_warning}{assessment.Rul.error.Rul.as.Rul.warning}()},
+\code{\LinkA{assessment\_error\_throw}{assessment.Rul.error.Rul.throw}()}
+\end{SeeAlso}
+\HeaderA{assessment\_error\_throw}{Error handler for assessments to throw error immediately}{assessment.Rul.error.Rul.throw}
+\keyword{assessment error handlers}{assessment\_error\_throw}
+%
+\begin{Description}
+Error handler for assessments to throw error immediately
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assessment_error_throw(e, name, assessment)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{e}] an error raised during a package reference assessment
+
+\item[\code{name}] the name of the package whose package reference assessment raised
+the error
+
+\item[\code{assessment}] the name of the assessment function which raised the error
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+the error encountered during assessment
+\end{Value}
+%
+\begin{SeeAlso}
+Other assessment error handlers: 
+\code{\LinkA{assessment\_error\_as\_warning}{assessment.Rul.error.Rul.as.Rul.warning}()},
+\code{\LinkA{assessment\_error\_empty}{assessment.Rul.error.Rul.empty}()}
+\end{SeeAlso}
+\HeaderA{assess\_covr\_coverage}{Assess a package code coverage using the `covr` package}{assess.Rul.covr.Rul.coverage}
+%
+\begin{Description}
+Assess a package code coverage using the `covr` package
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_covr_coverage(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing a list containing fields 'filecoverage' and 'totalcoverage' containing a named numeric vector of file unit test coverage and a singular numeric value representing overall test coverage respectively.
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_covr\_coverage}{metric.Rul.score.pkg.Rul.metric.Rul.covr.Rul.coverage}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_covr_coverage(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_dependencies}{Assessment of dependency footprint for a specific package}{assess.Rul.dependencies}
+%
+\begin{Description}
+Only Depends, Imports and LinkingTo dependencies are assessed because
+they are required
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_dependencies(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}
+The more packages a package relies on the more chances for errors exist.
+\end{Details}
+%
+\begin{Value}
+a \code{pkg\_metric} containing a dataframe of package names and they type of dependency the package being assess has to them
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_dependencies}{metric.Rul.score.pkg.Rul.metric.Rul.dependencies}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_dependencies(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_downloads\_1yr}{Assess a package for the number of downloads in the past year}{assess.Rul.downloads.Rul.1yr}
+%
+\begin{Description}
+Assess a package for the number of downloads in the past year
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_downloads_1yr(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}
+The more times a package has been downloaded the more extensive the user testing and the greater chance there is of someone finding a bug and logging it.
+\end{Details}
+%
+\begin{Value}
+a \code{pkg\_metric} containing a numeric value between [0,1] indicating the volume of downloads
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_downloads\_1yr}{metric.Rul.score.pkg.Rul.metric.Rul.downloads.Rul.1yr}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_downloads_1yr(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_exported\_namespace}{Assess a package's results from running R CMD check}{assess.Rul.exported.Rul.namespace}
+%
+\begin{Description}
+Assess a package's results from running R CMD check
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_exported_namespace(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing List of functions and objects exported by a package, excluding S3methods
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_exported\_namespace}{metric.Rul.score.pkg.Rul.metric.Rul.exported.Rul.namespace}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_exported_namespace(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_export\_help}{Assess a package for availability of documentation for exported values}{assess.Rul.export.Rul.help}
+%
+\begin{Description}
+Assess a package for availability of documentation for exported values
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_export_help(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing a logical vector indicating existence of documentation for each namespace export
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_export\_help}{metric.Rul.score.pkg.Rul.metric.Rul.export.Rul.help}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_export_help(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_has\_bug\_reports\_url}{Assess a package for the presence of a url field where bugs can be reported.}{assess.Rul.has.Rul.bug.Rul.reports.Rul.url}
+%
+\begin{Description}
+Assess a package for the presence of a url field where bugs can be reported.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_has_bug_reports_url(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing a character value containing the BugReports field contents
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_has\_bug\_reports\_url}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.bug.Rul.reports.Rul.url}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_has_bug_reports_url(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_has\_examples}{Assess a package for the presence of example or usage fields in function documentation}{assess.Rul.has.Rul.examples}
+%
+\begin{Description}
+Assess a package for the presence of example or usage fields in function documentation
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_has_examples(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing an integer value indicating the proportion of discovered files with examples
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_has\_examples}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.examples}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_has_examples(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_has\_maintainer}{Assess a package for an associated maintainer}{assess.Rul.has.Rul.maintainer}
+%
+\begin{Description}
+Assess a package for an associated maintainer
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_has_maintainer(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing a character vector of maintainers associated with the package
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_has\_maintainer}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.maintainer}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_has_maintainer(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_has\_news}{Assess a package for the presence of a NEWS file}{assess.Rul.has.Rul.news}
+%
+\begin{Description}
+Assess a package for the presence of a NEWS file
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_has_news(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing an integer value indicating the number of discovered NEWS files
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_has\_news}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.news}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_has_news(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_has\_source\_control}{Assess a package for an associated source control url}{assess.Rul.has.Rul.source.Rul.control}
+%
+\begin{Description}
+Assess a package for an associated source control url
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_has_source_control(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing a character vector of source control urls associated with the package
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_has\_source\_control}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.source.Rul.control}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_has_source_control(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_has\_vignettes}{Assess a package for the presence of Vignettes files}{assess.Rul.has.Rul.vignettes}
+%
+\begin{Description}
+Assess a package for the presence of Vignettes files
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_has_vignettes(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing an integer value indicating the number of discovered vignettes files
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_has\_vignettes}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.vignettes}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_has_vignettes(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_has\_website}{Assess a package for an associated website url}{assess.Rul.has.Rul.website}
+%
+\begin{Description}
+Assess a package for an associated website url
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_has_website(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing a character vector of website urls associated with the package
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_has\_website}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.website}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_has_website(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_last\_30\_bugs\_status}{Assess how many recent BugReports have been closed}{assess.Rul.last.Rul.30.Rul.bugs.Rul.status}
+%
+\begin{Description}
+Assess how many recent BugReports have been closed
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_last_30_bugs_status(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing a logical vector indicating whether a recent BugReport was closed
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_last\_30\_bugs\_status}{metric.Rul.score.pkg.Rul.metric.Rul.last.Rul.30.Rul.bugs.Rul.status}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_last_30_bugs_status(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_license}{Assess a package for an acceptable license}{assess.Rul.license}
+%
+\begin{Description}
+Assess a package for an acceptable license
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_license(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing a string indicating the license under which the package is released
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_license}{metric.Rul.score.pkg.Rul.metric.Rul.license}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_license(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_news\_current}{Assess a package for an up-to-date NEWS file}{assess.Rul.news.Rul.current}
+%
+\begin{Description}
+Assess a package for an up-to-date NEWS file
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_news_current(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing a logical vector indicating whether each discovered NEWS file is up-to-date
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_news\_current}{metric.Rul.score.pkg.Rul.metric.Rul.news.Rul.current}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_news_current(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_remote\_checks}{Assess package checks from CRAN/Bioc or R CMD check}{assess.Rul.remote.Rul.checks}
+%
+\begin{Description}
+Assess package checks from CRAN/Bioc or R CMD check
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_remote_checks(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing Tally of R CMD check results run on differnt OS flavors by BioC or CRAN
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_remote\_checks}{metric.Rul.score.pkg.Rul.metric.Rul.remote.Rul.checks}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_remote_checks(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_reverse\_dependencies}{Generate list of Reverse Dependencies for a package}{assess.Rul.reverse.Rul.dependencies}
+%
+\begin{Description}
+Generate list of Reverse Dependencies for a package
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_reverse_dependencies(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}
+The more packages that depend on a package the more chance
+for errors/bugs to be found
+\end{Details}
+%
+\begin{Value}
+a \code{pkg\_metric} containing A character vector of reverse dependencies
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_reverse\_dependencies}{metric.Rul.score.pkg.Rul.metric.Rul.reverse.Rul.dependencies}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_reverse_dependencies(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_r\_cmd\_check}{Assess a package's results from running R CMD check}{assess.Rul.r.Rul.cmd.Rul.check}
+%
+\begin{Description}
+Assess a package's results from running R CMD check
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_r_cmd_check(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing Tally of errors, warnings and notes from running R CMD check locally
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_r\_cmd\_check}{metric.Rul.score.pkg.Rul.metric.Rul.r.Rul.cmd.Rul.check}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_r_cmd_check(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{assess\_size\_codebase}{Assess a package for size of code base}{assess.Rul.size.Rul.codebase}
+%
+\begin{Description}
+Assess a package for size of code base
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+assess_size_codebase(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} package reference object
+
+\item[\code{...}] additional arguments passed on to S3 methods, rarely used
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} containing a numeric value for number of lines of code base for a package
+\end{Value}
+%
+\begin{SeeAlso}
+\code{\LinkA{metric\_score.pkg\_metric\_size\_codebase}{metric.Rul.score.pkg.Rul.metric.Rul.size.Rul.codebase}}
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+assess_size_codebase(pkg_ref("riskmetric"))
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{as\_pkg\_metric}{Convert an object to a \code{pkg\_metric}}{as.Rul.pkg.Rul.metric}
+%
+\begin{Description}
+Convert an object to a \code{pkg\_metric}
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+as_pkg_metric(x, class = c())
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] data to store as a \code{pkg\_metric}
+
+\item[\code{class}] a subclass to differentiate the \code{pkg\_metric} object
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} object
+\end{Value}
+\HeaderA{as\_pkg\_metric\_condition}{A pkg\_metric subclass for general metric evaluation conditions}{as.Rul.pkg.Rul.metric.Rul.condition}
+\keyword{internal}{as\_pkg\_metric\_condition}
+%
+\begin{Description}
+A pkg\_metric subclass for general metric evaluation conditions
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+as_pkg_metric_condition(x, ..., subclass = c())
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] an object to wrap in a \code{pkg\_metric\_condition} class
+
+\item[\code{...}] additional arguments added as attributes to object \code{x}
+
+\item[\code{subclass}] an optional subclass of \code{pkg\_metric\_condition} to
+include
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+an object after wrap \code{pkg\_metric\_condition} class.
+\end{Value}
+\HeaderA{as\_pkg\_metric\_error}{A subclass wrapping an error with an additional parent class}{as.Rul.pkg.Rul.metric.Rul.error}
+\keyword{internal}{as\_pkg\_metric\_error}
+%
+\begin{Description}
+A subclass wrapping an error with an additional parent class
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+as_pkg_metric_error(error)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{error}] an error condition object to capture
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+an error condition object after wrap \code{pkg\_metric\_error} class.
+\end{Value}
+\HeaderA{as\_pkg\_metric\_na}{A pkg\_metric subclass for when metrics are explicitly not applicable}{as.Rul.pkg.Rul.metric.Rul.na}
+\keyword{internal}{as\_pkg\_metric\_na}
+%
+\begin{Description}
+A pkg\_metric subclass for when metrics are explicitly not applicable
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+as_pkg_metric_na(x, message = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric} object to wrap in a \code{pkg\_metric\_na}
+subclass
+
+\item[\code{message}] an optional message explaining why a metric is not applicable.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} object after wrap in a \code{pkg\_metric\_na}
+\end{Value}
+\HeaderA{as\_pkg\_metric\_todo}{A pkg\_metric subclass for when pkg\_metrics have not yet been implemented}{as.Rul.pkg.Rul.metric.Rul.todo}
+\keyword{internal}{as\_pkg\_metric\_todo}
+%
+\begin{Description}
+A pkg\_metric subclass for when pkg\_metrics have not yet been implemented
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+as_pkg_metric_todo(x, message = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric} object to wrap in a \code{pkg\_metric\_todo}
+subclass
+
+\item[\code{message}] an optional message directing users and potential contributors
+toward any ongoing work or first steps toward development.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} object after wrap in a \code{pkg\_metric\_todo}
+\end{Value}
+\HeaderA{available\_pkg\_ref\_fields}{A helper function for retrieving a list of available fields, identified based on implementation of a pkg\_ref\_cache method for a given class.}{available.Rul.pkg.Rul.ref.Rul.fields}
+\keyword{internal}{available\_pkg\_ref\_fields}
+%
+\begin{Description}
+A helper function for retrieving a list of available fields, identified based
+on implementation of a pkg\_ref\_cache method for a given class.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+available_pkg_ref_fields(x)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a package reference object
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a list of available fields implemented with a pkg\_ref\_cache method
+\end{Value}
+\HeaderA{bare\_env}{evaluate an expression with a  pkg\_ref object reclassed as a bare environment object, used to sidestep pkg\_ref assignment guardrails}{bare.Rul.env}
+\keyword{internal}{bare\_env}
+%
+\begin{Description}
+evaluate an expression with a  pkg\_ref object reclassed as a bare environment
+object, used to sidestep pkg\_ref assignment guardrails
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+bare_env(x, expr, envir = parent.frame())
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} object
+
+\item[\code{expr}] an expression to evaluate, avoiding \code{pkg\_ref} extraction
+handlers
+
+\item[\code{envir}] an environment in which the expression is to be evaluated
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+the result of \code{expr}
+\end{Value}
+\HeaderA{bug\_report\_metadata}{Helper for structuring bug reports}{bug.Rul.report.Rul.metadata}
+\keyword{internal}{bug\_report\_metadata}
+%
+\begin{Description}
+Helper for structuring bug reports
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+bug_report_metadata(bug_reports_data, x)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{bug\_reports\_data}] data to represent a bug report history - generally a
+return object from making a request to a repository's issues API
+
+\item[\code{x}] a \code{pkg\_ref} object where a \code{bug\_reports\_host} field can be
+found
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{bug\_reports\_host} field
+\end{Value}
+\HeaderA{cache\_behaviors}{List of available caching behaviors with metadata, including default and annotations for building documentation}{cache.Rul.behaviors}
+\keyword{internal}{cache\_behaviors}
+%
+\begin{Description}
+List of available caching behaviors with metadata, including default and
+annotations for building documentation
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+cache_behaviors
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+An object of class \code{list} of length 1.
+\end{Format}
+%
+\begin{Value}
+a list contain cache behaviros information
+\end{Value}
+\HeaderA{capture\_expr\_output}{Capture side effects issued by an evaluated expression}{capture.Rul.expr.Rul.output}
+\keyword{internal}{capture\_expr\_output}
+%
+\begin{Description}
+All messaging condition side effects are captured in the order that they
+are issued.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+capture_expr_output(expr, split = FALSE, env = parent.frame(), quoted = FALSE)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{expr}] an expression to evaluate, capturing output events as they
+are issued
+
+\item[\code{split}] logical: if \code{TRUE}, output will be sent to the new
+sink and to the current output stream, like the Unix program \code{tee}.
+
+\item[\code{env}] the environment in which \code{expr} should be evaluated,
+defaulting to the calling environment.
+
+\item[\code{quoted}] whether \code{expr} is a quoted object and should be evaluated
+as is, or whether the expression should be captured from the function call.
+Defaults to \code{FALSE}, capturing the passed expression.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+an with\_eval\_recording object
+\end{Value}
+\HeaderA{dec\_mutations\_count}{decrement the number of allowed mutations}{dec.Rul.mutations.Rul.count}
+\keyword{internal}{dec\_mutations\_count}
+%
+\begin{Description}
+decrement the number of allowed mutations
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+dec_mutations_count(x)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] pkg\_ref object to decrement mutation counter for
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+pkg\_ref object
+\end{Value}
+\HeaderA{determine\_pkg\_source}{Determine the intended source of a new package}{determine.Rul.pkg.Rul.source}
+\keyword{internal}{determine\_pkg\_source}
+%
+\begin{Description}
+Determine the intended source of a new package
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+determine_pkg_source(x, source, repos)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] Package name or path to package
+
+\item[\code{source}] type of source passed in `pkg\_ref`
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+one of c('pkg\_install', 'pkg\_install', 'pkg\_cran\_remote',
+'pkg\_bioc\_remote', 'pkg\_missing')
+\end{Value}
+\HeaderA{examples\_from\_dir}{Build logical vector for Rd objects with example or usage fields discovered in a given directory}{examples.Rul.from.Rul.dir}
+\keyword{internal}{examples\_from\_dir}
+%
+\begin{Description}
+Build logical vector for Rd objects with example or usage fields discovered in a given directory
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+examples_from_dir(path, pkg)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{path}] a package directory path expected to contain exported objects
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a numeric proportion of documentation files with examples
+\end{Value}
+\HeaderA{examples\_from\_pkg}{Build logical vector for Rd objects with example or usage fields discovered in a given package}{examples.Rul.from.Rul.pkg}
+\keyword{internal}{examples\_from\_pkg}
+%
+\begin{Description}
+Build logical vector for Rd objects with example or usage fields discovered in a given package
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+examples_from_pkg(pkg)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{pkg}] a package name expected to contain exported objects
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a numeric proportion of documentation files with examples
+\end{Value}
+\HeaderA{filter\_rd\_db}{Filter a simple database of Rd objects in a package for files with example fields}{filter.Rul.rd.Rul.db}
+\keyword{internal}{filter\_rd\_db}
+%
+\begin{Description}
+Filter a simple database of Rd objects in a package for files with example fields
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+filter_rd_db(rddb)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{rddb}] a simple database of Rd object obtained via tools::Rd\_db
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a vector of Rd file names that have example fields
+\end{Value}
+\HeaderA{firstS3method}{Find the S3 method that will be evaluated when an S3 generic is called by an object of class \code{classes}}{firstS3method}
+\keyword{internal}{firstS3method}
+%
+\begin{Description}
+Find the S3 method that will be evaluated when an S3 generic is called by
+an object of class \code{classes}
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+firstS3method(f, classes, envir = parent.frame())
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{f}] a character string giving the name of the generic.
+
+\item[\code{classes}] a character vector of classes used to search for the
+appropriate S3 method
+
+\item[\code{envir}] the \code{\LinkA{environment}{environment}} in which the method and its
+generic are searched first.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a S3 method
+\end{Value}
+\HeaderA{format\_assessment\_message}{Assessment console printing formatter}{format.Rul.assessment.Rul.message}
+\keyword{internal}{format\_assessment\_message}
+%
+\begin{Description}
+make the errors and warnings consistent with meaningful indication of what
+triggered the error, including the name of the package whose reference
+triggered the error while running which asesessment.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+format_assessment_message(e, name, assessment)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{e}] an error raised during a package reference assessment
+
+\item[\code{name}] the name of the package whose package reference assessment raised
+the error
+
+\item[\code{assessment}] the name of the assessment function which raised the error
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a character string of formatted text to communicate the error
+\end{Value}
+\HeaderA{get\_assessments}{Get a specific set of assess\_* functions for pkg\_assess}{get.Rul.assessments}
+%
+\begin{Description}
+Get a specific set of assess\_* functions for pkg\_assess
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+get_assessments(fxn_string = "")
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{fxn\_string}] vector of assess functions
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a list of specific assess\_* functions exported from riskmetric
+\end{Value}
+\HeaderA{get\_assessment\_columns}{Helper for retrieving a list of columns which contain pkg\_metric objects}{get.Rul.assessment.Rul.columns}
+\keyword{internal}{get\_assessment\_columns}
+%
+\begin{Description}
+Helper for retrieving a list of columns which contain pkg\_metric objects
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+get_assessment_columns(tbl)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{tbl}] a \code{\LinkA{tibble}{tibble}} to select columns among
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a logical vector of \code{pkg\_metric} column indices
+\end{Value}
+\HeaderA{get\_package\_dependencies}{Gets available packages from necessary repository and filters for package of interest}{get.Rul.package.Rul.dependencies}
+\keyword{internal}{get\_package\_dependencies}
+%
+\begin{Description}
+Gets available packages from necessary repository and filters for
+package of interest
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+get_package_dependencies(name, repo)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{name}] package name
+
+\item[\code{repo}] package repository (e.g. CRAN or Bioconductor)
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+Returns a data frame with two columns 1) Package names, 2) type of dependency (LinkingTo, Imports, Depends)
+\end{Value}
+\HeaderA{get\_pkg\_ref\_classes}{Walk the pkg\_ref class hierarchy to match a single subclass to a class path}{get.Rul.pkg.Rul.ref.Rul.classes}
+\keyword{internal}{get\_pkg\_ref\_classes}
+%
+\begin{Description}
+Walk the pkg\_ref class hierarchy to match a single subclass to a class path
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+get_pkg_ref_classes(x, classes = pkg_ref_class_hierarchy)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] (`character(1L)`) A subclass, among those known in pkg\_ref subclasses
+
+\item[\code{classes}] (`list`) A class hierarchy, described using a named list.
+Defaults to `pkg\_ref\_class\_hierarchy`.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A `character(n)` class path from `pkg\_ref` down to the specified
+subclass, or `FALSE` if no path is found.
+\end{Value}
+\HeaderA{if\_not\_null\_else}{If not NULL else}{if.Rul.not.Rul.null.Rul.else}
+\aliasB{\%"|"|\%}{if\_not\_null\_else}{.Rpcent.||.Rpcent.}
+\keyword{internal}{if\_not\_null\_else}
+%
+\begin{Description}
+If not NULL else
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+lhs %||% rhs
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{lhs}] Left-hand side
+
+\item[\code{rhs}] Right-hand side
+
+A shorthand for a common comparison
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+an object same as \code{lhs} or \code{rhs}
+\end{Value}
+\HeaderA{inc\_mutations\_count}{increment the number of allowed mutations}{inc.Rul.mutations.Rul.count}
+\keyword{internal}{inc\_mutations\_count}
+%
+\begin{Description}
+increment the number of allowed mutations
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+inc_mutations_count(x)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] pkg\_ref object to increment mutation counter for
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a pkg\_ref object
+\end{Value}
+\HeaderA{is\_url\_subpath\_of}{check if a url originates from a list of repo urls}{is.Rul.url.Rul.subpath.Rul.of}
+\keyword{internal}{is\_url\_subpath\_of}
+%
+\begin{Description}
+check if a url originates from a list of repo urls
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+is_url_subpath_of(url, urls)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{url}] a url which may stem from one of the provided base urls
+
+\item[\code{urls}] vector of base urls
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+logical vector indicating which base urls have a sub url of
+\code{url}
+\end{Value}
+\HeaderA{memoise\_bioc\_mirrors}{Fetch BioC Mirrors Info}{memoise.Rul.bioc.Rul.mirrors}
+\keyword{internal}{memoise\_bioc\_mirrors}
+%
+\begin{Description}
+taken from utils::chooseBioCmirror
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+memoise_bioc_mirrors()
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+a data frame with mirror information
+\end{Value}
+\HeaderA{memoise\_cran\_mirrors}{Fetch CRAN Mirrors Info}{memoise.Rul.cran.Rul.mirrors}
+\keyword{internal}{memoise\_cran\_mirrors}
+%
+\begin{Description}
+Fetch CRAN Mirrors Info
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+memoise_cran_mirrors(all = TRUE, ..., .local = getOption("riskmetric.tests"))
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{all}] default \code{TRUE}, passed to \code{\LinkA{utils}{utils}[getCRANmirrors]}
+
+\item[\code{...}] additional arguments passed to \code{\LinkA{utils}{utils}[getCRANmirrors]}
+
+\item[\code{.local}] an optional local directory to source the CRAN package index
+from, defaulting to \code{getOption("riskmetric.tests")}, used
+for isolating repository requests during testing.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a data frame with mirror information
+\end{Value}
+\HeaderA{metric\_score}{Score a package metric}{metric.Rul.score}
+%
+\begin{Description}
+Convert a package metric into a numeric value between 0 to 1
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] A \code{pkg\_metric\_*} class object to score
+
+\item[\code{...}] Additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+score of a package risk metric
+\end{Value}
+\HeaderA{metric\_score.pkg\_metric\_covr\_coverage}{Score a package for unit test coverage}{metric.Rul.score.pkg.Rul.metric.Rul.covr.Rul.coverage}
+%
+\begin{Description}
+Returns the overall test coverage from a covr coverage report
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_covr_coverage'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_covr\_coverage} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A \code{numeric}
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_covr_coverage(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_dependencies}{Score a package for dependencies}{metric.Rul.score.pkg.Rul.metric.Rul.dependencies}
+%
+\begin{Description}
+Calculates a regularized score based on the number of dependencies a package has.
+Convert the number of dependencies \code{NROW(x)} into a validation
+score [0,1] \deqn{ 1 - 1 / (1 + exp(-0.5 * (NROW(x) + 4))) }{}
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_dependencies'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_dependencies} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}
+The scoring function is the classic logistic curve \deqn{ / (1 + exp(-k(x-x[0])) }{}
+\eqn{x = NROW(x)}{}, sigmoid midpoint is 5 reverse dependencies, ie. \eqn{x[0] = 4}{},
+and logistic growth rate of \eqn{k = 0.5}{}.
+
+\deqn{ 1 - 1 / (1 + exp(NROW(x)-4)) }{}
+\end{Details}
+%
+\begin{Value}
+numeric value between \code{0} (high number of  dependencies) and
+\code{1} (low number of dependencies)
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_dependencies(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_downloads\_1yr}{Defining an Assessment Scoring Function}{metric.Rul.score.pkg.Rul.metric.Rul.downloads.Rul.1yr}
+%
+\begin{Description}
+Score a package for the number of downloads in the past year regularized
+Convert the number of downloads \code{x} in the past year into a validation
+score [0,1] \deqn{ 1 - 150,000 / (x + 150,000) }{}
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_downloads_1yr'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_downloads\_1yr} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}
+The scoring function is a simplification of the classic logistic curve \deqn{
+1 / (1 + exp(-k(x-x[0])) }{} with a log scale for the number of downloads
+\eqn{x = log(x)}{}, sigmoid midpoint is 1000 downloads, ie. \eqn{x[0] =
+log(1,000)}{}, and logistic growth rate of \eqn{k = 0.5}{}.
+
+\deqn{ 1 - 1 / (1 + exp(log(x)-log(1.5e5))) = 1 - 150,000 / (x + 150,000) }{}
+\end{Details}
+%
+\begin{Value}
+numeric value between \code{0} (low) and \code{1} (high download
+volume) converting the number of downloads.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_downloads_1yr(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_exported\_namespace}{Score a package for the number of exported objects}{metric.Rul.score.pkg.Rul.metric.Rul.exported.Rul.namespace}
+%
+\begin{Description}
+Score a package for the number of exported objects it has; regularized
+Convert the number of exported objects \code{length(x)} into a validation
+score [0,1] \deqn{ 1 / (1 + exp(-0.5 * (sqrt(length(x)) + sqrt(5)))) }{}
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_exported_namespace'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_exported\_namespace} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}
+The scoring function is the classic logistic curve \deqn{
+1 / (1 + exp(-k(x-x[0])) }{} with a square root scale for the number of exported objects
+\eqn{x = sqrt(length(x))}{}, sigmoid midpoint is 25 exported objects, ie. \eqn{x[0] =
+sqrt(5)}{}, and logistic growth rate of \eqn{k = 0.25}{}.
+
+\deqn{ 1 / (1 + exp(-0.25 * sqrt(length(x))-sqrt(25))) }{}
+\end{Details}
+%
+\begin{Value}
+numeric value between \code{0} (high number of exported objects) and
+\code{1} (low number of exported objects)
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_exported_namespace(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_export\_help}{Score a package for availability of documentation for exported values}{metric.Rul.score.pkg.Rul.metric.Rul.export.Rul.help}
+%
+\begin{Description}
+Coerce a logical vector indicating availability of export documentation
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_export_help'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_export\_help} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+\code{1} if any NEWS files are found, otherwise \code{0}
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_export_help(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_has\_bug\_reports\_url}{Score a package for the presence of a bug report url}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.bug.Rul.reports.Rul.url}
+%
+\begin{Description}
+Score a package for the presence of a bug report url
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_has_bug_reports_url'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_has\_bug\_reports\_url} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A logical value indicating whether the package has a BugReports field
+filled in
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_has_bug_reports_url(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_has\_examples}{Score a package for the presence of a example or usage fields}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.examples}
+%
+\begin{Description}
+Coerce a logical vector indicating availability of example or usage documentation
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_has_examples'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_has\_examples} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+\code{1} if any example or usage fields are found, otherwise \code{0}
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_has_examples(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_has\_maintainer}{Score a package for inclusion of an associated maintainer}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.maintainer}
+%
+\begin{Description}
+Coerce a list of maintainers into a numeric value indicating whether the
+number of listed maintainers is greater than 0.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_has_maintainer'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_has\_maintainer} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+\code{1} if any maintainer is provided, otherwise \code{0}
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_has_maintainer(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_has\_news}{Score a package for the presence of a NEWS file}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.news}
+%
+\begin{Description}
+Coerce the number of news files to binary indication of valid NEWS files
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_has_news'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_has\_news} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+\code{1} if any NEWS files are found, otherwise \code{0}
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_has_news(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_has\_source\_control}{Score a package for inclusion of an associated source control url}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.source.Rul.control}
+%
+\begin{Description}
+Coerce a list of source control urls into a numeric value indicating whether
+the number of listed urls is greater than 0.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_has_source_control'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_has\_source\_control} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+\code{1} if any source control url is provided, otherwise \code{0}
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_has_source_control(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_has\_vignettes}{Score a package for the presence of a Vignettes file}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.vignettes}
+%
+\begin{Description}
+Coerce the number of vignettes files to binary indication of valid Vignettes
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_has_vignettes'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_has\_vignettes} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+\code{1} if any Vignettes files are found, otherwise \code{0}
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_has_vignettes(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_has\_website}{Score a package for inclusion of an associated website url}{metric.Rul.score.pkg.Rul.metric.Rul.has.Rul.website}
+%
+\begin{Description}
+Coerce a list of website urls into a numeric value indicating whether the
+number of listed urls is greater than 0.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_has_website'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_has\_website} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+\code{1} if any website url is provided, otherwise \code{0}
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_has_website(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_last\_30\_bugs\_status}{Score a package for number of recently opened BugReports that are now closed}{metric.Rul.score.pkg.Rul.metric.Rul.last.Rul.30.Rul.bugs.Rul.status}
+%
+\begin{Description}
+Score a package for number of recently opened BugReports that are now closed
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_last_30_bugs_status'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_last\_30\_bugs\_status} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a fractional value indicating percentage of last 30 bug reports that
+are now closed
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_last_30_bugs_status(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_license}{Score a package for acceptable license}{metric.Rul.score.pkg.Rul.metric.Rul.license}
+%
+\begin{Description}
+Maps a license string to a score
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_license'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_license} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+score of metric license
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_license(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_news\_current}{Score a package for NEWS files updated to current version}{metric.Rul.score.pkg.Rul.metric.Rul.news.Rul.current}
+%
+\begin{Description}
+Coerce a logical vector of discovered up-to-date NEWS to a metric score
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_news_current'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_news\_current} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+\code{1} if any NEWS files are up-to-date, otherwise \code{0}
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_news_current(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_remote\_checks}{Score a package based on R CMD check results run by BioC or CRAN}{metric.Rul.score.pkg.Rul.metric.Rul.remote.Rul.checks}
+%
+\begin{Description}
+The scoring function is the number of OS flavors that passed with OK or NOTES + 0.5*the number of OS's that produced WARNINGS divided by the number of OS's checked
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_remote_checks'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_remote\_checks} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a fractional value indicating percentage OS flavors that did not produce an error or warning from R CMD check
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_remote_checks(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_reverse\_dependencies}{Scoring method for number of reverse dependencies a package has}{metric.Rul.score.pkg.Rul.metric.Rul.reverse.Rul.dependencies}
+%
+\begin{Description}
+Score a package for the number of reverse dependencies it has; regularized
+Convert the number of reverse dependencies \code{length(x)} into a validation
+score [0,1] \deqn{ 1 / (1 + exp(-0.5 * (sqrt(length(x)) + sqrt(5)))) }{}
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_reverse_dependencies'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_reverse\_dependencies} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}
+The scoring function is the classic logistic curve \deqn{
+1 / (1 + exp(-k(x-x[0])) }{} with a square root scale for the number of reverse dependencies
+\eqn{x = sqrt(length(x))}{}, sigmoid midpoint is 5 reverse dependencies, ie. \eqn{x[0] =
+sqrt(5)}{}, and logistic growth rate of \eqn{k = 0.5}{}.
+
+\deqn{ 1 / (1 + -0.5 * exp(sqrt(length(x)) - sqrt(5))) }{}
+\end{Details}
+%
+\begin{Value}
+numeric value between \code{1} (high number of reverse dependencies) and
+\code{0} (low number of reverse dependencies)
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_reverse_dependencies(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_r\_cmd\_check}{Score a package based on R CMD check results run locally}{metric.Rul.score.pkg.Rul.metric.Rul.r.Rul.cmd.Rul.check}
+%
+\begin{Description}
+The scoring function is the weighted sum of notes (0.1), errors (1) and warnings (0.25), with a maximum score of 1 (no errors, notes or warnings)
+and a minimum score of 0.
+Essentially, the metric will allow up to 10 notes, 1 error or 4 warnings before returning the lowest score of 0
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_r_cmd_check'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_r\_cmd\_check} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A weighted sum of errors and warnings of all tests preformed
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_r_cmd_check(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{metric\_score.pkg\_metric\_size\_codebase}{Score a package for number of lines of code}{metric.Rul.score.pkg.Rul.metric.Rul.size.Rul.codebase}
+%
+\begin{Description}
+Scores packages based on its codebase size, as determined by number of lines of code.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_metric_size_codebase'
+metric_score(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_metric\_size\_codebase} packge metric object
+
+\item[\code{...}] additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+numeric value between \code{0} (low) and \code{1} (large number of lines of code) converting the number of downloads.
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: metric_score(assess_size_codebase(pkg_ref("riskmetric")))
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{news\_from\_dir}{Build a list of NEWS files discovered within a given directory}{news.Rul.from.Rul.dir}
+\keyword{internal}{news\_from\_dir}
+%
+\begin{Description}
+Build a list of NEWS files discovered within a given directory
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+news_from_dir(path)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{path}] a package directory path expected to contain NEWS files
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a list of parsed NEWS files
+\end{Value}
+\HeaderA{parse\_dcf\_dependencies}{Parse DCF of description file}{parse.Rul.dcf.Rul.dependencies}
+\keyword{internal}{parse\_dcf\_dependencies}
+%
+\begin{Description}
+Parse DCF of description file
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+parse_dcf_dependencies(path)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{path}] pkg\_ref path
+\end{ldescription}
+\end{Arguments}
+\HeaderA{pkg\_assess}{Apply assess\_* family of functions to a package reference}{pkg.Rul.assess}
+%
+\begin{Description}
+By default, use all \code{assess\_*} funtions in the \code{riskmetric}
+namespace and produce a \code{\LinkA{tibble}{tibble}} with one column per
+assessment applied.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+pkg_assess(
+  x,
+  assessments = all_assessments(),
+  ...,
+  error_handler = assessment_error_empty
+)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] A single \code{\LinkA{pkg\_ref}{pkg.Rul.ref}} object or
+\code{\LinkA{tibble}{tibble}} of package references to assess
+
+\item[\code{assessments}] A list of assessment functions to apply to each package
+reference. By default, a list of all exported assess\_* functions from the
+riskmetric package.
+
+\item[\code{...}] additional arguments unused
+
+\item[\code{error\_handler}] A function, which accepts a single parameter expecting
+the raised error, which will be called if any errors occur when attempting
+to apply an assessment function.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+Either a \code{list\_of\_pkg\_metric} object when a single
+\code{pkg\_ref} object is passed as \code{x}, or a
+\code{\LinkA{tibble}{tibble}} of metrics when a \code{list\_of\_pkg\_ref} or
+\code{tibble} is passed as \code{x}. When a \code{\LinkA{tibble}{tibble}}
+is returned, it has one row per package reference and a new column per
+assessment function, with cells of that column as package metric objects
+returned when the assessment was called with the associated pacakge
+reference.
+\end{Value}
+%
+\begin{Section}{Assessment function catalog}
+
+\begin{description}
+
+\item[\code{\LinkA{assess\_covr\_coverage}{assess.Rul.covr.Rul.coverage}}] Package unit test coverage
+\item[\code{\LinkA{assess\_has\_news}{assess.Rul.has.Rul.news}}] number of discovered NEWS files
+\item[\code{\LinkA{assess\_remote\_checks}{assess.Rul.remote.Rul.checks}}] Number of OS flavors that passed/warned/errored on R CMD check
+\item[\code{\LinkA{assess\_news\_current}{assess.Rul.news.Rul.current}}] NEWS file contains entry for current version number
+\item[\code{\LinkA{assess\_r\_cmd\_check}{assess.Rul.r.Rul.cmd.Rul.check}}] Package check results
+\item[\code{\LinkA{assess\_exported\_namespace}{assess.Rul.exported.Rul.namespace}}] Objects exported by package
+\item[\code{\LinkA{assess\_has\_vignettes}{assess.Rul.has.Rul.vignettes}}] number of discovered vignettes files
+\item[\code{\LinkA{assess\_export\_help}{assess.Rul.export.Rul.help}}] exported objects have documentation
+\item[\code{\LinkA{assess\_has\_website}{assess.Rul.has.Rul.website}}] a vector of associated website urls
+\item[\code{\LinkA{assess\_has\_maintainer}{assess.Rul.has.Rul.maintainer}}] a vector of associated maintainers
+\item[\code{\LinkA{assess\_last\_30\_bugs\_status}{assess.Rul.last.Rul.30.Rul.bugs.Rul.status}}] vector indicating whether BugReports status is closed
+\item[\code{\LinkA{assess\_size\_codebase}{assess.Rul.size.Rul.codebase}}] number of lines of code base
+\item[\code{\LinkA{assess\_has\_source\_control}{assess.Rul.has.Rul.source.Rul.control}}] a vector of associated source control urls
+\item[\code{\LinkA{assess\_has\_bug\_reports\_url}{assess.Rul.has.Rul.bug.Rul.reports.Rul.url}}] presence of a bug reports url in repository
+\item[\code{\LinkA{assess\_downloads\_1yr}{assess.Rul.downloads.Rul.1yr}}] number of downloads in the past year
+\item[\code{\LinkA{assess\_reverse\_dependencies}{assess.Rul.reverse.Rul.dependencies}}] List of reverse dependencies a package has
+\item[\code{\LinkA{assess\_has\_examples}{assess.Rul.has.Rul.examples}}] proportion of discovered function files with examples
+\item[\code{\LinkA{assess\_dependencies}{assess.Rul.dependencies}}] Package dependency footprint
+\item[\code{\LinkA{assess\_license}{assess.Rul.license}}] software is released with an acceptable license
+
+\end{description}
+
+\end{Section}
+\HeaderA{pkg\_metric}{A helper for structuring assessment return objects for dispatch with the score function}{pkg.Rul.metric}
+%
+\begin{Description}
+A helper for structuring assessment return objects for dispatch with the
+score function
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+pkg_metric(x = NA, ..., class = c())
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] data to store as a \code{pkg\_metric}
+
+\item[\code{...}] additional attributes to bind to the \code{pkg\_metric} object
+
+\item[\code{class}] a subclass to differentiate the \code{pkg\_metric} object
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} object
+\end{Value}
+\HeaderA{pkg\_metric\_eval}{Evaluate a metric}{pkg.Rul.metric.Rul.eval}
+\keyword{internal}{pkg\_metric\_eval}
+%
+\begin{Description}
+Evalute code relevant to a metric, capturing the evaluated code as well as
+any messages, warnings or errors that are thrown in the process.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+pkg_metric_eval(expr, ..., class = c(), env = parent.frame())
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{expr}] An expression to evaluate in order to calculate a
+\code{pkg\_metric}
+
+\item[\code{...}] additional attributes to bind to the \code{pkg\_metric} object
+
+\item[\code{class}] a subclass to differentiate the \code{pkg\_metric} object
+
+\item[\code{env}] An environment in which \code{expr} is to be evaluated
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{pkg\_metric} object containing the result of \code{expr}
+\end{Value}
+\HeaderA{pkg\_ref}{Create a package reference}{pkg.Rul.ref}
+\aliasA{as\_pkg\_ref}{pkg\_ref}{as.Rul.pkg.Rul.ref}
+\aliasA{pkg\_bioc}{pkg\_ref}{pkg.Rul.bioc}
+\aliasA{pkg\_cran}{pkg\_ref}{pkg.Rul.cran}
+\aliasA{pkg\_install}{pkg\_ref}{pkg.Rul.install}
+\aliasA{pkg\_library}{pkg\_ref}{pkg.Rul.library}
+\aliasA{pkg\_missing}{pkg\_ref}{pkg.Rul.missing}
+\aliasA{pkg\_source}{pkg\_ref}{pkg.Rul.source}
+%
+\begin{Description}
+Create a package reference from package name or filepath, producing an object
+in which package metadata will be collected as risk assessments are
+performed. Depending on where the package was found - whether it is found as
+source code, in a local library or from a remote host - an S3 subclass is
+given to allow for source-specific collection of metadata. See 'Details' for
+a breakdown of subclasses. Different sources can be specified by passing a
+subclass as an arguemnt named 'source', see details.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+pkg_ref(x, ...)
+
+pkg_install(x, lib.loc = NULL)
+
+pkg_source(x)
+
+pkg_cran(x, repos = getOption("repos", "https://cran.rstudio.com"))
+
+pkg_bioc(x)
+
+pkg_missing(x)
+
+pkg_library(lib.loc)
+
+as_pkg_ref(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] A singular \code{character} value, \code{character vector} or
+\code{list} of \code{character} values of package names or source code
+directory paths.
+
+\item[\code{...}] Additional arguments passed to methods.
+
+\item[\code{lib.loc}] The path to the R library directory of the installed package.
+
+\item[\code{repos}] URL of CRAN repository to pull package metadata.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Details}
+Package reference objects are used to collect metadata pertaining to a given
+package. As data is needed for assessing a package's risk, this metadata
+populates fields within the package reference object.
+
+The \code{pkg\_ref} S3 subclasses are used extensively for divergent metadata
+collection behaviors dependent on where the package was discovered. Because
+of this, there is a rich hierarchy of subclasses to articulate the different
+ways package information can be found.
+
+A source argument can be passed using the `source` argument. This will
+override the logic that riskmetric does when determining a package source.
+This can be useful when you are scoring the most recent version present on a
+repository, or testing a specific library.
+
+\begin{description}
+
+\item[\strong{\code{pkg\_ref}}]  A default class for general metadata
+collection.
+\begin{description}
+
+\item[\strong{\code{pkg\_source}}]  A reference to a source code directory.
+\item[\strong{\code{pkg\_install}}]  A reference to a package installation
+location in a package library. A specific library can be passed by passing
+the path to the library as the parameter `lib.loc`
+\item[\strong{\code{pkg\_remote}}]  A reference to package metadata on a
+remote server.
+\begin{description}
+
+\item[\strong{\code{pkg\_cran\_remote}}]  A reference to package
+information pulled from the CRAN repository.
+\item[\strong{\code{pkg\_bioc\_remote}}]  A reference to package
+information pulled from the Bioconductor repository.
+\item[\strong{\code{pkg\_git\_remote}}]  A reference to a package source
+code git repository. (not yet implemented)
+
+\end{description}
+
+
+\end{description}
+
+
+\end{description}
+
+\end{Details}
+%
+\begin{Value}
+When a single value is provided, a single \code{pkg\_ref} object is
+returned, possibly with a subclass based on where the package was found. If
+a \code{vector} or \code{list} is provided, a \code{list\_of\_pkg\_ref} object
+constructed with \code{\LinkA{list\_of}{list.Rul.of}} is returned, which can be
+considered analogous to a \code{list}. See 'Details' for further
+information about \code{pkg\_ref} subclasses.
+\end{Value}
+%
+\begin{Section}{Package Cohorts}
+
+
+*Experimental!*
+Package cohorts are structures to determine the risk of a set of packages.
+`pkg\_library()` can be called to create a object containing the pkg\_ref
+objects of all packages in a system library.
+\end{Section}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+# riskmetric will check for installed packages by default
+ref_1 <- pkg_ref("utils")
+ref_1$source # returns 'pkg_install'
+
+# lib.loc can be used to specify a library for pkg_install
+ref_3 <- pkg_ref("utils", source = "pkg_install", lib.loc = .libPaths()[1])
+
+# You can also override this behavior with a source argument
+ref_2 <- pkg_ref("utils", source = "pkg_cran_remote")
+ref_2$source  # returns 'pkg_cran_remote'
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{pkg\_ref\_cache}{S3 generic to calculate a `pkg\_ref` field}{pkg.Rul.ref.Rul.cache}
+%
+\begin{Description}
+Reactively retrieve and cache `pkg\_ref` metadata
+\end{Description}
+%
+\begin{Value}
+a \code{pkg\_ref} field
+\end{Value}
+%
+\begin{Section}{Caching Details}
+
+%
+\begin{SubSection}{\code{pkg\_ref} class fields}
+The \code{pkg\_ref} class structures an environment with special handling
+for indexing into the \code{pkg\_ref} class using the \code{\$} or \code{[[}
+operators. For all intents and purposes, the \code{pkg\_ref} class is works
+conceptually similar to a lazy, immutable \code{list}, and uses the
+\code{pkg\_ref\_cache} function internally to lazily retrieve package
+reference fields.
+\end{SubSection}
+
+%
+\begin{SubSection}{Lazy metadata caching}
+Laziness in a \code{pkg\_ref} object refers to the delayed evaluation of the
+contents of its fields. Since some metadata is time or computationally
+intensive to retrieve, and unnessary for some assessments, we want to avoid
+that retrieval until it is needed.
+
+The first time that a field is accessed within a \code{pkg\_ref} object
+\code{x}, a corresponding \code{pkg\_ref\_cache} S3 generic is called. For
+example, when \code{x\$description} is first accessed, the \code{pkg\_ref}
+object uses the function \code{pkg\_ref\_cache.description} to attempt to
+retrieve the contents of the corresponding \code{DESCRIPTION} file.
+
+Often, the way that this data is collected might be different depending on
+the subclass of the \code{pkg\_ref}. In the case of the \code{description}
+metadata, a reference to a local install might be able to read in a local
+file directly, whereas a reference to a remote source of metadata might
+require first downloading the file. For this reason, many
+\code{pkg\_ref\_cache.*} functions are themselves S3 generics that dispatch
+on the class of the \code{pkg\_ref} object, allowing for divergent behaviors
+for different source of package metadata.
+\end{SubSection}
+
+%
+\begin{SubSection}{\code{pkg\_ref} field immutability}
+Once a field has been calculated, its value is immutable. This behavior was
+chosen because of the long time frame over which package metadata changes,
+rendering it unnecessary to continually reevaluate fields each time they
+are accesssed.
+
+This means that within an assessment, a given field for a package will only
+ever be calculated once and preserved for downstream use.
+\end{SubSection}
+
+\end{Section}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+# implementing a new field called "first_letter" that is consistently derived
+# across all pkg_ref objects:
+
+  pkg_ref_cache.first_letter <- function(x, name, ...) {
+    substring(x$name, 1, 1)
+  }
+
+  x <- pkg_ref("riskmetric")
+  x$first_letter
+
+
+
+# implementing a new field called "subclass_enum" that dispatches on
+# the subclass of the pkg_ref object:
+
+  pkg_ref_cache.subclass_enum <- function(x, name, ...) {
+    UseMethod("pkg_ref_cache.subclass_enum")
+  }
+
+  pkg_ref_cache.subclass_enum.pkg_ref <- function(x, name, ...) {
+    0
+  }
+
+  pkg_ref_cache.subclass_enum.pkg_install <- function(x, name, ...) {
+    1
+  }
+
+  x$subclass_enum
+
+## End(Not run)
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{pkg\_ref\_cache.bug\_reports\_host.default}{Get the host name of a BugReports url}{pkg.Rul.ref.Rul.cache.bug.Rul.reports.Rul.host.default}
+\keyword{internal}{pkg\_ref\_cache.bug\_reports\_host.default}
+%
+\begin{Description}
+Get the host name of a BugReports url
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'bug_reports_host.default'
+pkg_ref_cache(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+a \code{pkg\_ref} object
+\end{Value}
+\HeaderA{pkg\_ref\_cache.bug\_reports\_url.pkg\_source}{Get the BugReports url}{pkg.Rul.ref.Rul.cache.bug.Rul.reports.Rul.url.pkg.Rul.source}
+\keyword{internal}{pkg\_ref\_cache.bug\_reports\_url.pkg\_source}
+%
+\begin{Description}
+Get the BugReports url
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'bug_reports_url.pkg_source'
+pkg_ref_cache(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+a \code{pkg\_ref} object
+\end{Value}
+\HeaderA{pkg\_ref\_cache.covr\_coverage.pkg\_source}{Retrieve output of covr::package\_coverage}{pkg.Rul.ref.Rul.cache.covr.Rul.coverage.pkg.Rul.source}
+\keyword{internal}{pkg\_ref\_cache.covr\_coverage.pkg\_source}
+%
+\begin{Description}
+Retrieve output of covr::package\_coverage
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'covr_coverage.pkg_source'
+pkg_ref_cache(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+a \code{pkg\_ref} object
+\end{Value}
+\HeaderA{pkg\_ref\_cache.expression\_coverage.pkg\_source}{Retrieve output of covr::package\_coverage, tallied by expression}{pkg.Rul.ref.Rul.cache.expression.Rul.coverage.pkg.Rul.source}
+\keyword{internal}{pkg\_ref\_cache.expression\_coverage.pkg\_source}
+%
+\begin{Description}
+Retrieve output of covr::package\_coverage, tallied by expression
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'expression_coverage.pkg_source'
+pkg_ref_cache(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+a \code{pkg\_ref} object
+\end{Value}
+\HeaderA{pkg\_ref\_cache.help.pkg\_install}{Cache a list of available help files as LaTeX objects}{pkg.Rul.ref.Rul.cache.help.pkg.Rul.install}
+\keyword{internal}{pkg\_ref\_cache.help.pkg\_install}
+%
+\begin{Description}
+Cache a list of available help files as LaTeX objects
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'help.pkg_install'
+pkg_ref_cache(x, name, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+a \code{pkg\_ref} object
+\end{Value}
+\HeaderA{pkg\_ref\_cache.help.pkg\_source}{Cache a list of available help files as LaTeX objects}{pkg.Rul.ref.Rul.cache.help.pkg.Rul.source}
+\keyword{internal}{pkg\_ref\_cache.help.pkg\_source}
+%
+\begin{Description}
+Cache a list of available help files as LaTeX objects
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'help.pkg_source'
+pkg_ref_cache(x, name, ...)
+\end{verbatim}
+\end{Usage}
+\HeaderA{pkg\_ref\_cache.news.pkg\_remote}{Cache a list of NEWS files from a package reference}{pkg.Rul.ref.Rul.cache.news.pkg.Rul.remote}
+\keyword{internal}{pkg\_ref\_cache.news.pkg\_remote}
+%
+\begin{Description}
+Cache a list of NEWS files from a package reference
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'news.pkg_remote'
+pkg_ref_cache(x, name, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+a \code{pkg\_ref} object
+\end{Value}
+\HeaderA{pkg\_ref\_class\_hierarchy}{The `pkg\_ref` subclass hierarchy, used for pkg\_ref object creation with a specified subclass}{pkg.Rul.ref.Rul.class.Rul.hierarchy}
+\keyword{datasets}{pkg\_ref\_class\_hierarchy}
+%
+\begin{Description}
+The `pkg\_ref` subclass hierarchy, used for pkg\_ref object creation with a
+specified subclass
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+pkg_ref_class_hierarchy
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+An object of class \code{list} of length 1.
+\end{Format}
+\HeaderA{pkg\_ref\_mutability\_error}{pretty printing for a pkg\_ref mutability error caused by trying to do assignment within the pkg\_ref without permission}{pkg.Rul.ref.Rul.mutability.Rul.error}
+\keyword{internal}{pkg\_ref\_mutability\_error}
+%
+\begin{Description}
+pretty printing for a pkg\_ref mutability error caused by trying to do
+assignment within the pkg\_ref without permission
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+pkg_ref_mutability_error(name)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{name}] name of field for which mutation was attempted
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a \code{simplError} with subclasses \code{pkg\_ref\_mutability\_error},
+\code{pkg\_ref\_error}
+\end{Value}
+\HeaderA{pkg\_score}{Score a package assessment, collapsing results into a single numeric}{pkg.Rul.score}
+%
+\begin{Description}
+pkg\_score() calculates the risk involved with using a package. Risk ranges
+from 0 (low-risk) to 1 (high-risk).
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+pkg_score(x, ..., error_handler = score_error_default)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] A \code{pkg\_metric} object, whose subclass is used to choose the
+appropriate scoring method for the atomic metric metadata. Optionally, a
+\code{\LinkA{tibble}{tibble}} can be provided, in which cases all
+\code{pkg\_metric} values will be scored.
+
+\item[\code{...}] Additional arguments passed to \code{summarize\_scores} when an
+object of class \code{tbl\_df} is provided, unused otherwise.
+
+\item[\code{error\_handler}] Specify a function to be called if the class can't be
+identified. Most commonly this occurs for \code{pkg\_metric} objects of
+subclass \code{pkg\_metric\_error}, which is produced when an error is
+encountered when calculating an associated assessment.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A numeric value if a single \code{pkg\_metric} is provided, or a
+\code{\LinkA{tibble}{tibble}} with \code{pkg\_metric} objects scored and
+returned as numeric values when a \code{\LinkA{tibble}{tibble}} is provided.
+\end{Value}
+%
+\begin{SeeAlso}
+score\_error\_default score\_error\_zero score\_error\_NA
+\end{SeeAlso}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+
+# scoring a single assessment
+metric_score(assess_has_news(pkg_ref("riskmetric")))
+
+# scoring many assessments as a tibble
+library(dplyr)
+pkg_score(pkg_assess(as_tibble(pkg_ref(c("riskmetric", "riskmetric")))))
+
+
+## End(Not run)
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{print.with\_eval\_recording}{Handle pretty printing of expression output}{print.with.Rul.eval.Rul.recording}
+\keyword{internal}{print.with\_eval\_recording}
+%
+\begin{Description}
+Handle pretty printing of expression output
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'with_eval_recording'
+print(x, playback = FALSE, cr = TRUE, ..., sleep = 0)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] expr\_output to print
+
+\item[\code{playback}] a \code{logical} indicating whether evaluation output
+should be played back (\code{FALSE}), or whether the result value should
+be printed as is (\code{TRUE}, the default)
+
+\item[\code{cr}] a \code{logical} indicating whether carriage returns should be
+printed, possibly overwriting characters in the output.
+
+\item[\code{...}] additional arguments unused
+
+\item[\code{sleep}] an \code{numeric} indicating a time to sleep between printing
+each line to console. This can be helpful if the original output overwrites
+valuable information in the log that is eventually overwritten and you
+would like to watch it play out as it was formatted.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a print message
+\end{Value}
+\HeaderA{remove\_base\_packages}{Helper function to remove base and recommended packages}{remove.Rul.base.Rul.packages}
+\keyword{internal}{remove\_base\_packages}
+%
+\begin{Description}
+Helper function to remove base and recommended packages
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+remove_base_packages(df)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{df}] Data frame of dependencies of a package.
+\end{ldescription}
+\end{Arguments}
+\HeaderA{require\_cache\_behaviors}{Stop if a function requires disabled behaviors}{require.Rul.cache.Rul.behaviors}
+\keyword{internal}{require\_cache\_behaviors}
+%
+\begin{Description}
+Stop if a function requires disabled behaviors
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+require_cache_behaviors(behaviors)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{behaviors}] a character vector of behavior flags to assert as
+requirements for metadata caching. values must have an entry found in
+riskmetric:::cache\_behaviors list
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a boolean value
+\end{Value}
+\HeaderA{riskmetric}{riskmetric}{riskmetric}
+\aliasA{riskmetric-package}{riskmetric}{riskmetric.Rdash.package}
+\keyword{internal}{riskmetric}
+%
+\begin{Description}
+Facilities for assessing R packages against a number of metrics to help
+quantify their robustness.
+\end{Description}
+%
+\begin{Author}
+\strong{Maintainer}: Eli Miller \email{eli.miller@atorusresearch.com}
+
+Authors:
+\begin{itemize}
+
+\item{} R Validation Hub \email{psi.aims.r.validation@gmail.com}
+\item{} Doug Kelkhoff \email{doug.kelkhoff@gmail.com}
+\item{} Marly Gotti
+\item{} Kevin K
+\item{} Yilong Zhang
+\item{} Eric Milliman
+\item{} Juliane Manitz
+
+\end{itemize}
+
+
+Other contributors:
+\begin{itemize}
+
+\item{} Mark Padgham [contributor]
+\item{} PSI special interest group Application and Implementation of Methodologies in Statistics [copyright holder]
+
+\end{itemize}
+
+
+\end{Author}
+%
+\begin{SeeAlso}
+Useful links:
+\begin{itemize}
+
+\item{} \url{https://pharmar.github.io/riskmetric/}
+\item{} \url{https://github.com/pharmaR/riskmetric}
+\item{} Report bugs at \url{https://github.com/pharmaR/riskmetric/issues}
+
+\end{itemize}
+
+
+\end{SeeAlso}
+\HeaderA{roxygen\_assess\_family}{Helper for creating a roxygen header from template for assess\_* functions}{roxygen.Rul.assess.Rul.family}
+\keyword{internal}{roxygen\_assess\_family}
+%
+\begin{Description}
+Helper for creating a roxygen header from template for assess\_* functions
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+roxygen_assess_family(
+  name,
+  return_type = "an atomic assessment result",
+  dontrun = TRUE
+)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{name}] the name of the assessment, assuming naming conventions are
+followed
+
+\item[\code{return\_type}] an optional added commentary about the return type of the
+assessment function
+
+\item[\code{dontrun}] logical indicating whether examples should be wrapped in
+a dontrun block. This is particularly useful for assessments which may
+require an internet connection.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+roxygen section template for assess family functions
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+#' @eval roxygen_assess_family(
+#'   "has_news",
+#'   "an integer value indicating the number of discovered NEWS files")
+
+## End(Not run)
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{roxygen\_assess\_family\_catalog}{Helper for creating a roxygen itemized list for assess\_* functions}{roxygen.Rul.assess.Rul.family.Rul.catalog}
+\keyword{internal}{roxygen\_assess\_family\_catalog}
+%
+\begin{Description}
+Helper for creating a roxygen itemized list for assess\_* functions
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+roxygen_assess_family_catalog()
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+roxygen section template for assess family function catalog
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+  #' @eval assess_family_catalog_roxygen()
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{roxygen\_cache\_behaviors}{Document both declare\_cache\_behavior parameters and options list}{roxygen.Rul.cache.Rul.behaviors}
+\keyword{internal}{roxygen\_cache\_behaviors}
+%
+\begin{Description}
+Document both declare\_cache\_behavior parameters and options list
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+roxygen_cache_behaviors(
+  fmt = "%s: %s",
+  name_fmt = "%s",
+  annotation_fmt = "%s",
+  wrap_fmt = "%s",
+  collapse = "\n"
+)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{fmt}] format of cache behavior entries
+
+\item[\code{name\_fmt}] special formating for name (first) component
+
+\item[\code{annotation\_fmt}] special formating for annotation (second) component
+
+\item[\code{wrap\_fmt}] a wrapper for the entirety of the roxygen entries
+
+\item[\code{collapse}] passed to paste
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a string
+\end{Value}
+\HeaderA{roxygen\_score\_family}{Helper for creating a roxygen header from template for score.* functions}{roxygen.Rul.score.Rul.family}
+\keyword{internal}{roxygen\_score\_family}
+%
+\begin{Description}
+Helper for creating a roxygen header from template for score.* functions
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+roxygen_score_family(name, dontrun = TRUE)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{name}] the name of the scoring function, assuming naming conventions are
+followed
+
+\item[\code{dontrun}] logical indicating whether examples should be wrapped in
+a dontrun block. This is particularly useful for assessments which may
+require an internet connection.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+roxygen section template for score family functions
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+#' @eval roxygen_score_family("has_news")
+
+## End(Not run)
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{score\_error\_default}{Default score error handling, emitting a warning and returning 0}{score.Rul.error.Rul.default}
+%
+\begin{Description}
+Default score error handling, emitting a warning and returning 0
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+score_error_default(x, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] A \code{pkg\_metric\_*} class object to score
+
+\item[\code{...}] Additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a value of package score
+\end{Value}
+\HeaderA{score\_error\_NA}{Score error handler to silently return NA}{score.Rul.error.Rul.NA}
+%
+\begin{Description}
+Score error handler to silently return NA
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+score_error_NA(...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{...}] Additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a value of package score
+\end{Value}
+\HeaderA{score\_error\_zero}{Score error handler to silently return 0}{score.Rul.error.Rul.zero}
+%
+\begin{Description}
+Score error handler to silently return 0
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+score_error_zero(...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{...}] Additional arguments unused
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a value of package score
+\end{Value}
+\HeaderA{summarize\_scores}{Summarize a default set of assessments into a single risk score}{summarize.Rul.scores}
+%
+\begin{Description}
+This function serves as an example for how a risk score might be derived.
+Assuming all assessments provided by \code{riskmetric} are available in a
+dataset, this function can be used to calculate a vector of risks.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+summarize_scores(data, weights = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{data}] a \code{\LinkA{tibble}{tibble}} of scored assessments whose column
+names match those provided by riskmetric's \code{\LinkA{pkg\_assess}{pkg.Rul.assess}} function.
+
+\item[\code{weights}] an optional vector of non-negative weights to be assigned to
+each assessment.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a numeric vector of risk scores
+\end{Value}
+%
+\begin{Examples}
+\begin{ExampleCode}
+## Not run: 
+library(dplyr)
+summarize_scores(pkg_score(pkg_assess(as_tibble(pkg_ref("riskmetric")))))
+
+library(dplyr)
+pkg_ref("riskmetric") %>%
+  pkg_assess() %>%
+  pkg_score() %>%
+  summarize_scores()
+
+## End(Not run)
+
+\end{ExampleCode}
+\end{Examples}
+\HeaderA{suppressMatchingConditions}{Suppress messages and warnings based on one or more regex matches}{suppressMatchingConditions}
+\keyword{internal}{suppressMatchingConditions}
+%
+\begin{Description}
+Suppress messages and warnings based on one or more regex matches
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+suppressMatchingConditions(expr, ..., .opts = list(), .envir = parent.frame())
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{expr}] An expression to evaluate
+
+\item[\code{...}] Named parameters, where the name indicates the class of conditions
+to capture and the value is a vector of regular expressions that, when
+matched against the respective condition message, should suppress that
+condition.
+
+\item[\code{.opts}] A named list of arguments to pass to \code{grepl}
+
+\item[\code{.envir}] The environment in which \code{expr} is to be evaluated
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a message printed on console
+\end{Value}
+\HeaderA{use\_assessments\_column\_names}{reassign assignment list names with column\_name attribute if available}{use.Rul.assessments.Rul.column.Rul.names}
+\keyword{internal}{use\_assessments\_column\_names}
+%
+\begin{Description}
+reassign assignment list names with column\_name attribute if available
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+use_assessments_column_names(x)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] list of columns for which to consider friendly column name
+attributes
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a vector of friendly column names if available
+\end{Value}
+\HeaderA{verify\_pkg\_source}{Verify a pkg\_source when one is manually specified by the user}{verify.Rul.pkg.Rul.source}
+\keyword{internal}{verify\_pkg\_source}
+%
+\begin{Description}
+Verify a pkg\_source when one is manually specified by the user
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+verify_pkg_source(x, source, repos)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+a string of package source
+\end{Value}
+\HeaderA{vignettes\_from\_dir}{Build a List of Vignettes Files Discovered Within a Given Directory}{vignettes.Rul.from.Rul.dir}
+\keyword{internal}{vignettes\_from\_dir}
+%
+\begin{Description}
+Build a List of Vignettes Files Discovered Within a Given Directory
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+vignettes_from_dir(path)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{path}] a package directory path expected to contain Vignettes files
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a vector of parsed Vignettes files
+\end{Value}
+\HeaderA{vignettes\_from\_html}{Build a List of Vignettes Files Discovered Within a Package Website}{vignettes.Rul.from.Rul.html}
+\keyword{internal}{vignettes\_from\_html}
+%
+\begin{Description}
+Build a List of Vignettes Files Discovered Within a Package Website
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+vignettes_from_html(x)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a \code{pkg\_ref} object
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a vector of Vignettes files
+\end{Value}
+\HeaderA{with.pkg\_ref}{Evaluate an expression in the context of a pkg\_ref}{with.pkg.Rul.ref}
+\keyword{internal}{with.pkg\_ref}
+%
+\begin{Description}
+\code{pkg\_ref} objects are environments and can be passed to \code{with}
+in much the same way. This specialized function makes sure that any fields
+within the \code{pkg\_ref} have been appropriately evaluated before trying
+to execute the expression.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_ref'
+with(data, expr, ...)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{data}] data to use for constructing an environment. For the
+default \code{with} method this may be an environment, a list, a
+data frame, or an integer as in \code{sys.call}. For \code{within},
+it can be a list or a data frame.
+
+\item[\code{expr}] expression to evaluate; particularly for \code{within()}
+often a ``compound'' expression, i.e., of the form \begin{alltt}   \{
+     a <- somefun()
+     b <- otherfun()
+     .....
+     rm(unused1, temp)
+   \}
+\end{alltt}
+
+
+\item[\code{...}] arguments to be passed to (future) methods.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+the value of the evaluated expr.
+\end{Value}
+\HeaderA{with\_unclassed\_to}{Evaluate an expression after first removing a range of S3 classes}{with.Rul.unclassed.Rul.to}
+\keyword{internal}{with\_unclassed\_to}
+%
+\begin{Description}
+Evaluate an expression after first removing a range of S3 classes
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+with_unclassed_to(x, .class = 1:length(class(x)), expr, envir = parent.frame())
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] a structured S3-classed object
+
+\item[\code{.class}] the class to unclass the object to
+
+\item[\code{expr}] an expression to evaluate, avoiding parent classs dispatch
+
+\item[\code{envir}] an environment in which the expression is to be evaluated
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+the result of \code{expr}
+\end{Value}
+\HeaderA{[[.pkg\_ref}{Lazily instantiated, immutable metadata access}{[[.pkg.Rul.ref}
+\keyword{internal}{[[.pkg\_ref}
+%
+\begin{Description}
+If errors are thrown upon instantiation, they are saved and rethrown any time
+the value is attempted to be accessed. These then propegate through
+assessment and scoring functions to affect any downstream metrics.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S3 method for class 'pkg_ref'
+x[[name, ...]]
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] pkg\_ref object to extract metadata from
+
+\item[\code{name}] name of metadata field to extract
+
+\item[\code{...}] additional arguments used to extract from internal environment
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+a pkg\_ref object
+\end{Value}
+\printindex{}
+\end{document}

@@ -1,0 +1,36 @@
+* installing *source* package 'RMySQL' ...
+** package 'RMySQL' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc.exe (GCC) 13.2.0'
+make[1]: Entering directory '/c/Users/sanchosl/AppData/Local/Temp/Rtmpus1tz2/R.INSTALL6e7c2ad34da5/RMySQL/src'
+rm -f RMySQL.dll RMySQL-init.o connection.o db-apply.o driver.o exception.o fields.o result.o utils.o
+"C:/PROGRA~1/R/R-44~1.1/bin/x64/Rscript.exe" "../tools/winlibs.R" 
+[1] TRUE
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I../windows/libmariadbclient/include/mariadb    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c RMySQL-init.c -o RMySQL-init.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I../windows/libmariadbclient/include/mariadb    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c connection.c -o connection.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I../windows/libmariadbclient/include/mariadb    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c db-apply.c -o db-apply.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I../windows/libmariadbclient/include/mariadb    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c driver.c -o driver.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I../windows/libmariadbclient/include/mariadb    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c exception.c -o exception.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I../windows/libmariadbclient/include/mariadb    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c fields.c -o fields.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I../windows/libmariadbclient/include/mariadb    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c result.c -o result.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I../windows/libmariadbclient/include/mariadb    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c utils.c -o utils.o
+utils.c: In function 'RS_DBI_newEntry':
+utils.c:132:3: warning: this 'for' clause does not guard... [-Wmisleading-indentation]
+  132 |   for(i = 0; i < length; i++)
+      |   ^~~
+utils.c:137:5: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the 'for'
+  137 |     return indx;
+      |     ^~~~~~
+gcc -shared -s -static-libgcc -o RMySQL.dll tmp.def RMySQL-init.o connection.o db-apply.o driver.o exception.o fields.o result.o utils.o -L../windows/libmariadbclient/lib/x64 -L../windows/libmariadbclient/lib -lmariadbclient -lz -lbcrypt -lsecur32 -lshlwapi -lcrypt32 -lgdi32 -lws2_32 -pthread -LC:/rtools44/x86_64-w64-mingw32.static.posix/lib/x64 -LC:/rtools44/x86_64-w64-mingw32.static.posix/lib -LC:/PROGRA~1/R/R-44~1.1/bin/x64 -lR
+make[1]: Leaving directory '/c/Users/sanchosl/AppData/Local/Temp/Rtmpus1tz2/R.INSTALL6e7c2ad34da5/RMySQL/src'
+installing to C:/Code/Rprojects/riskreports/inst/source/Library/00LOCK-RMySQL/00new/RMySQL/libs/x64
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RMySQL)

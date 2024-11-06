@@ -1,0 +1,66 @@
+* installing *source* package 'RPostgreSQL' ...
+** package 'RPostgreSQL' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc.exe (GCC) 13.2.0'
+make[1]: Entering directory '/c/Users/sanchosl/AppData/Local/Temp/RtmpAJmo49/R.INSTALL7c34576e4b58/RPostgreSQL/src'
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I./libpq    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c RS-DBI.c -o RS-DBI.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I./libpq    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c RS-PQescape.c -o RS-PQescape.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I./libpq    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c RS-PostgreSQL.c -o RS-PostgreSQL.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I./libpq    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c RS-pgsql-copy.c -o RS-pgsql-copy.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I./libpq    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c RS-pgsql-getResult.c -o RS-pgsql-getResult.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I./libpq    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c RS-pgsql-pqexec.c -o RS-pgsql-pqexec.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG -I./libpq    -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c RS-pgsql-pqexecparams.c -o RS-pgsql-pqexecparams.o
+(cd libpq; make CUSTOM_CC="gcc " -f "C:/PROGRA~1/R/R-44~1.1/etc//x64/Makeconf" -f Makefile.win)
+make[2]: Entering directory '/c/Users/sanchosl/AppData/Local/Temp/RtmpAJmo49/R.INSTALL7c34576e4b58/RPostgreSQL/src/libpq'
+cp pg_config.h.win pg_config.h
+cp pg_config_os.h.win pg_config_os.h
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c fe-auth.c -o fe-auth.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c fe-connect.c -o fe-connect.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c fe-exec.c -o fe-exec.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c fe-misc.c -o fe-misc.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c fe-print.c -o fe-print.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c fe-lobj.c -o fe-lobj.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c fe-protocol2.c -o fe-protocol2.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c fe-protocol3.c -o fe-protocol3.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c pqexpbuffer.c -o pqexpbuffer.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c fe-secure.c -o fe-secure.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c libpq-events.c -o libpq-events.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c chklocale.c -o chklocale.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c inet_net_ntop.c -o inet_net_ntop.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c noblock.c -o noblock.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c pgstrcasecmp.c -o pgstrcasecmp.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c pqsignal.c -o pqsignal.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c thread.c -o thread.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c crypt.c -o crypt.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c inet_aton.c -o inet_aton.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c strlcpy.c -o strlcpy.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c getaddrinfo.c -o getaddrinfo.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c open.c -o open.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c system.c -o system.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c win32error.c -o win32error.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c win32setlocale.c -o win32setlocale.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c snprintf.c -o snprintf.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c ip.c -o ip.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c md5.c -o md5.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c encnames.c -o encnames.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c wchar.c -o wchar.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c pgsleep.c -o pgsleep.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c win32.c -o win32.o
+windres  -i libpq.rc -o libpqrc.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG   -DFRONTEND -DUNSAFE_STAT_OK -I. -I. -I. -DEXEC_BACKEND  "-I." -Iwininclude  -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -Wall -fno-strict-aliasing -fwrapv -fexcess-precision=standard -O2  -c pthread-win32.c -o pthread-win32.o
+ar rcs libpq.a fe-auth.o fe-connect.o fe-exec.o fe-misc.o fe-print.o fe-lobj.o fe-protocol2.o fe-protocol3.o pqexpbuffer.o fe-secure.o libpq-events.o chklocale.o inet_net_ntop.o noblock.o pgstrcasecmp.o pqsignal.o thread.o crypt.o inet_aton.o strlcpy.o getaddrinfo.o open.o system.o win32error.o win32setlocale.o snprintf.o ip.o md5.o encnames.o wchar.o pgsleep.o win32.o libpqrc.o pthread-win32.o
+make[2]: Leaving directory '/c/Users/sanchosl/AppData/Local/Temp/RtmpAJmo49/R.INSTALL7c34576e4b58/RPostgreSQL/src/libpq'
+gcc -shared -s -static-libgcc -o RPostgreSQL.dll tmp.def RS-DBI.o RS-PQescape.o RS-PostgreSQL.o RS-pgsql-copy.o RS-pgsql-getResult.o RS-pgsql-pqexec.o RS-pgsql-pqexecparams.o libpq/libpq.a -lshfolder -lwsock32 -lws2_32 -lsecur32 -LC:/rtools44/x86_64-w64-mingw32.static.posix/lib/x64 -LC:/rtools44/x86_64-w64-mingw32.static.posix/lib -LC:/PROGRA~1/R/R-44~1.1/bin/x64 -lR
+make[1]: Leaving directory '/c/Users/sanchosl/AppData/Local/Temp/RtmpAJmo49/R.INSTALL7c34576e4b58/RPostgreSQL/src'
+installing to C:/Code/Rprojects/riskreports/inst/source/Library/00LOCK-RPostgreSQL/00new/RPostgreSQL/libs/x64
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (RPostgreSQL)

@@ -1,0 +1,24 @@
+* installing *source* package 'bench' ...
+** package 'bench' successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: 'gcc.exe (GCC) 13.2.0'
+make[1]: Entering directory '/c/Users/sanchosl/AppData/Local/Temp/RtmpA94lfa/R.INSTALL3d78dd0420f/bench/src'
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG     -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c load.c -o load.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG     -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c mark.c -o mark.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG     -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c nanotime.c -o nanotime.o
+gcc  -I"C:/PROGRA~1/R/R-44~1.1/include" -DNDEBUG     -I"C:/rtools44/x86_64-w64-mingw32.static.posix/include"     -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign  -c process_memory.c -o process_memory.o
+gcc -shared -s -static-libgcc -o bench.dll tmp.def load.o mark.o nanotime.o process_memory.o -lpsapi -LC:/rtools44/x86_64-w64-mingw32.static.posix/lib/x64 -LC:/rtools44/x86_64-w64-mingw32.static.posix/lib -LC:/PROGRA~1/R/R-44~1.1/bin/x64 -lR
+make[1]: Leaving directory '/c/Users/sanchosl/AppData/Local/Temp/RtmpA94lfa/R.INSTALL3d78dd0420f/bench/src'
+installing to C:/Code/Rprojects/riskreports/inst/source/Library/00LOCK-bench/00new/bench/libs/x64
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (bench)
