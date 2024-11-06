@@ -4,14 +4,19 @@
 \alias{check_reporter}
 \title{Reports check results}
 \usage{
-check_reporter(x)
+check_reporter(path)
 }
 \arguments{
-\item{x}{Path to check results}
+\item{path}{Path to check results folder (aka pkgname.Rcheck).}
 }
 \value{
 A report
 }
 \description{
 Reports check results
+}
+\examples{
+# Requires the package to be installed (or be in inst/ folder)
+check_reporter("checks/riskmetric.Rcheck")
+
 }

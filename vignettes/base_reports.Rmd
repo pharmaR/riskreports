@@ -1,0 +1,99 @@
+---
+title: "Base reports"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Base reports}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+R provides functionally for checks in the tools package included by default on all R installations.
+
+# Base functionality
+
+The main function to check packages (besides `R CMD check`) is `check_packages_in_dir()`.
+
+This function creates:
+ 1. Checks folders for the packages `pkgname.Rcheck`
+ 2. A `Library` with all the corresponding PACKAGES[.*] files
+ 3. A `timings.tab` file
+ 4. A `Outputs` folder with packages' checks and installation output.
+
+The output on the R session is something along the lines of:
+
+```{r}
+#| eval: false
+checks <- check_packages_in_dir("source")
+```
+
+
+```r
+> checks
+Check results for packages in dir
+'C:\Code\Rprojects\riskreports\inst\source':
+Package sources: 2, Reverse depends: 0
+Use summary() for more information.
+```
+
+With the output of that function (class `check_packages_in_dir`) we can see the checks:
+
+```r
+> summary(checks)
+Check results for packages in dir
+'C:\Code\Rprojects\riskreports\inst\source':
+
+Check status summary:
+                  ERROR
+  Source packages     2
+
+Check results summary:
+dplyr ... ERROR
+* checking data for non-ASCII characters ... NOTE
+* checking PDF version of manual ... WARNING
+* checking PDF version of manual without index ... ERROR
+riskmetric ... ERROR
+* checking PDF version of manual ... WARNING
+* checking PDF version of manual without index ... ERROR
+```
+
+But once the folder is created it can be used to create a data.frame via `check_packages_in_dir_details()`:
+
+```{r}
+details_source <- check_packages_in_dir_details(dir = "source/", full = TRUE)
+details_manual <- check_packages_in_dir_details(dir = "checks/", full = TRUE)
+details_manual_df <- as.data.frame(details_manual)
+details_manual_df[, 1:4]
+details_source_df <- as.data.frame(details_source)
+details_source_df[, 1:4]
+```
+
+The fifth column contains details of the errors:
+
+```{r}
+details_source_df[, 5, drop = FALSE]
+```
+
+Also it might be relevant the timings:
+
+```{r}
+summarize_check_packages_in_dir_results("source/", full = TRUE)
+summarize_check_packages_in_dir_timings("source/", full = TRUE)
+# summarize_check_packages_in_dir_results("checks/", full = TRUE)
+# summarize_check_packages_in_dir_timings("checks/") # No timings created
+```
+
+## What's missing
+
+
+This doesn't inform about the platform or the settings used:
+
+- Many of the checks are controlled via environmental variables (see`environ_report()`.
+- Some other outputs can be affected by the `options()` set (see `options_report()`)
