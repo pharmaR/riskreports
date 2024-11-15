@@ -19,9 +19,16 @@ R provides functionally for checks in the tools package included by default on a
 
 # Base functionality
 
+```{r}
+library("tools")
+library("here") # To handle paths
+```
+
+
 The main function to check packages (besides `R CMD check`) is `check_packages_in_dir()`.
 
 This function creates:
+
  1. Checks folders for the packages `pkgname.Rcheck`
  2. A `Library` with all the corresponding PACKAGES[.*] files
  3. A `timings.tab` file
@@ -31,9 +38,11 @@ The output on the R session is something along the lines of:
 
 ```{r}
 #| eval: false
-checks <- check_packages_in_dir("source")
+checks <- check_packages_in_dir(here("inst","source"))
 ```
 
+The above code chunk is not run because it takes a while.
+The output is:
 
 ```r
 > checks
@@ -67,8 +76,8 @@ riskmetric ... ERROR
 But once the folder is created it can be used to create a data.frame via `check_packages_in_dir_details()`:
 
 ```{r}
-details_source <- check_packages_in_dir_details(dir = "source/", full = TRUE)
-details_manual <- check_packages_in_dir_details(dir = "checks/", full = TRUE)
+details_source <- check_packages_in_dir_details(dir = here("inst", "source"))
+details_manual <- check_packages_in_dir_details(dir = here("inst", "checks"))
 details_manual_df <- as.data.frame(details_manual)
 details_manual_df[, 1:4]
 details_source_df <- as.data.frame(details_source)
@@ -84,8 +93,8 @@ details_source_df[, 5, drop = FALSE]
 Also it might be relevant the timings:
 
 ```{r}
-summarize_check_packages_in_dir_results("source/", full = TRUE)
-summarize_check_packages_in_dir_timings("source/", full = TRUE)
+summarize_check_packages_in_dir_results(here("inst", "source"), full = TRUE)
+summarize_check_packages_in_dir_timings(here("inst", "source"), full = TRUE)
 # summarize_check_packages_in_dir_results("checks/", full = TRUE)
 # summarize_check_packages_in_dir_timings("checks/") # No timings created
 ```
