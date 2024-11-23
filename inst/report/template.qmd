@@ -1,0 +1,172 @@
+---
+title: "Validation Report - `r sprintf('%s (v%s)',(dcf <- read.dcf(file.path(Sys.getenv('INPUT_REPORT_PKG_DIR', '.'), 'DESCRIPTION')))[,'Package'], dcf[,'Version'])`"
+date: "`r Sys.time()`"
+date-format: "ddd MMM DD hh:mm:ss A YYYY"
+format:
+  html: 
+    toc: true  
+  typst:
+    toc: true
+    section-numbering: 1.1.1
+    df-print: default
+    margin:
+      x: 2cm
+      y: 2cm
+---
+
+```{r setup, include = FALSE}
+options(width = 80L, covr.record_tests = TRUE)
+knitr::opts_chunk$set(
+    error = TRUE
+)
+
+remotes::install_local(
+  Sys.getenv('INPUT_REPORT_PKG_DIR', '.'),
+  force = TRUE,
+  quiet = TRUE,
+  INSTALL_opts = "--with-keep.source",
+  upgrade = "never"
+)
+library(tinytable)
+```
+
+# Context
+
+This report was generated via the GH-action insightsengineering/validatoR (gh-action ID: `r Sys.getenv("GITHUB_ACTION")`). It produces automated
+documentation of the installation of this package on an open source R environment, focussing on:
+
+- Installation environment description
+- Testing coverage
+- Traceability matrix of specifications (documented behaviours) and testing
+- Risk assessment benchmarks
+
+This report is fully automated, so is limited to assess whether unit tests and documentation are present and can execute without error. An assessment would be required that the tests and documentation are meaningful. Validation aims to be system independent as the underlying workflow is based on the ["composite"](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action) type of Github Action.
+
+# Installation environment and package
+
+## System Info
+
+```{r execution_info, echo = FALSE}
+tt_sys_info_df <- data.frame(
+  Field = c("OS", "Platform", "System", "Execution Time"),
+  Value = c(
+    sessionInfo()$running,
+    R.version$platform,
+    R.version$system,
+    format(Sys.time(), tz = "UTC", usetz = TRUE)
+  )) %>%
+  dplyr::mutate(Value = paste0("``` ", Value, " ```"))
+
+tt(
+  tt_sys_info_df,
+  caption = "System information",
+  theme = "bootstrap"
+)
+```
+
+## Package installed
+
+```{r version_control, echo = FALSE}
+# find .git dir containing the package directory
+gd <- system(
+  sprintf("cd '%s' && git rev-parse --absolute-git-dir", Sys.getenv('INPUT_REPORT_PKG_DIR', '.')),
+  intern = TRUE
+)
+# define reused git args to be sure we're picking up the right git info
+gd <- sprintf("--git-dir='%s'", gd)
+wt <- sprintf("--work-tree='%s'", Sys.getenv('INPUT_REPORT_PKG_DIR', '.'))
+tt_git_df <- data.frame(
+  Field = c("server", "repository", "git ref", "branch", "commit `SHA1`", "commit date"),
+  Value = c(
+    Sys.getenv('GITHUB_SERVER_URL'),
+    Sys.getenv('GITHUB_REPOSITORY'),
+    Sys.getenv('GITHUB_REF'),
+    system2(
+      "git",
+      list(gd, wt, "rev-parse", "--abbrev-ref", "HEAD"),
+      stdout = TRUE
+    ),
+    system2("git", list(gd, wt, "rev-parse", "HEAD"), stdout = TRUE),
+    system2(
+      "git",
+      list(gd, wt, "show", "-s", "--format=%ci", "HEAD"),
+      stdout = TRUE
+    )
+  )) %>%
+  dplyr::mutate(Value = paste0("``` ", Value, " ```"))
+
+tt(
+  tt_git_df,
+  caption = "Git information",
+  theme = "bootstrap"
+)
+```
+
+## R Session Info
+
+```{r session_info, echo = TRUE, eval = TRUE}
+sessionInfo()
+capabilities()
+```
+
+# Metric based risk assessment
+
+The following metrics are derived from the `riskmetric` R package. Metrics overlapping with `covr` and `R CMD Check` are removed.
+
+```{r riskmetric, echo = FALSE, eval = TRUE}
+d_riskmetric <- Sys.getenv('INPUT_REPORT_PKG_DIR', '.') %>%
+  riskmetric::pkg_ref() %>%
+  riskmetric::pkg_assess() %>%
+  purrr::map(1) %>%
+  lapply(as.character) %>%
+  tibble::enframe() %>%
+  tidyr::unnest(cols = dplyr::everything()) %>%
+  # add labels
+  dplyr::left_join(
+    lapply(riskmetric::all_assessments(), attributes) %>%
+      purrr::map_df(tibble::as_tibble),
+    by = c("name" = "column_name")
+  )
+
+tt_riskmetric_df <- d_riskmetric %>%
+  dplyr::filter(
+    name %in% c(
+      "news_current", "has_vignettes",
+      "license", "downloads_1yr"
+    )
+  ) %>%
+  dplyr::select(Metric = label, Status = value)
+
+tt(
+  tt_riskmetric_df,
+  caption = "Package info assessed by the R package riskmetric",
+  theme = "bootstrap"
+)
+```
+
+# Installation documentation
+
+## `R CMD check`
+
+```{r r_cmd_check, echo = FALSE, eval = TRUE}
+rcmdcheck_results <- rcmdcheck::rcmdcheck(
+  Sys.getenv('INPUT_REPORT_PKG_DIR', '.'),
+  args = c(
+    "--timings",             # include execution times in output
+    "--no-build-vignettes",  # run vignette code, but disable pdf rendering
+    "--no-manual"            # disable pdf manual rendering
+  ),
+  quiet = TRUE
+)
+
+cat(rcmdcheck_results$stdout)
+cat(rcmdcheck_results$stderr)
+```
+
+## Testing Coverage
+
+```{r coverage, echo = FALSE, eval = TRUE}
+covr_results <- covr::package_coverage(Sys.getenv('INPUT_REPORT_PKG_DIR', '.'))
+covr_results
+```
+
