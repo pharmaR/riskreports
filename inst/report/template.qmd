@@ -32,15 +32,13 @@ library(tinytable)
 
 # Context
 
-This report was generated via the GH-action insightsengineering/validatoR (gh-action ID: `r Sys.getenv("GITHUB_ACTION")`). It produces automated
-documentation of the installation of this package on an open source R environment, focussing on:
+This report was automated.
+Documents the installation of this package on an open source R environment, focussing on:
 
 - Installation environment description
 - Testing coverage
-- Traceability matrix of specifications (documented behaviours) and testing
-- Risk assessment benchmarks
 
-This report is fully automated, so is limited to assess whether unit tests and documentation are present and can execute without error. An assessment would be required that the tests and documentation are meaningful. Validation aims to be system independent as the underlying workflow is based on the ["composite"](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action) type of Github Action.
+This report is fully automated, so is limited to assess whether unit tests and documentation are present and can execute without error. An assessment would be required that the tests and documentation are meaningful. 
 
 # Installation environment and package
 
@@ -64,49 +62,20 @@ tt(
 )
 ```
 
-## Package installed
-
-```{r version_control, echo = FALSE}
-# find .git dir containing the package directory
-gd <- system(
-  sprintf("cd '%s' && git rev-parse --absolute-git-dir", Sys.getenv('INPUT_REPORT_PKG_DIR', '.')),
-  intern = TRUE
-)
-# define reused git args to be sure we're picking up the right git info
-gd <- sprintf("--git-dir='%s'", gd)
-wt <- sprintf("--work-tree='%s'", Sys.getenv('INPUT_REPORT_PKG_DIR', '.'))
-tt_git_df <- data.frame(
-  Field = c("server", "repository", "git ref", "branch", "commit `SHA1`", "commit date"),
-  Value = c(
-    Sys.getenv('GITHUB_SERVER_URL'),
-    Sys.getenv('GITHUB_REPOSITORY'),
-    Sys.getenv('GITHUB_REF'),
-    system2(
-      "git",
-      list(gd, wt, "rev-parse", "--abbrev-ref", "HEAD"),
-      stdout = TRUE
-    ),
-    system2("git", list(gd, wt, "rev-parse", "HEAD"), stdout = TRUE),
-    system2(
-      "git",
-      list(gd, wt, "show", "-s", "--format=%ci", "HEAD"),
-      stdout = TRUE
-    )
-  )) %>%
-  dplyr::mutate(Value = paste0("``` ", Value, " ```"))
-
-tt(
-  tt_git_df,
-  caption = "Git information",
-  theme = "bootstrap"
-)
-```
-
 ## R Session Info
+
+Information about the R environment and capabilities:
 
 ```{r session_info, echo = TRUE, eval = TRUE}
 sessionInfo()
+.Platform
+
 capabilities()
+extSoftVersion()
+grSoftVersion()
+.Machine
+RNGkind()
+head(.Random.seed, 20)
 ```
 
 # Metric based risk assessment
@@ -115,9 +84,7 @@ The following metrics are derived from the `riskmetric` R package. Metrics overl
 
 ```{r riskmetric, echo = FALSE, eval = TRUE}
 d_riskmetric <- Sys.getenv('INPUT_REPORT_PKG_DIR', '.') %>%
-  riskmetric::pkg_ref() %>%
-  riskmetric::pkg_assess() %>%
-  purrr::map(1) %>%
+  # TODO: simplify 
   lapply(as.character) %>%
   tibble::enframe() %>%
   tidyr::unnest(cols = dplyr::everything()) %>%
