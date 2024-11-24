@@ -1,7 +1,10 @@
 ---
-title: "Validation Report - `r sprintf('%s (v%s)',(dcf <- read.dcf(file.path(Sys.getenv('INPUT_REPORT_PKG_DIR', '.'), 'DESCRIPTION')))[,'Package'], dcf[,'Version'])`"
+title: "Validation Report - "
 date: "`r Sys.time()`"
 date-format: "ddd MMM DD hh:mm:ss A YYYY"
+params:
+  repo: "../source"
+  package: riskmetric
 format:
   html: 
     toc: true  
@@ -17,34 +20,34 @@ format:
 ```{r setup, include = FALSE}
 options(width = 80L, covr.record_tests = TRUE)
 knitr::opts_chunk$set(
+    echo = FALSE,
+    eval = TRUE,
     error = TRUE
 )
-
-remotes::install_local(
-  Sys.getenv('INPUT_REPORT_PKG_DIR', '.'),
-  force = TRUE,
-  quiet = TRUE,
-  INSTALL_opts = "--with-keep.source",
-  upgrade = "never"
-)
-library(tinytable)
+library("tools")
 ```
 
 # Context
 
 This report was automated.
-Documents the installation of this package on an open source R environment, focussing on:
+Documents the installation of this package on an open source R environment, focusing on:
 
 - Installation environment description
 - Testing coverage
 
 This report is fully automated, so is limited to assess whether unit tests and documentation are present and can execute without error. An assessment would be required that the tests and documentation are meaningful. 
 
-# Installation environment and package
+# Installation environment
+
+```{r}
+path <- params$repo
+pkg <- params$package
+```
+
 
 ## System Info
 
-```{r execution_info, echo = FALSE}
+```{r execution_info}
 tt_sys_info_df <- data.frame(
   Field = c("OS", "Platform", "System", "Execution Time"),
   Value = c(
@@ -52,88 +55,101 @@ tt_sys_info_df <- data.frame(
     R.version$platform,
     R.version$system,
     format(Sys.time(), tz = "UTC", usetz = TRUE)
-  )) %>%
-  dplyr::mutate(Value = paste0("``` ", Value, " ```"))
+  ))
 
-tt(
-  tt_sys_info_df,
-  caption = "System information",
-  theme = "bootstrap"
-)
+tt_sys_info_df
 ```
 
 ## R Session Info
 
 Information about the R environment and capabilities:
 
-```{r session_info, echo = TRUE, eval = TRUE}
+```{r session_info}
 sessionInfo()
-.Platform
+unlist(.Platform)
 
 capabilities()
 extSoftVersion()
 grSoftVersion()
-.Machine
+unlist(.Machine)
 RNGkind()
-head(.Random.seed, 20)
-```
-
-# Metric based risk assessment
-
-The following metrics are derived from the `riskmetric` R package. Metrics overlapping with `covr` and `R CMD Check` are removed.
-
-```{r riskmetric, echo = FALSE, eval = TRUE}
-d_riskmetric <- Sys.getenv('INPUT_REPORT_PKG_DIR', '.') %>%
-  # TODO: simplify 
-  lapply(as.character) %>%
-  tibble::enframe() %>%
-  tidyr::unnest(cols = dplyr::everything()) %>%
-  # add labels
-  dplyr::left_join(
-    lapply(riskmetric::all_assessments(), attributes) %>%
-      purrr::map_df(tibble::as_tibble),
-    by = c("name" = "column_name")
-  )
-
-tt_riskmetric_df <- d_riskmetric %>%
-  dplyr::filter(
-    name %in% c(
-      "news_current", "has_vignettes",
-      "license", "downloads_1yr"
-    )
-  ) %>%
-  dplyr::select(Metric = label, Status = value)
-
-tt(
-  tt_riskmetric_df,
-  caption = "Package info assessed by the R package riskmetric",
-  theme = "bootstrap"
-)
 ```
 
 # Installation documentation
 
-## `R CMD check`
+## Repository status
 
-```{r r_cmd_check, echo = FALSE, eval = TRUE}
-rcmdcheck_results <- rcmdcheck::rcmdcheck(
-  Sys.getenv('INPUT_REPORT_PKG_DIR', '.'),
-  args = c(
-    "--timings",             # include execution times in output
-    "--no-build-vignettes",  # run vignette code, but disable pdf rendering
-    "--no-manual"            # disable pdf manual rendering
-  ),
-  quiet = TRUE
-)
-
-cat(rcmdcheck_results$stdout)
-cat(rcmdcheck_results$stderr)
+```{r check-repo}
+library("tools")
+lf <- list.files(path, full.names = TRUE)
+pfiles <- endsWith(lf, ".tar.gz")
+cpd <- tools::check_packages_in_dir(path, 
+                                    pfiles = pfiles[startsWith(basenames(pfiles), pkg)],
+                                    check_args = "--with-keep.source")
+summary_pkgs <- check_packages_in_dir_details(path)
+as.data.frame(summary_pkgs)[, 1:4]
 ```
+
+
+# Package `r pkg`
+
+## Metric based risk assessment
+
+The following metrics are derived from the `riskmetric` R package.
+<!-- Metrics overlapping with `covr` and `R CMD Check` are removed. -->
+
+```{r riskmetric}
+lf <- list.files(path = path, pattern = pkg, full.names = TRUE)
+path_pkg_source <- file.path(lf[grepl(x = lf, pattern = "[0-9]$")], pkg)
+d_riskmetric <- riskmetric::as_pkg_ref(path_pkg_source) |> 
+    riskmetric::pkg_assess()
+
+riskmetric_report <- function(assessment) {
+  stopifnot("Input is not from riskmetric::pkg_assess()" = is(assessment, "list_of_pkg_metric"))
+
+  len <- lengths(assessment)
+
+  out <- as.list(assessment)
+
+  out[["exported_namespace"]] <- length(assessment[["exported_namespace"]])
+  out[["export_help"]] <- length(assessment[["export_help"]])
+  out[["has_website"]] <- as.logical(length(assessment[["has_website"]]))
+  out[["bugs_status"]] <- sum(assessment[["bugs_status"]])/length(assessment[["bugs_status"]])
+  out[["reverse_dependencies"]] <- length(assessment[["reverse_dependencies"]])
+  out[["has_examples"]] <- sum(assessment[["has_examples"]])/length(assessment[["has_examples"]])
+  out[["dependencies"]] <- nrow(assessment[["dependencies"]])
+
+  # TODO: Deal with errors on calls.
+  # browser()
+  list2DF(out)
+}
+
+r_riskmetric <- riskmetric_report(d_riskmetric)
+r_riskmetric
+d_riskmetric
+```
+
+
+## Package stats
+
+```{r check-package}
+summary_pkg <- subset(summary_pkgs, Package == pkg)
+as.data.frame(summary_pkg)[, 1:4]
+```
+
 
 ## Testing Coverage
 
-```{r coverage, echo = FALSE, eval = TRUE}
-covr_results <- covr::package_coverage(Sys.getenv('INPUT_REPORT_PKG_DIR', '.'))
-covr_results
+```{r coverage, eval = FALSE}
+path_pkg_source <- list.files(path, pattern = pkg, full.names = TRUE)
+# Assumption only one package is on the repository
+path_pkg_source_d <- grep(pattern = "[0-9]$", 
+                        x = path_pkg_source, 
+                        value = TRUE )
+path_pkg_source_i <- grep(pattern = "Rcheck$", 
+                        x = path_pkg_source, 
+                        value = TRUE )
+covr_results <- covr::package_coverage(path = file.path(path_pkg_source_d, pkg))
+tt(covr_results)
 ```
 
