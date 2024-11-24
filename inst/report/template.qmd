@@ -1,5 +1,5 @@
 ---
-title: "Validation Report - "
+title: "Validation Report - `r params$package`"
 date: "`r Sys.time()`"
 date-format: "ddd MMM DD hh:mm:ss A YYYY"
 params:
@@ -82,10 +82,14 @@ RNGkind()
 ```{r check-repo}
 library("tools")
 lf <- list.files(path, full.names = TRUE)
-pfiles <- endsWith(lf, ".tar.gz")
+pfiles <- lf[endsWith(lf, ".tar.gz")]
 cpd <- tools::check_packages_in_dir(path, 
-                                    pfiles = pfiles[startsWith(basenames(pfiles), pkg)],
-                                    check_args = "--with-keep.source")
+                                    pfiles = pfiles[startsWith(basename(pfiles), pkg)],
+                                    check_args = c(
+    "--timings",             # include execution times in output
+    "--no-build-vignettes",  # run vignette code, but disable pdf rendering
+    "--no-manual",           # disable pdf manual rendering
+    "--with-keep.source"))
 summary_pkgs <- check_packages_in_dir_details(path)
 as.data.frame(summary_pkgs)[, 1:4]
 ```
