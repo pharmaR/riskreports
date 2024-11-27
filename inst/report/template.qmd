@@ -113,28 +113,9 @@ path_pkg_source <- file.path(path, pkg)
 d_riskmetric <- riskmetric::as_pkg_ref(path_pkg_source) |> 
     riskmetric::pkg_assess()
 
-riskmetric_report <- function(assessment) {
-  stopifnot("Input is not from riskmetric::pkg_assess()" = is(assessment, "list_of_pkg_metric"))
-
-  len <- lengths(assessment)
-
-  out <- as.list(assessment)
-
-  out[["exported_namespace"]] <- length(assessment[["exported_namespace"]])
-  out[["export_help"]] <- length(assessment[["export_help"]])
-  out[["has_website"]] <- as.logical(length(assessment[["has_website"]]))
-  out[["bugs_status"]] <- sum(assessment[["bugs_status"]])/length(assessment[["bugs_status"]])
-  out[["reverse_dependencies"]] <- length(assessment[["reverse_dependencies"]])
-  out[["has_examples"]] <- sum(assessment[["has_examples"]])/length(assessment[["has_examples"]])
-  out[["dependencies"]] <- nrow(assessment[["dependencies"]])
-
-  # TODO: Deal with errors on calls.
-  # browser()
-  list2DF(out)
-}
-
-r_riskmetric <- riskmetric_report(d_riskmetric)
-r_riskmetric
+# Assesment produces a data.frame with one row
+r_riskmetric <- assesment(d_riskmetric)
+r_riskmetric # Use this to have some summary text and report it. 
 d_riskmetric
 ```
 
@@ -150,15 +131,9 @@ as.data.frame(summary_pkg)[, 1:4]
 ## Testing Coverage
 
 ```{r coverage, eval = FALSE}
-path_pkg_source <- list.files(path, pattern = pkg, full.names = TRUE)
-# Assumption only one package is on the repository
-path_pkg_source_d <- grep(pattern = "[0-9]$", 
-                        x = path_pkg_source[1], 
-                        value = TRUE )
-path_pkg_source_i <- grep(pattern = "Rcheck$", 
-                        x = path_pkg_source, 
-                        value = TRUE )
-covr_results <- covr::package_coverage(path = file.path(path_pkg_source[1], pkg))
-tt(covr_results)
+cov <- dplyr_a$covr_coverage$filecoverage
+df <- data.frame(file = names(cov), percentage =cov) 
+rownames(df) <- NULL
+df
 ```
 
