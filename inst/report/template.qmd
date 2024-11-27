@@ -80,6 +80,9 @@ RNGkind()
 ## Repository status
 
 ```{r check-repo}
+# This repository is to fill the packages. It could be replaced with a common 
+# repository or expanded (new option?) to an internal repository.
+options("repos" = "https://cloud.r-project.org")
 library("tools")
 lf <- list.files(path, full.names = TRUE)
 pfiles <- lf[endsWith(lf, ".tar.gz")]
@@ -104,7 +107,9 @@ The following metrics are derived from the `riskmetric` R package.
 
 ```{r riskmetric}
 lf <- list.files(path = path, pattern = pkg, full.names = TRUE)
-path_pkg_source <- file.path(lf[grepl(x = lf, pattern = "[0-9]$")], pkg)
+tar_pkg <- lf[endsWith(lf, ".tar.gz")]
+untar(tar_pkg, exdir = path, tar = "internal")
+path_pkg_source <- file.path(path, pkg)
 d_riskmetric <- riskmetric::as_pkg_ref(path_pkg_source) |> 
     riskmetric::pkg_assess()
 
@@ -148,12 +153,12 @@ as.data.frame(summary_pkg)[, 1:4]
 path_pkg_source <- list.files(path, pattern = pkg, full.names = TRUE)
 # Assumption only one package is on the repository
 path_pkg_source_d <- grep(pattern = "[0-9]$", 
-                        x = path_pkg_source, 
+                        x = path_pkg_source[1], 
                         value = TRUE )
 path_pkg_source_i <- grep(pattern = "Rcheck$", 
                         x = path_pkg_source, 
                         value = TRUE )
-covr_results <- covr::package_coverage(path = file.path(path_pkg_source_d, pkg))
+covr_results <- covr::package_coverage(path = file.path(path_pkg_source[1], pkg))
 tt(covr_results)
 ```
 
