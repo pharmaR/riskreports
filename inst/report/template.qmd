@@ -8,13 +8,13 @@ params:
 format:
   html: 
     toc: true  
-  typst:
-    toc: true
-    section-numbering: 1.1.1
-    df-print: default
-    margin:
-      x: 2cm
-      y: 2cm
+  # typst:
+  #   toc: true
+  #   section-numbering: 1.1.1
+  #   df-print: default
+  #   margin:
+  #     x: 2cm
+  #     y: 2cm
 ---
 
 ```{r setup, include = FALSE}
@@ -22,7 +22,8 @@ options(width = 80L, covr.record_tests = TRUE)
 knitr::opts_chunk$set(
     echo = FALSE,
     eval = TRUE,
-    error = TRUE
+    error = TRUE,
+    cache = FALSE
 )
 library("tools")
 ```
@@ -39,7 +40,8 @@ This report is fully automated, so is limited to assess whether unit tests and d
 
 # Installation environment
 
-```{r}
+```{r loading}
+library("riskmetric")
 path <- params$repo
 pkg <- params$package
 ```
@@ -75,28 +77,52 @@ unlist(.Machine)
 RNGkind()
 ```
 
+
+## Information about the environment
+
+Environmental and options variables affect how package checks and software in it might behave.
+Here is the environ variables when running this report
+
+```{r computing}
+riskreports::environ_report()
+```
+
+```{r options}
+riskreports::options_report()
+```
+
+
 # Installation documentation
 
 ## Repository status
 
-```{r check-repo}
+```{r repo-files}
 # This repository is to fill the packages. It could be replaced with a common 
 # repository or expanded (new option?) to an internal repository.
 options("repos" = "https://cloud.r-project.org")
-library("tools")
 lf <- list.files(path, full.names = TRUE)
 pfiles <- lf[endsWith(lf, ".tar.gz")]
+tar_file <- pfiles[startsWith(basename(pfiles), pkg)]
+```
+
+
+```{r check-repo, cache=TRUE, cache.extra=file.mtime(tar_file)}
+# Cache.extra is to avoid rechecking the file when it hasn't changed/updated
 cpd <- tools::check_packages_in_dir(path, 
-                                    pfiles = pfiles[startsWith(basename(pfiles), pkg)],
+                                    pfiles = tar_file,
                                     check_args = c(
     "--timings",             # include execution times in output
     "--no-build-vignettes",  # run vignette code, but disable pdf rendering
     "--no-manual",           # disable pdf manual rendering
     "--with-keep.source"))
+```
+
+The repository has these packages with problems:
+
+```{r repo-summary}
 summary_pkgs <- check_packages_in_dir_details(path)
 as.data.frame(summary_pkgs)[, 1:4]
 ```
-
 
 # Package `r pkg`
 
@@ -105,22 +131,22 @@ as.data.frame(summary_pkgs)[, 1:4]
 The following metrics are derived from the `riskmetric` R package.
 <!-- Metrics overlapping with `covr` and `R CMD Check` are removed. -->
 
-```{r riskmetric}
-lf <- list.files(path = path, pattern = pkg, full.names = TRUE)
-tar_pkg <- lf[endsWith(lf, ".tar.gz")]
-untar(tar_pkg, exdir = path, tar = "internal")
+```{r riskmetric, warning=FALSE}
 path_pkg_source <- file.path(path, pkg)
+if (!dir.exists(path_pkg_source) || file.mtime(path_pkg_source) < file.mtime(tar_file)) {
+  untar(tar_file, exdir = path, tar = "internal")
+}
 
 # Remove local check assessment done previously
-aa <- all_assessments()
+aa <- riskmetric::all_assessments()
 aa[["assess_r_cmd_check"]] <- NULL
 d_riskmetric <- riskmetric::as_pkg_ref(path_pkg_source) |> 
-    riskmetric::pkg_assess(assessments = aa)
+    riskmetric::pkg_assess(assessments = aa[2:9])
 
 # Assesment produces a data.frame with one row
-r_riskmetric <- assesment(d_riskmetric)
-r_riskmetric # Use this to have some summary text and report it. 
-d_riskmetric
+r_riskmetric <- riskreports::assessment(d_riskmetric)
+r_riskmetric # Use this to have some summary text and report it.
+# d_riskmetric
 ```
 
 
@@ -128,16 +154,29 @@ d_riskmetric
 
 ```{r check-package}
 summary_pkg <- subset(summary_pkgs, Package == pkg)
+rownames(summary_pkg) <- NULL
 as.data.frame(summary_pkg)[, 1:4]
 ```
 
 
-## Testing Coverage
+```{r coverage-section,results='asis', eval=any(names(d_riskmetric) == "covr_coverage")}
+paste("## Testing Coverage
 
-```{r coverage, eval = FALSE}
-cov <- dplyr_a$covr_coverage$filecoverage
+Overall the package has a coverage of `r d_riskmetric$covr_coverage$totalcoverage` %.")
+```
+
+```{r coverage, eval=any(names(d_riskmetric) == "covr_coverage")}
+cov <- d_riskmetric$covr_coverage$filecoverage
 df <- data.frame(file = names(cov), percentage =cov) 
 rownames(df) <- NULL
 df
+```
+
+## Dependencies
+
+Overall the package has these dependencies:
+
+```{r dependencies, eval=any(names(d_riskmetric) == "dependencies")}
+d_riskmetric$dependencies
 ```
 
