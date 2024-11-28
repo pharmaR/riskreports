@@ -5,10 +5,9 @@
 #' Vectorize assessment to be able to add it to a report for a package or the PACKAGES file.
 #'
 #' @param assessment An object created by `pkg_assess()` (`list_of_pkg_metric`)
-#' @return
+#' @return A data.frame with simplified objects but no scoring of the assessment.
 #' @export
 #'
-#' @examples
 assessment <- function(assessment) {
   stopifnot("Input is not from riskmetric::pkg_assess()"= is(assessment, "list_of_pkg_metric"))
 
@@ -41,6 +40,9 @@ assessment <- function(assessment) {
 }
 
 risk_error <- function(output, y) {
+  if (is.null(output)) {
+    return(NULL)
+  }
   if (is(output, "pkg_metric_error")) {
     return(output$message)
   }
