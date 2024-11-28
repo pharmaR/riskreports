@@ -1,26 +1,29 @@
 Package: riskreports
 Title: Package Validation Reports
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: c(
     person("Lluís", "Revilla Sancho", , "lluis.revilla_sancho@roche.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9747-2570")),
     person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
   )
-Description: Documents package checks for validation in a pharmaceutic context.
+Description: Documents package checks for validation in a pharmaceutic
+    context.
 License: MIT + file LICENSE
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
-Suggests: 
-    knitr,
-    rmarkdown,
-    spelling,
-    testthat (>= 3.0.0)
-Language: en-US
-VignetteBuilder: knitr
-Config/testthat/edition: 3
+URL: https://github.com/pharmaR/riskreports
+BugReports: https://github.com/pharmaR/riskreports/issues
 Imports: 
     quarto (>= 1.4.4),
     tinytable (>= 0.6.1)
-URL: https://github.com/pharmaR/riskreports
-BugReports: https://github.com/pharmaR/riskreports/issues
+Suggests: 
+    knitr,
+    riskmetric (>= 0.2.4),
+    rmarkdown,
+    spelling,
+    testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
+Config/testthat/edition: 3
+Encoding: UTF-8
+Language: en-US
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
