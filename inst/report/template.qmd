@@ -110,8 +110,12 @@ lf <- list.files(path = path, pattern = pkg, full.names = TRUE)
 tar_pkg <- lf[endsWith(lf, ".tar.gz")]
 untar(tar_pkg, exdir = path, tar = "internal")
 path_pkg_source <- file.path(path, pkg)
+
+# Remove local check assessment done previously
+aa <- all_assessments()
+aa[["assess_r_cmd_check"]] <- NULL
 d_riskmetric <- riskmetric::as_pkg_ref(path_pkg_source) |> 
-    riskmetric::pkg_assess()
+    riskmetric::pkg_assess(assessments = aa)
 
 # Assesment produces a data.frame with one row
 r_riskmetric <- assesment(d_riskmetric)
