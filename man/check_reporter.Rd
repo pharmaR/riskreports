@@ -20,3 +20,6 @@ Reports check results
 check_reporter("checks/riskmetric.Rcheck")
 
 }
+\seealso{
+\code{\link[tools:check_packages_in_dir]{tools::check_packages_in_dir()}}
+}

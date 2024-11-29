@@ -15,3 +15,8 @@ A report
 \description{
 Reports about a package
 }
+\examples{
+package_report("inst/source/dplyr_1.1.4/dplyr")
+
+
+}
