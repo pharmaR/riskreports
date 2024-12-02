@@ -5,6 +5,8 @@ date-format: "ddd MMM DD hh:mm:ss A YYYY"
 params:
   repo: "../source"
   package: riskmetric
+  image: "rhub/ref-image"
+  assessment_path: "../assessment.rds"
 format:
   html: 
     toc: true  
@@ -30,13 +32,22 @@ library("tools")
 
 # Context
 
-This report was automated.
+
+```{r image}
+image <- Sys.getenv("DOCKER_IMAGE", unset = NA)
+if (!is.na(image) && nzchar(params$image)) {
+  image <- params$image
+}
+```
+
+This report is fully automated and builds on `r image` image.
 Documents the installation of this package on an open source R environment, focusing on:
 
 - Installation environment description
 - Testing coverage
 
-This report is fully automated, so is limited to assess whether unit tests and documentation are present and can execute without error. An assessment would be required that the tests and documentation are meaningful. 
+It is limited to assess whether unit tests and documentation are present and can execute without error. 
+An assessment would be required that the tests and documentation are meaningful. 
 
 # Installation environment
 
@@ -44,6 +55,7 @@ This report is fully automated, so is limited to assess whether unit tests and d
 library("riskmetric")
 path <- params$repo
 pkg <- params$package
+risk_path <- params$assessment_path
 ```
 
 
@@ -99,7 +111,7 @@ riskreports::options_report()
 ```{r repo-files}
 # This repository is to fill the packages. It could be replaced with a common 
 # repository or expanded (new option?) to an internal repository.
-options("repos" = "https://cloud.r-project.org")
+options("repos" = c("https://cloud.r-project.org"))
 lf <- list.files(path, full.names = TRUE)
 pfiles <- lf[endsWith(lf, ".tar.gz")]
 tar_file <- pfiles[startsWith(basename(pfiles), pkg)]
@@ -109,7 +121,7 @@ tar_file <- pfiles[startsWith(basename(pfiles), pkg)]
 ```{r check-repo, cache=TRUE, cache.extra=file.mtime(tar_file)}
 # Cache.extra is to avoid rechecking the file when it hasn't changed/updated
 cpd <- tools::check_packages_in_dir(path, 
-                                    pfiles = tar_file,
+                                    pfiles = basename(tar_file),
                                     check_args = c(
     "--timings",             # include execution times in output
     "--no-build-vignettes",  # run vignette code, but disable pdf rendering
@@ -131,7 +143,7 @@ as.data.frame(summary_pkgs)[, 1:4]
 The following metrics are derived from the `riskmetric` R package.
 <!-- Metrics overlapping with `covr` and `R CMD Check` are removed. -->
 
-```{r riskmetric, warning=FALSE}
+```{r riskmetric, warning=FALSE, eval=!file.exists(risk_path)}
 path_pkg_source <- file.path(path, pkg)
 if (!dir.exists(path_pkg_source) || file.mtime(path_pkg_source) < file.mtime(tar_file)) {
   untar(tar_file, exdir = path, tar = "internal")
@@ -142,7 +154,14 @@ aa <- riskmetric::all_assessments()
 aa[["assess_r_cmd_check"]] <- NULL
 d_riskmetric <- riskmetric::as_pkg_ref(path_pkg_source) |> 
     riskmetric::pkg_assess(assessments = aa[2:9])
+```
 
+```{r riskmetric, warning=FALSE, eval=file.exists(risk_path)}
+d_riskmetric <- readRDS(risk_path)
+```
+
+
+```{r riskmetric, warning=FALSE}
 # Assesment produces a data.frame with one row
 r_riskmetric <- riskreports::assessment(d_riskmetric)
 r_riskmetric # Use this to have some summary text and report it.
