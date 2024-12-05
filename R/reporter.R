@@ -21,6 +21,13 @@ package_report <- function(x){
                           output_file = paste0("validation_report_", full_name,".html"))
 }
 
+#' @param package_name Name of the package
+#' @param package_version Version of the package
+#' @param ... Not used - named arguments separator
+#' @param repository Repository where the package is stored
+#' @param docker_image Docker image used to validate the package
+#' @param assessment_path Path to the assessment file (produced by another script)
+#' @export
 package_report_gh_action <- function(
     package_name,
     package_version,
