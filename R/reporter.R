@@ -3,6 +3,7 @@
 #' @param x Package name or path
 #' @param template_path Path to a custom quarto template file
 #' @param params A list of execute parameters passed to the template
+#'@param ... Additional arguments passed to `quarto::quarto_render()`
 #'
 #' @return A report
 #' @examples
@@ -22,7 +23,8 @@
 package_report <- function(
     x,
     template_path = NULL,
-    params = list()
+    params = list(),
+    ...
 ) {
     package <- basename(x)
     desc <- read.dcf(file.path(x, "DESCRIPTION"))

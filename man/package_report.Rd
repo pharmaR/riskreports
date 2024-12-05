@@ -4,7 +4,7 @@
 \alias{package_report}
 \title{Reports about a package}
 \usage{
-package_report(x, template_path = NULL, params = list())
+package_report(x, template_path = NULL, params = list(), ...)
 }
 \arguments{
 \item{x}{Package name or path}
@@ -12,6 +12,8 @@ package_report(x, template_path = NULL, params = list())
 \item{template_path}{Path to a custom quarto template file}
 
 \item{params}{A list of execute parameters passed to the template}
+
+\item{...}{Additional arguments passed to \code{quarto::quarto_render()}}
 }
 \value{
 A report
