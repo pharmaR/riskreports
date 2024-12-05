@@ -15,8 +15,12 @@ assessment <- function(assessment) {
 
   out <- as.list(assessment)
 
+  covr_coverage <- out[["covr_coverage"]]
+  if (length(covr_coverage) > 1) {
+    covr_coverage <- covr_coverage[["totalcoverage"]]
+  }
 
-  out[["covr_coverage"]] <- out[["covr_coverage"]][["totalcoverage"]]
+  out[["covr_coverage"]] <- covr_coverage
   out[["exported_namespace"]] <- risk_error(out[["exported_namespace"]], length(assessment[["exported_namespace"]]))
   out[["export_help"]] <- risk_error(out[["export_help"]], length(assessment[["export_help"]]))
   out[["has_website"]] <- risk_error(out[["has_website"]], as.logical(length(assessment[["has_website"]])))

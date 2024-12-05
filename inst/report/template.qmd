@@ -143,7 +143,7 @@ as.data.frame(summary_pkgs)[, 1:4]
 The following metrics are derived from the `riskmetric` R package.
 <!-- Metrics overlapping with `covr` and `R CMD Check` are removed. -->
 
-```{r riskmetric, warning=FALSE, eval=!file.exists(risk_path)}
+```{r riskmetric1, warning=FALSE, eval=!file.exists(risk_path)}
 path_pkg_source <- file.path(path, pkg)
 if (!dir.exists(path_pkg_source) || file.mtime(path_pkg_source) < file.mtime(tar_file)) {
   untar(tar_file, exdir = path, tar = "internal")
@@ -156,12 +156,12 @@ d_riskmetric <- riskmetric::as_pkg_ref(path_pkg_source) |>
     riskmetric::pkg_assess(assessments = aa[2:9])
 ```
 
-```{r riskmetric, warning=FALSE, eval=file.exists(risk_path)}
+```{r riskmetric2, warning=FALSE, eval=file.exists(risk_path)}
 d_riskmetric <- readRDS(risk_path)
 ```
 
 
-```{r riskmetric, warning=FALSE}
+```{r riskmetric3, warning=FALSE}
 # Assesment produces a data.frame with one row
 r_riskmetric <- riskreports::assessment(d_riskmetric)
 r_riskmetric # Use this to have some summary text and report it.
