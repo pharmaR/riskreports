@@ -38,14 +38,17 @@ package_report_gh_action <- function(
     assessment_path,
     ...
 ) {
-    full_name <- paste0(package_name, "_v", package_version)
     if (is.null(template_path)) {
         template_path <- system.file("report/template.qmd", package = "riskreports")
     }
+
+    full_name <- paste0(package_name, "_v", package_version)
+    output_file <- paste0("validation_report_", full_name,".html")
+
     quarto::quarto_render(
         template_path, 
         output_format = "html",
-        output_file = paste0("validation_report_", full_name,".html"),
+        output_file = output_file,
         execute_params = list(
             repo = repository,
             package = package_name,
@@ -54,4 +57,6 @@ package_report_gh_action <- function(
         ),
         ...
     )
+
+    output_file
 }
