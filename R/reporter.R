@@ -37,7 +37,7 @@ package_report_gh_action <- function(
         output_file = paste0("validation_report_", full_name,".html"),
         execute_params = list(
             repo = repository,
-            package = package_name
+            package = package_name,
             image = docker_image,
             assessment_path = assessment_path
         )
