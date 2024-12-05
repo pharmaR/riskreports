@@ -26,12 +26,11 @@ package_report(
   x = "inst/source/dplyr",
   template_path = "inst/report/template.qmd",
   params = list(
-    repo = "inst/repos/ubuntu-22.04/4.4",
+    repo = "inst/source",
     package = "dplyr",
     image = "rhub/ref-image",
-    assessment_path = "inst/assessments/dplyr.rds",
+    assessment_path = "inst/assessments/dplyr.rds"
   )
 )
-
 
 }

@@ -3,7 +3,7 @@
 #' @param x Package name or path
 #' @param template_path Path to a custom quarto template file
 #' @param params A list of execute parameters passed to the template
-#'@param ... Additional arguments passed to `quarto::quarto_render()`
+#' @param ... Additional arguments passed to `quarto::quarto_render()`
 #'
 #' @return A report
 #' @examples
@@ -11,13 +11,12 @@
 #'   x = "inst/source/dplyr",
 #'   template_path = "inst/report/template.qmd",
 #'   params = list(
-#'     repo = "inst/repos/ubuntu-22.04/4.4",
+#'     repo = "inst/source",
 #'     package = "dplyr",
 #'     image = "rhub/ref-image",
-#'     assessment_path = "inst/assessments/dplyr.rds",
+#'     assessment_path = "inst/assessments/dplyr.rds"
 #'   )
 #' )
-#'
 #' 
 #' @export
 package_report <- function(
