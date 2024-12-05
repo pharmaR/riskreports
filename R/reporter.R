@@ -32,6 +32,7 @@ package_report <- function(x){
 package_report_gh_action <- function(
     package_name,
     package_version,
+    output_dir = "inst/validation"
     template_path = NULL,
     repository,
     docker_image,
@@ -45,7 +46,7 @@ package_report_gh_action <- function(
     quarto::quarto_render(
         template_path, 
         output_format = "html",
-        output_file = paste0("validation_report_", full_name,".html"),
+        output_file = file.path(output_dir, paste0("validation_report_", full_name,".html")),
         execute_params = list(
             repo = repository,
             package = package_name,
