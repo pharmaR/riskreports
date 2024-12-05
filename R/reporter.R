@@ -24,19 +24,19 @@ package_report <- function(x){
 #' @param package_name Name of the package
 #' @param package_version Version of the package
 #' @param template_path Path to the quarto template file
-#' @param ... Not used - named arguments separator
 #' @param repository Repository where the package is stored
 #' @param docker_image Docker image used to validate the package
 #' @param assessment_path Path to the assessment file (produced by another script)
+#' @param ... Options passed to `quarto::quarto_render()`
 #' @export
 package_report_gh_action <- function(
     package_name,
     package_version,
     template_path = NULL,
-    ...,
     repository,
     docker_image,
-    assessment_path
+    assessment_path,
+    ...
 ) {
     full_name <- paste0(package_name, "_v", package_version)
     if (is.null(template_path)) {
@@ -51,6 +51,7 @@ package_report_gh_action <- function(
             package = package_name,
             image = docker_image,
             assessment_path = assessment_path
-        )
+        ),
+        ...
     )
 }
