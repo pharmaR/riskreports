@@ -17,7 +17,7 @@
 #'     assessment_path = "inst/assessments/dplyr.rds"
 #'   )
 #' )
-#' 
+#'
 #' @export
 package_report <- function(
     x,
@@ -27,7 +27,7 @@ package_report <- function(
 ) {
     package <- basename(x)
     desc <- read.dcf(file.path(x, "DESCRIPTION"))
-    
+
     stopifnot("Mismatch between path and DESCRIPTION name" = package == desc[, "Package"])
 
     full_name <- paste0(package, "_v", desc[, "Version"])
@@ -40,7 +40,7 @@ package_report <- function(
     }
 
     quarto::quarto_render(
-        template_path, 
+        template_path,
         output_format = "html",
         output_file = paste0("validation_report_", full_name,".html"),
         execute_params = params,
