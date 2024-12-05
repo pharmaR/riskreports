@@ -20,3 +20,26 @@ package_report <- function(x){
                           output_format = "html",
                           output_file = paste0("validation_report_", full_name,".html"))
 }
+
+package_report_gh_action <- function(
+    package_name,
+    package_version,
+    ...,
+    repository,
+    docker_image,
+    assessment_path
+) {
+    full_name <- paste0(package_name, "_v", package_version)
+    template_path <- system.file("report/template.qmd", package = "riskreports")
+    quarto::quarto_render(
+        template_path, 
+        output_format = "html",
+        output_file = paste0("validation_report_", full_name,".html"),
+        execute_params = list(
+            repo = repository,
+            package = package_name
+            image = docker_image,
+            assessment_path = assessment_path
+        )
+    )
+}
