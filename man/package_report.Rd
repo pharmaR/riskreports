@@ -4,10 +4,14 @@
 \alias{package_report}
 \title{Reports about a package}
 \usage{
-package_report(x)
+package_report(x, template_path = NULL, params = list())
 }
 \arguments{
 \item{x}{Package name or path}
+
+\item{template_path}{Path to a custom quarto template file}
+
+\item{params}{A list of execute parameters passed to the template}
 }
 \value{
 A report
@@ -16,7 +20,16 @@ A report
 Reports about a package
 }
 \examples{
-package_report("inst/source/dplyr_1.1.4/dplyr")
+package_report(
+  x = "inst/source/dplyr",
+  template_path = "inst/report/template.qmd",
+  params = list(
+    repo = "inst/repos/ubuntu-22.04/4.4",
+    package = "dplyr",
+    image = "rhub/ref-image",
+    assessment_path = "inst/assessments/dplyr.rds",
+  )
+)
 
 
 }
