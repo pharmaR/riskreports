@@ -32,7 +32,7 @@ package_report <- function(x){
 package_report_gh_action <- function(
     package_name,
     package_version,
-    output_dir = "inst/validation"
+    output_dir = "inst/validation",
     template_path = NULL,
     repository,
     docker_image,
