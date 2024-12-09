@@ -11,8 +11,9 @@ Description: Documents package checks for validation in a pharmaceutic
 License: MIT + file LICENSE
 URL: https://github.com/pharmaR/riskreports
 BugReports: https://github.com/pharmaR/riskreports/issues
-Imports: 
+Depends:
     R (>= 3.5.0)
+Imports: 
     quarto (>= 1.4.4),
     tinytable (>= 0.6.1)
 Suggests: 
