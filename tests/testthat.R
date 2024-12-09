@@ -6,7 +6,9 @@
 # * https://r-pkgs.org/testing-design.html#sec-tests-files-overview
 # * https://testthat.r-lib.org/articles/special-files.html
 
-library(testthat)
-library(riskreports)
+if (requireNamespace('spelling', quietly = TRUE) && requireNamespace('riskreports', quietly = TRUE)) {
+  library(testthat)
+  library(riskreports)
 
-test_check("riskreports")
+  test_check("riskreports")
+}
