@@ -3,13 +3,13 @@ title: "Validation Report - `r params$package`"
 date: "`r Sys.time()`"
 date-format: "ddd MMM DD hh:mm:ss A YYYY"
 params:
-  repo: "../source"
-  package: riskmetric
+  package: dplyr
   image: "rhub/ref-image"
-  assessment_path: "../assessment.rds"
+  assessment_path: "../assessments/dplyr.rds"
 format:
   html: 
     toc: true  
+    embed-resources: true
   # typst:
   #   toc: true
   #   section-numbering: 1.1.1
@@ -96,65 +96,24 @@ Environmental and options variables affect how package checks and software in it
 Here is the environ variables when running this report
 
 ```{r computing}
-riskreports::environ_report()
+riskreports::environ_report(exclude = c("GITHUB_PAT", "APPDATA", 
+                                        "ProgramFiles", "ProgramFiles(x86)",
+                                        "R_USER", "USERNAME", "USERPROFILE", 
+                                        "USERDNSDOMAIN", "USERDOMAIN", 
+                                        "USERDOMAIN_ROAMINGPROFILE", "R_DptShare"              
+                                        ))
 ```
 
 ```{r options}
-riskreports::options_report()
+riskreports::options_report(exclude = c("usethis.full_name", "usethis.description", "usethis.destdir"))
 ```
 
-
-# Installation documentation
-
-## Repository status
-
-```{r repo-files}
-# This repository is to fill the packages. It could be replaced with a common 
-# repository or expanded (new option?) to an internal repository.
-options("repos" = c("https://cloud.r-project.org"))
-lf <- list.files(path, full.names = TRUE)
-pfiles <- lf[endsWith(lf, ".tar.gz")]
-tar_file <- pfiles[startsWith(basename(pfiles), pkg)]
-```
-
-
-```{r check-repo, cache=TRUE, cache.extra=file.mtime(tar_file)}
-# Cache.extra is to avoid rechecking the file when it hasn't changed/updated
-cpd <- tools::check_packages_in_dir(path, 
-                                    pfiles = basename(tar_file),
-                                    check_args = c(
-    "--timings",             # include execution times in output
-    "--no-build-vignettes",  # run vignette code, but disable pdf rendering
-    "--no-manual",           # disable pdf manual rendering
-    "--with-keep.source"))
-```
-
-The repository has these packages with problems:
-
-```{r repo-summary}
-summary_pkgs <- check_packages_in_dir_details(path)
-as.data.frame(summary_pkgs)[, 1:4]
-```
 
 # Package `r pkg`
 
 ## Metric based risk assessment
 
 The following metrics are derived from the `riskmetric` R package.
-<!-- Metrics overlapping with `covr` and `R CMD Check` are removed. -->
-
-```{r riskmetric1, warning=FALSE, eval=!file.exists(risk_path)}
-path_pkg_source <- file.path(path, pkg)
-if (!dir.exists(path_pkg_source) || file.mtime(path_pkg_source) < file.mtime(tar_file)) {
-  untar(tar_file, exdir = path, tar = "internal")
-}
-
-# Remove local check assessment done previously
-aa <- riskmetric::all_assessments()
-aa[["assess_r_cmd_check"]] <- NULL
-d_riskmetric <- riskmetric::as_pkg_ref(path_pkg_source) |> 
-    riskmetric::pkg_assess(assessments = aa[2:9])
-```
 
 ```{r riskmetric2, warning=FALSE, eval=file.exists(risk_path)}
 d_riskmetric <- readRDS(risk_path)
@@ -169,33 +128,11 @@ r_riskmetric # Use this to have some summary text and report it.
 ```
 
 
-## Package stats
-
-```{r check-package}
-summary_pkg <- subset(summary_pkgs, Package == pkg)
-rownames(summary_pkg) <- NULL
-as.data.frame(summary_pkg)[, 1:4]
-```
-
-
-```{r coverage-section,results='asis', eval=any(names(d_riskmetric) == "covr_coverage")}
-paste("## Testing Coverage
-
-Overall the package has a coverage of `r d_riskmetric$covr_coverage$totalcoverage` %.")
-```
-
-```{r coverage, eval=any(names(d_riskmetric) == "covr_coverage")}
-cov <- d_riskmetric$covr_coverage$filecoverage
-df <- data.frame(file = names(cov), percentage =cov) 
-rownames(df) <- NULL
-df
-```
-
 ## Dependencies
 
 Overall the package has these dependencies:
 
-```{r dependencies, eval=any(names(d_riskmetric) == "dependencies")}
+```{r dependencies}
 d_riskmetric$dependencies
 ```
 
