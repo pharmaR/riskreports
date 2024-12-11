@@ -9,12 +9,11 @@
 #' @examples
 #' package_report(
 #'   x = "inst/source/dplyr",
-#'   template_path = "inst/report/template.qmd",
+#'   template_path = "inst/report/pkg_template.qmd",
 #'   params = list(
-#'     repo = "inst/source",
 #'     package = "dplyr",
 #'     image = "rhub/ref-image",
-#'     assessment_path = "inst/assessments/dplyr.rds"
+#'     assessment_path = "./inst/assessments/dplyr.rds"
 #'   )
 #' )
 #'
@@ -25,6 +24,7 @@ package_report <- function(
     params = list(),
     ...
 ) {
+
     package <- basename(x)
     desc <- read.dcf(file.path(x, "DESCRIPTION"))
 
@@ -36,16 +36,28 @@ package_report <- function(
     Sys.setenv("INPUT_REPORT_PKG_DIR" = x)
 
     if (is.null(template_path)) {
-        template_path <- system.file("report/template.qmd", package = "riskreports")
+        template_path <- system.file("report/pkg_template.qmd",
+                                     package = "riskreports")
     }
-
-    quarto::quarto_render(
+    # Bug on https://github.com/quarto-dev/quarto-cli/issues/5765
+    suppressMessages({suppressWarnings({
+      out <- quarto::quarto_render(
         template_path,
         output_format = "html",
-        output_file = paste0("validation_report_", full_name,".html"),
         execute_params = params,
         ...
-    )
+      )
+    })})
 
-    output_file
+    # Move reports after creation (work around issue https://github.com/quarto-dev/quarto-cli/issues/5765)
+    lf <- list.files(dirname(template_path), full.names = TRUE)
+    files_template <- lf[!dir.exists(lf)]
+    file_name <- tools::file_path_sans_ext(basename(template_path))
+    files_template <- files_template[startsWith(basename(files_template),
+                                                file_name)]
+    files_template <- files_template[!endsWith(files_template, ".qmd")]
+    output_file = paste0("validation_report_", full_name,
+                         ".", tools::file_ext(files_template))
+    file.rename(files_template, output_file)
+    invisible(output_file)
 }
