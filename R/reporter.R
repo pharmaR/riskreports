@@ -10,7 +10,6 @@
 #' package_report(
 #'   package_name = "dplyr",
 #'   package_version = "1.1.4",
-#'   template_path = "inst/report/pkg_template.qmd",
 #'   params = list(
 #'     image = "rhub/ref-image",
 #'     assessment_path = "./inst/assessments/dplyr.rds"
@@ -22,7 +21,7 @@ package_report <- function(
     package_name,
     package_version,
     package = NULL,
-    template_path = NULL,
+    template_path = system.file("report/pkg_template.qmd", package = "riskreports"),
     params = list(),
     ...
 ) {
