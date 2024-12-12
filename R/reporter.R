@@ -56,6 +56,7 @@ package_report <- function(
       out <- quarto::quarto_render(
         template_path,
         output_format = "html",
+        execute_dir = ".",
         execute_params = params,
         ...
       )
