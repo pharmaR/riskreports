@@ -12,9 +12,6 @@
 #'   package_version = "1.1.4",
 #'   template_path = "inst/report/pkg_template.qmd",
 #'   params = list(
-#'     package = package_name,
-#'     package_name = package_name,
-#'     package_version = package_version,
 #'     image = "rhub/ref-image",
 #'     assessment_path = "./inst/assessments/dplyr.rds"
 #'   )
