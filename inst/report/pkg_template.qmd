@@ -3,7 +3,9 @@ title: "Validation Report - `r params$package`"
 date: "`r Sys.time()`"
 date-format: "ddd MMM DD hh:mm:ss A YYYY"
 params:
-  package: dplyr
+  package_name: dplyr
+  package_version: 1.0.0
+  package: NULL
   image: "rhub/ref-image"
   assessment_path: "../assessments/dplyr.rds"
 format:
@@ -35,7 +37,10 @@ library("tools")
 
 ```{r image}
 image <- Sys.getenv("DOCKER_IMAGE", unset = NA)
-if (!is.na(image) && nzchar(params$image)) {
+is_empty <- function(x) {
+  is.null(x) || is.na(x) || !nzchar(x)
+}
+if (is_empty(image) && !is_empty(params$image)) {
   image <- params$image
 }
 ```
@@ -54,7 +59,11 @@ An assessment would be required that the tests and documentation are meaningful.
 ```{r loading}
 library("riskmetric")
 path <- params$repo
+
+
 pkg <- params$package
+pkg_name <- params$package_name
+pkg_version <- params$package_version
 risk_path <- params$assessment_path
 ```
 
