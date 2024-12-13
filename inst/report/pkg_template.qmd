@@ -1,5 +1,5 @@
 ---
-title: "Validation Report - `r params$package`"
+title: "Validation Report - `r params$package_name` v `r params$pacakge_version`"
 date: "`r Sys.time()`"
 date-format: "ddd MMM DD hh:mm:ss A YYYY"
 params:
@@ -67,6 +67,7 @@ risk_path <- params$assessment_path
 ## System Info
 
 ```{r execution_info}
+#| tab.cap: "table"
 tt_sys_info_df <- data.frame(
   Field = c("OS", "Platform", "System", "Execution Time"),
   Value = c(
@@ -76,7 +77,7 @@ tt_sys_info_df <- data.frame(
     format(Sys.time(), tz = "UTC", usetz = TRUE)
   ))
 
-tt_sys_info_df
+knitr::kable(tt_sys_info_df)
 ```
 
 ## R Session Info
@@ -163,7 +164,7 @@ d_riskmetric <- readRDS(risk_path)
 
 # Assesment produces a data.frame with one row
 r_riskmetric <- riskreports::assessment(d_riskmetric)
-r_riskmetric # Use this to have some summary text and report it.
+knitr::kable(r_riskmetric) # Use this to have some summary text and report it.
 # d_riskmetric
 ```
 
@@ -175,6 +176,6 @@ Overall the package has these dependencies:
 ```{r dependencies-riskmetric}
 #| tab.cap: "**Package dependencies**"
 
-d_riskmetric$dependencies
+knitr::kable(d_riskmetric$dependencies)
 ```
 
