@@ -51,12 +51,14 @@ package_report <- function(
         template_path <- system.file("report/pkg_template.qmd",
                                      package = "riskreports")
     }
+
+    params$package <- normalizePath(params$package, mustWork = FALSE)
+    params$assessment_path <- normalizePath(params$assessment_path)
     # Bug on https://github.com/quarto-dev/quarto-cli/issues/5765
     suppressMessages({suppressWarnings({
       out <- quarto::quarto_render(
         template_path,
         output_format = "html",
-        execute_dir = ".",
         execute_params = params,
         ...
       )
