@@ -5,7 +5,7 @@
 ^codecov\.yml$
 ^riskreports\.Rproj$
 inst/source/Outputs
-inst/checks/
+inst/checks/*
 inst/source/*
 inst/report/
 inst/source/Library
