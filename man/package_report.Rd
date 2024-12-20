@@ -4,16 +4,23 @@
 \alias{package_report}
 \title{Reports about a package}
 \usage{
-package_report(x, template_path = NULL, params = list(), ...)
+package_report(
+  package_name,
+  package_version,
+  package = NULL,
+  template_path = system.file("report/pkg_template.qmd", package = "riskreports"),
+  params = list(),
+  ...
+)
 }
 \arguments{
-\item{x}{Package name or path}
-
 \item{template_path}{Path to a custom quarto template file}
 
 \item{params}{A list of execute parameters passed to the template}
 
 \item{...}{Additional arguments passed to \code{quarto::quarto_render()}}
+
+\item{x}{Package name or path}
 }
 \value{
 A report
@@ -23,13 +30,11 @@ Reports about a package
 }
 \examples{
 package_report(
-  x = "inst/source/dplyr",
-  template_path = "inst/report/template.qmd",
+  package_name = "dplyr",
+  package_version = "1.1.4",
   params = list(
-    repo = "inst/source",
-    package = "dplyr",
     image = "rhub/ref-image",
-    assessment_path = "inst/assessments/dplyr.rds"
+    assessment_path = "./inst/assessments/dplyr.rds"
   )
 )
 
