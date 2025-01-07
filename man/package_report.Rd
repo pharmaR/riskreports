@@ -14,13 +14,17 @@ package_report(
 )
 }
 \arguments{
+\item{package_name}{Package name.}
+
+\item{package_version}{Package version number.}
+
+\item{package}{Path where to find a package source to retrieve name and version number.}
+
 \item{template_path}{Path to a custom quarto template file}
 
 \item{params}{A list of execute parameters passed to the template}
 
 \item{...}{Additional arguments passed to \code{quarto::quarto_render()}}
-
-\item{x}{Package name or path}
 }
 \value{
 A report
@@ -33,9 +37,7 @@ package_report(
   package_name = "dplyr",
   package_version = "1.1.4",
   params = list(
-    image = "rhub/ref-image",
-    assessment_path = "./inst/assessments/dplyr.rds"
-  )
+    image = "rhub/ref-image")
 )
 
 }

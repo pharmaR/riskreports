@@ -1,6 +1,8 @@
 #' Reports about a package
 #'
-#' @param x Package name or path
+#' @param package_name Package name.
+#' @param package_version Package version number.
+#' @param package Path where to find a package source to retrieve name and version number.
 #' @param template_path Path to a custom quarto template file
 #' @param params A list of execute parameters passed to the template
 #' @param ... Additional arguments passed to `quarto::quarto_render()`
@@ -11,9 +13,7 @@
 #'   package_name = "dplyr",
 #'   package_version = "1.1.4",
 #'   params = list(
-#'     image = "rhub/ref-image",
-#'     assessment_path = "./inst/assessments/dplyr.rds"
-#'   )
+#'     image = "rhub/ref-image")
 #' )
 #'
 #' @export
@@ -28,7 +28,7 @@ package_report <- function(
     empty_pkg_info <- is.empty(package_name) && is.empty(package_version)
     if (empty_pkg_info && !is.empty(package)) {
       package_name <- basename(package)
-      desc <- read.dcf(file.path(x, "DESCRIPTION"))
+      desc <- read.dcf(file.path(package, "DESCRIPTION"))
 
       stopifnot("Mismatch between path and DESCRIPTION name" = package_name == desc[, "Package"])
       package_version <- desc[, "Version"]
@@ -53,7 +53,9 @@ package_report <- function(
     }
 
     params$package <- normalizePath(params$package, mustWork = FALSE)
-    params$assessment_path <- normalizePath(params$assessment_path)
+    if (!is.null(params$assessment_path)) {
+      params$assessment_path <- normalizePath(params$assessment_path)
+    }
     # Bug on https://github.com/quarto-dev/quarto-cli/issues/5765
     suppressMessages({suppressWarnings({
       out <- quarto::quarto_render(

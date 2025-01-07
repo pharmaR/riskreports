@@ -7,7 +7,7 @@ params:
   package_version: 1.0.0
   package: NULL
   image: "rhub/ref-image"
-  assessment_path: "../assessments/dplyr.rds"
+  assessment_path: "assessments/dplyr.rds"
 format:
   html: 
     toc: true  
