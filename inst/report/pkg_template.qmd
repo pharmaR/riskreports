@@ -136,3 +136,19 @@ Overall the package has these dependencies:
 d_riskmetric$dependencies
 ```
 
+## Dependencies
+
+Overall the package has these dependencies:
+
+```{r dependencies}
+d_riskmetric$dependencies
+```
+
+## Namespace
+
+Overall the package has `r length(d_riskmetric$exported_namespace)` namespace directives.
+
+```{r namespace}
+d_riskmetric$exported_namespace
+```
+
