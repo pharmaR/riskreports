@@ -17,7 +17,7 @@ Reports check results
 }
 \examples{
 # Requires the package to be installed (or be in inst/ folder)
-check_reporter("checks/riskmetric.Rcheck")
+# check_reporter("checks/riskmetric.Rcheck")
 
 }
 \seealso{

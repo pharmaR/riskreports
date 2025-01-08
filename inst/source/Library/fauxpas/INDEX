@@ -1,5 +1,0 @@
-Error                   Error class
-Error-Classes           Individual error classes
-fauxpas-package         fauxpas
-find_error_class        Find error classes
-http100                 higher level error wrappers
