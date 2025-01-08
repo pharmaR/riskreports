@@ -7,7 +7,6 @@
 inst/source/Outputs
 inst/checks/*
 inst/source/*
-inst/report/
 inst/source/Library
 inst/source/*Rcheck
 inst/source/*tar.gz
