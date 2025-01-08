@@ -138,12 +138,12 @@ Overall the package has these dependencies:
 d_riskmetric$dependencies
 ```
 
-## Dependencies
+## Reverse dependencies
 
-Overall the package has these dependencies:
+Overall the package has `r length(d_riskmetric$reverse_dependencies)` reverse dependencies:
 
 ```{r dependencies}
-d_riskmetric$dependencies
+d_riskmetric$reverse_dependencies
 ```
 
 ## Namespace
