@@ -4,3 +4,10 @@
 .Ruserdata
 riskreports.Rproj
 inst/doc
+inst/assessments
+inst/source/Outputs/
+inst/source/Library
+inst/source/*Rcheck
+inst/source/*tar.gz
+inst/source/
+inst/checks/

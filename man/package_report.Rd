@@ -4,10 +4,21 @@
 \alias{package_report}
 \title{Reports about a package}
 \usage{
-package_report(x, template_path = NULL, params = list(), ...)
+package_report(
+  package_name,
+  package_version,
+  package = NULL,
+  template_path = system.file("report/pkg_template.qmd", package = "riskreports"),
+  params = list(),
+  ...
+)
 }
 \arguments{
-\item{x}{Package name or path}
+\item{package_name}{Package name.}
+
+\item{package_version}{Package version number.}
+
+\item{package}{Path where to find a package source to retrieve name and version number.}
 
 \item{template_path}{Path to a custom quarto template file}
 
@@ -23,14 +34,10 @@ Reports about a package
 }
 \examples{
 package_report(
-  x = "inst/source/dplyr",
-  template_path = "inst/report/template.qmd",
+  package_name = "dplyr",
+  package_version = "1.1.4",
   params = list(
-    repo = "inst/source",
-    package = "dplyr",
-    image = "rhub/ref-image",
-    assessment_path = "inst/assessments/dplyr.rds"
-  )
+    image = "rhub/ref-image")
 )
 
 }

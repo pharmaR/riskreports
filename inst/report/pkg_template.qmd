@@ -1,11 +1,13 @@
 ---
-title: "Validation Report - `r params$package`"
+title: "Validation Report - `r params$package_name` v `r params$pacakge_version`"
 date: "`r Sys.time()`"
 date-format: "ddd MMM DD hh:mm:ss A YYYY"
 params:
-  package: dplyr
+  package_name: dplyr
+  package_version: 1.0.0
+  package: NULL
   image: "rhub/ref-image"
-  assessment_path: "../assessments/dplyr.rds"
+  assessment_path: "assessments/dplyr.rds"
 format:
   html: 
     toc: true  
@@ -35,7 +37,10 @@ library("tools")
 
 ```{r image}
 image <- Sys.getenv("DOCKER_IMAGE", unset = NA)
-if (!is.na(image) && nzchar(params$image)) {
+is_empty <- function(x) {
+  is.null(x) || is.na(x) || !nzchar(x)
+}
+if (is_empty(image) && !is_empty(params$image)) {
   image <- params$image
 }
 ```
@@ -52,9 +57,9 @@ An assessment would be required that the tests and documentation are meaningful.
 # Installation environment
 
 ```{r loading}
-library("riskmetric")
-path <- params$repo
 pkg <- params$package
+pkg_name <- params$package_name
+pkg_version <- params$package_version
 risk_path <- params$assessment_path
 ```
 
@@ -62,6 +67,7 @@ risk_path <- params$assessment_path
 ## System Info
 
 ```{r execution_info}
+#| tab.cap: "table"
 tt_sys_info_df <- data.frame(
   Field = c("OS", "Platform", "System", "Execution Time"),
   Value = c(
@@ -71,7 +77,7 @@ tt_sys_info_df <- data.frame(
     format(Sys.time(), tz = "UTC", usetz = TRUE)
   ))
 
-tt_sys_info_df
+knitr::kable(tt_sys_info_df)
 ```
 
 ## R Session Info
@@ -80,12 +86,42 @@ Information about the R environment and capabilities:
 
 ```{r session_info}
 sessionInfo()
-unlist(.Platform)
+```
 
+Platform used:
+
+```{r platform}
+unlist(.Platform)
+```
+
+R's capabilities:
+
+```{r capabilities}
 capabilities()
+```
+
+External software:
+
+```{r external-software}
 extSoftVersion()
+```
+
+Graphics external software:
+
+```{r graphic-software}
 grSoftVersion()
+```
+
+Numerical characteristics of the machine:
+
+```{r machine}
 unlist(.Machine)
+```
+
+
+Random number generation process:
+
+```{r RNGKind}
 RNGkind()
 ```
 
@@ -93,7 +129,7 @@ RNGkind()
 ## Information about the environment
 
 Environmental and options variables affect how package checks and software in it might behave.
-Here is the environ variables when running this report
+Here is the environmental variables when running this report
 
 ```{r computing}
 riskreports::environ_report(exclude = c("GITHUB_PAT", "APPDATA", 
@@ -103,6 +139,8 @@ riskreports::environ_report(exclude = c("GITHUB_PAT", "APPDATA",
                                         "USERDOMAIN_ROAMINGPROFILE", "R_DptShare"              
                                         ))
 ```
+
+These are the options set to generate the report:
 
 ```{r options}
 riskreports::options_report(exclude = c("usethis.full_name", "usethis.description", "usethis.destdir"))
@@ -115,15 +153,18 @@ riskreports::options_report(exclude = c("usethis.full_name", "usethis.descriptio
 
 The following metrics are derived from the `riskmetric` R package.
 
-```{r riskmetric2, warning=FALSE, eval=file.exists(risk_path)}
+```{r read-riskmetric, warning=FALSE}
 d_riskmetric <- readRDS(risk_path)
 ```
 
 
-```{r riskmetric3, warning=FALSE}
+```{r general-riskmetric, warning=FALSE}
+#| tab.cap: "**Package general assessment.** Coverage, check results, size, 
+#|  download the last year, reverse dependencies and number of dependencies."
+
 # Assesment produces a data.frame with one row
 r_riskmetric <- riskreports::assessment(d_riskmetric)
-r_riskmetric # Use this to have some summary text and report it.
+knitr::kable(r_riskmetric) # Use this to have some summary text and report it.
 # d_riskmetric
 ```
 
@@ -132,7 +173,9 @@ r_riskmetric # Use this to have some summary text and report it.
 
 Overall the package has these dependencies:
 
-```{r dependencies}
-d_riskmetric$dependencies
+```{r dependencies-riskmetric}
+#| tab.cap: "**Package dependencies**"
+
+knitr::kable(d_riskmetric$dependencies)
 ```
 
