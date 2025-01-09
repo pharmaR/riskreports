@@ -191,9 +191,21 @@ d_riskmetric$reverse_dependencies
 
 ## Namespace
 
-Overall the package has `r length(d_riskmetric$exported_namespace)` namespace directives.
+Overall the package has `r length(d_riskmetric$exported_namespace)` exported objects.
+`r sum(d_riskmetric$export_help)` are documented:
 
 ```{r namespace}
-d_riskmetric$exported_namespace
+d_riskmetric$export_help[sort(d_riskmetric$exported_namespace)]
 ```
 
+### Examples
+
+There are `r sum(d_riskmetric$has_examples)` help pages with examples from `r length(d_riskmetric$has_examples)`, (`r sprintf("%0.2f", sum(d_riskmetric$has_examples)/length(d_riskmetric$has_examples)*100) ` %)
+
+### NEWS
+
+The package has `r d_riskmetric$has_news` and they are `r if(!d_riskmetric$news_current) "not"` current.
+
+### License
+
+The package uses `r d_riskmetric$license`.
