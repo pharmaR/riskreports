@@ -19,33 +19,23 @@ library(riskreports)
 library("riskmetric")
 ```
 
-We need to have the source files uncompressed:
+We generate the assessment with riskmetric and we load it as part of the report:
 
-```{r}
-# dplyr_pkg_ref <- pkg_ref("inst/source/dplyr_1.1.4.tar.gz")
-# riskmetric_pkg_ref <- pkg_ref("inst/source/riskmetric_0.2.4.tar.gz")
-
-# This needs to be on its own folder dplyr/dplyr/DESCRIPTION so if used with untar, keep add the basename there.
-dplyr_pkg_ref <- riskmetric::pkg_ref("dplyr", lib.loc = "inst/source/dplyr")
-riskmetric_pkg_ref <- riskmetric::pkg_ref("riskmetric", lib.loc = "inst/source/riskmetric")
-```
-
-We generate the assessment with riskmetric:
-
-```{r}
-riskmetric_assessment <- riskmetric::pkg_assess(riskmetric_pkg_ref)
-dplyr_assessment <- riskmetric::pkg_assess(dplyr_pkg_ref)
+```{r, eval = file.exists("inst/assessments/dplyr.rds")}
+dplyr_assessment <- readRDS("assessments/dplyr.rds")
 ```
 
 Then we can start working on the assessment. 
 This is not a quantification of a risk like `riskmetric::pkg_score()` but some minor conversion to a value of length 1, one character or one numeric value. 
 
 ```{r}
-riskmetric_a <- assessment(riskmetric_assessment)
-dplyr_a <- assessment(dplyr_assessment)
+list.files("assessments", full.names = TRUE)
+knitr::knit_exit()
+# riskmetric_a <- assessment(riskmetric_assessment)
+# dplyr_a <- assessment(dplyr_assessment)
 
-dplyr_a
-riskmetric_a
+# dplyr_a
+# riskmetric_a
 ```
 
 

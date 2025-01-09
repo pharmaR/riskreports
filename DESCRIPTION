@@ -14,8 +14,8 @@ BugReports: https://github.com/pharmaR/riskreports/issues
 Depends:
     R (>= 3.5.0)
 Imports: 
-    quarto (>= 1.4.4),
-    tinytable (>= 0.6.1)
+    methods,
+    quarto (>= 1.4.4)
 Suggests: 
     knitr,
     riskmetric (>= 0.2.4),

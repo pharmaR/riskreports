@@ -9,7 +9,7 @@
 #' @seealso [tools::check_packages_in_dir()]
 #' @examples
 #' # Requires the package to be installed (or be in inst/ folder)
-#' check_reporter("checks/riskmetric.Rcheck")
+#' # check_reporter("checks/riskmetric.Rcheck")
 #'
 check_reporter <- function(path){
   log <- file.path(path, "00check.log")
