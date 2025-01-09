@@ -60,7 +60,7 @@ package_report <- function(
     suppressMessages({suppressWarnings({
       out <- quarto::quarto_render(
         template_path,
-        output_format = "html",
+        output_format = "all",
         execute_params = params,
         ...
       )
