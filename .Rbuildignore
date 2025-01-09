@@ -5,11 +5,11 @@
 ^codecov\.yml$
 ^riskreports\.Rproj$
 inst/source/Outputs
-inst/checks/
+inst/checks/*
 inst/source/*
-inst/report/
 inst/source/Library
 inst/source/*Rcheck
 inst/source/*tar.gz
 inst/*.rds
 -tests$
+^validation_report_*.html$
