@@ -2,7 +2,7 @@
 % Please edit documentation in R/check.R
 \name{environ_report}
 \alias{environ_report}
-\title{Export enviromental variables}
+\title{Export environmental variables}
 \usage{
 environ_report(show = NULL, exclude = NULL)
 }
@@ -15,7 +15,7 @@ environ_report(show = NULL, exclude = NULL)
 A character vector with environmental variables.
 }
 \description{
-Export enviromental variables
+Export environmental variables
 }
 \examples{
 environ_report()
