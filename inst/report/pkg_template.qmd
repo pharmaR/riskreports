@@ -176,6 +176,6 @@ Overall the package has these dependencies:
 ```{r dependencies-riskmetric}
 #| tab.cap: "**Package dependencies**"
 
-knitr::kable(d_riskmetric$dependencies)
+knitr::kable(gsub("\\n", " ", d_riskmetric$dependencies))
 ```
 
