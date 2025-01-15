@@ -30,6 +30,18 @@ knitr::opts_chunk$set(
     cache = FALSE
 )
 library("tools")
+# Adapted from https://stackoverflow.com/a/52327256
+library("knitr")
+knit_hooks$set(showDetails = function(before, options, envir, summary) {
+  if (before) {
+    str <- "<details>\n"
+    paste0(str, "<summary>", summary,"</summary>\n")
+    return()
+  } else {
+    return("\n</details>")
+  }
+})
+
 ```
 
 # Context
