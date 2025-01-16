@@ -1,5 +1,5 @@
 ---
-title: "Validation Report - `r params$package_name` v `r params$pacakge_version`"
+title: "Validation Report - `r params$package_name` v `r params$package_version`"
 date: "`r Sys.time()`"
 date-format: "ddd MMM DD hh:mm:ss A YYYY"
 params:
@@ -178,7 +178,7 @@ Overall the package has these dependencies:
 ```{r dependencies-riskmetric}
 #| tab.cap: "**Package dependencies**"
 
-knitr::kable(d_riskmetric$dependencies)
+knitr::kable(gsub("\\n", " ", d_riskmetric$dependencies))
 ```
 
 ## Reverse dependencies
