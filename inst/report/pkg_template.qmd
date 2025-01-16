@@ -1,5 +1,5 @@
 ---
-title: "Validation Report - `r params$package_name` v `r params$package_version`"
+title: "Validation Report - `r paste0(params$package_name, '@', params$package_version)`"
 date: "`r Sys.time()`"
 date-format: "ddd MMM DD hh:mm:ss A YYYY"
 params:
@@ -37,6 +37,15 @@ library("tools")
 # Context
 
 
+```{r loading}
+pkg <- params$package
+pkg_name <- params$package_name
+pkg_version <- params$package_version
+risk_path <- params$assessment_path
+image <- params$image
+```
+
+
 ```{r image}
 image <- Sys.getenv("DOCKER_IMAGE", unset = NA)
 is_empty <- function(x) {
@@ -56,23 +65,83 @@ Documents the installation of this package on an open source R environment, focu
 It is limited to assess whether unit tests and documentation are present and can execute without error. 
 An assessment would be required that the tests and documentation are meaningful. 
 
-# Installation environment
 
-```{r loading}
-pkg <- params$package
-pkg_name <- params$package_name
-pkg_version <- params$package_version
-risk_path <- params$assessment_path
+# Package `r basename(pkg)`
+
+## Metric based risk assessment
+
+The following metrics are derived from the `riskmetric` R package.
+
+```{r read-riskmetric, warning=FALSE}
+d_riskmetric <- readRDS(risk_path)
 ```
+
+
+```{r general-riskmetric, warning=FALSE}
+#| tab.cap: "**Package general assessment:** Coverage, check results, size, 
+#|  download the last year, reverse dependencies and number of dependencies."
+
+# Assesment produces a data.frame with one row
+r_riskmetric <- riskreports::assessment(d_riskmetric)
+is_na <- sapply(r_riskmetric, is.na)
+knitr::kable(r_riskmetric[, !is_na]) # Use this to have some summary text and report it.
+# d_riskmetric
+```
+
+
+## Dependencies
+
+Overall the package has these dependencies:
+
+```{r dependencies-riskmetric}
+#| tab.cap: "**Package dependencies**"
+deps <- d_riskmetric$dependencies
+deps$package <- gsub("\\n", " ", deps$package)
+knitr::kable(deps)
+```
+
+## Reverse dependencies
+
+Overall the package has `r length(d_riskmetric$reverse_dependencies)` reverse dependencies:
+
+```{r dependencies}
+d_riskmetric$reverse_dependencies
+```
+
+## Namespace
+
+Overall the package has `r length(d_riskmetric$exported_namespace)` exported objects.
+`r sum(d_riskmetric$export_help)` are documented:
+
+```{r namespace}
+d_riskmetric$export_help[sort(d_riskmetric$exported_namespace)]
+```
+
+### Examples
+
+There are `r sum(d_riskmetric$has_examples)` help pages with examples, from `r length(d_riskmetric$has_examples)` (`r sprintf("%0.2f", sum(d_riskmetric$has_examples)/length(d_riskmetric$has_examples)*100) ` %).
+
+### NEWS
+
+The package has `r d_riskmetric$has_news` NEWS file and it is `r if(!d_riskmetric$news_current) "not"` current.
+
+### License
+
+The package uses `r d_riskmetric$license`.
+
+
+
+# Installation environment
 
 
 ## System Info
 
 ```{r execution_info}
-#| tab.cap: "table"
+#| tab.cap: "**System information**. Table about the system used to check the package."
 tt_sys_info_df <- data.frame(
-  Field = c("OS", "Platform", "System", "Execution Time"),
+  Field = c("Image", "OS", "Platform", "System", "Execution Time"),
   Value = c(
+    image,
     sessionInfo()$running,
     R.version$platform,
     R.version$system,
@@ -148,64 +217,3 @@ These are the options set to generate the report:
 riskreports::options_report(exclude = c("usethis.full_name", "usethis.description", "usethis.destdir"))
 ```
 
-
-# Package `r pkg`
-
-## Metric based risk assessment
-
-The following metrics are derived from the `riskmetric` R package.
-
-```{r read-riskmetric, warning=FALSE}
-d_riskmetric <- readRDS(risk_path)
-```
-
-
-```{r general-riskmetric, warning=FALSE}
-#| tab.cap: "**Package general assessment.** Coverage, check results, size, 
-#|  download the last year, reverse dependencies and number of dependencies."
-
-# Assesment produces a data.frame with one row
-r_riskmetric <- riskreports::assessment(d_riskmetric)
-knitr::kable(r_riskmetric) # Use this to have some summary text and report it.
-# d_riskmetric
-```
-
-
-## Dependencies
-
-Overall the package has these dependencies:
-
-```{r dependencies-riskmetric}
-#| tab.cap: "**Package dependencies**"
-
-knitr::kable(gsub("\\n", " ", d_riskmetric$dependencies))
-```
-
-## Reverse dependencies
-
-Overall the package has `r length(d_riskmetric$reverse_dependencies)` reverse dependencies:
-
-```{r dependencies}
-d_riskmetric$reverse_dependencies
-```
-
-## Namespace
-
-Overall the package has `r length(d_riskmetric$exported_namespace)` exported objects.
-`r sum(d_riskmetric$export_help)` are documented:
-
-```{r namespace}
-d_riskmetric$export_help[sort(d_riskmetric$exported_namespace)]
-```
-
-### Examples
-
-There are `r sum(d_riskmetric$has_examples)` help pages with examples from `r length(d_riskmetric$has_examples)`, (`r sprintf("%0.2f", sum(d_riskmetric$has_examples)/length(d_riskmetric$has_examples)*100) ` %)
-
-### NEWS
-
-The package has `r d_riskmetric$has_news` and they are `r if(!d_riskmetric$news_current) "not"` current.
-
-### License
-
-The package uses `r d_riskmetric$license`.
