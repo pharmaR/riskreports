@@ -97,15 +97,16 @@ Overall the package has these dependencies:
 #| tab.cap: "**Package dependencies**"
 deps <- d_riskmetric$dependencies
 deps$package <- gsub("\\n", " ", deps$package)
-knitr::kable(deps)
+row.names(deps) <- NULL
+knitr::kable(deps, row.names = TRUE)
 ```
 
 ## Reverse dependencies
 
 Overall the package has `r length(d_riskmetric$reverse_dependencies)` reverse dependencies:
 
-```{r dependencies}
-d_riskmetric$reverse_dependencies
+```{r dependencies, results='asis'}
+cat(paste(d_riskmetric$reverse_dependencies, collapse = ", "))
 ```
 
 ## Namespace
