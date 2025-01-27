@@ -32,14 +32,12 @@ knitr::opts_chunk$set(
 library("tools")
 # Adapted from https://stackoverflow.com/a/52327256
 library("knitr")
-knit_hooks$set(showDetails = function(before, options, envir, summary) {
-  if (before) {
-    str <- "<details>\n"
-    paste0(str, "<summary>", summary,"</summary>\n")
-    return()
-  } else {
-    return("\n</details>")
-  }
+hook_old <- knitr::knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+  if (!is.null(options$summary)){
+      x <- paste0("<details><br><summary>", options$summary,"</summary><br>", hook_old(x, options), "<br></details>")
+  } 
+  x
 })
 
 ```
@@ -108,7 +106,7 @@ unlist(.Platform)
 
 R's capabilities:
 
-```{r capabilities}
+```{r capabilities, summary = "Capabilities details"}
 capabilities()
 ```
 
