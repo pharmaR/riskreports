@@ -7,13 +7,13 @@
 check_reporter(path)
 }
 \arguments{
-\item{path}{Path to check results folder (aka pkgname.Rcheck).}
+\item{path}{Path to check results folder (aka \code{pkgname.Rcheck}).}
 }
 \value{
-A report
+A base report
 }
 \description{
-Reports check results
+Experimental function to use the default log to create a report.
 }
 \examples{
 # Requires the package to be installed (or be in inst/ folder)

@@ -2,9 +2,11 @@
 
 #' Reports check results
 #'
-#' @param path Path to check results folder (aka pkgname.Rcheck).
+#' Experimental function to use the default log to create a report.
 #'
-#' @return A report
+#' @param path Path to check results folder (aka `pkgname.Rcheck`).
+#'
+#' @return A base report
 #' @export
 #' @seealso [tools::check_packages_in_dir()]
 #' @examples
@@ -17,7 +19,7 @@ check_reporter <- function(path){
 }
 
 
-#' Export enviromental variables
+#' Export environmental variables
 #'
 #' @param show Character vector of environmental variables to show.
 #' @param exclude Character vector of environmental variables to hide.
