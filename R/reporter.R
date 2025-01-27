@@ -13,6 +13,7 @@
 #'   package_name = "dplyr",
 #'   package_version = "1.1.4",
 #'   params = list(
+#'     assessment_path = "inst/assessments/dplyr.rds",
 #'     image = "rhub/ref-image")
 #' )
 #'
@@ -68,6 +69,7 @@ package_report <- function(
         template_path,
         output_format = "all",
         execute_params = params,
+        output_file = paste0("validation_report_", full_name),
         ...
       )
     })})
