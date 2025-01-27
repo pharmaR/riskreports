@@ -57,6 +57,12 @@ package_report <- function(
       params$assessment_path <- normalizePath(params$assessment_path, mustWork = TRUE)
     }
     # Bug on https://github.com/quarto-dev/quarto-cli/issues/5765
+
+    v <- quarto::quarto_version()
+    if (v < package_version("1.7.13")) {
+      warning("Please install the latest (devel) version of Quarto")
+    }
+
     suppressMessages({suppressWarnings({
       out <- quarto::quarto_render(
         template_path,
