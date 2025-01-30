@@ -63,19 +63,25 @@ package_report <- function(
     if (v < package_version("1.7.13")) {
       warning("Please install the latest (devel) version of Quarto")
     }
+    # https://github.com/quarto-dev/quarto-r/issues/81#issuecomment-1375691267
+    # quarto rendering happens in the same place as the file/project
+    # To avoid issues copy to a different place and render there.
+    render_dir <- rendering_dir()
+    file.copy(from = template_path, to = render_dir)
+    template <- list.files(render_dir, full.names = TRUE)
+    template <- template[endsWith(template, "qmd")]
 
     suppressMessages({suppressWarnings({
       out <- quarto::quarto_render(
-        template_path,
+        template,
         output_format = "all",
         execute_params = params,
-        output_file = paste0("validation_report_", full_name),
         ...
       )
     })})
 
     # Move reports after creation (work around issue https://github.com/quarto-dev/quarto-cli/issues/5765)
-    lf <- list.files(dirname(template_path), full.names = TRUE)
+    lf <- list.files(render_dir, full.names = TRUE)
     files_template <- lf[!dir.exists(lf)]
     file_name <- tools::file_path_sans_ext(basename(template_path))
     files_template <- files_template[startsWith(basename(files_template),
@@ -83,8 +89,9 @@ package_report <- function(
     files_template <- files_template[!endsWith(files_template, ".qmd")]
     output_file = paste0("validation_report_", full_name,
                          ".", tools::file_ext(files_template))
-    file.rename(files_template, output_file)
-    invisible(output_file)
+    output_files <- normalizePath(file.path(output_dir(), output_file))
+    file.rename(files_template, output_files)
+    invisible(output_files)
 }
 
 is.empty <- function(x) {
