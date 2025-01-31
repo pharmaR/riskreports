@@ -71,11 +71,14 @@ package_report <- function(
     template <- list.files(render_dir, full.names = TRUE)
     template <- template[endsWith(template, "qmd")]
 
+    prefix_output <- paste0("validation_report_", full_name)
+
     suppressMessages({suppressWarnings({
       out <- quarto::quarto_render(
         template,
         output_format = "all",
         execute_params = params,
+        output_file = prefix_output,
         ...
       )
     })})
@@ -87,8 +90,7 @@ package_report <- function(
     files_template <- files_template[startsWith(basename(files_template),
                                                 file_name)]
     files_template <- files_template[!endsWith(files_template, ".qmd")]
-    output_file = paste0("validation_report_", full_name,
-                         ".", tools::file_ext(files_template))
+    output_file = paste0(prefix_output, ".", tools::file_ext(files_template))
     output_files <- normalizePath(file.path(output_dir(), output_file))
     file.rename(files_template, output_files)
     invisible(output_files)
