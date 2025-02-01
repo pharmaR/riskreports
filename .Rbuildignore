@@ -13,3 +13,7 @@ inst/source/*tar.gz
 inst/*.rds
 -tests$
 ^validation_report_*.html$
+^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Codecov test coverage](https://codecov.io/gh/pharmaR/riskreports/graph/badge.svg)](https://app.codecov.io/gh/pharmaR/riskreports)
+[![R-CMD-check](https://github.com/pharmaR/riskreports/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pharmaR/riskreports/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of riskreports is to documents results of package checks for validation.
