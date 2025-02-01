@@ -27,7 +27,13 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
+      - uses: quarto-dev/quarto-actions/setup@v2
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tinytex: true
+
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
-          build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
+          build_args: 'c("--compact-vignettes=gs+qpdf")'
