@@ -7,7 +7,8 @@
 #' @param params A list of execute parameters passed to the template
 #' @param ... Additional arguments passed to `quarto::quarto_render()`
 #'
-#' @return A report
+#' @return A path to the reports generated, called by its side effects.
+#' @export
 #' @examples
 #' package_report(
 #'   package_name = "dplyr",
@@ -16,8 +17,7 @@
 #'     assessment_path = "inst/assessments/dplyr.rds",
 #'     image = "rhub/ref-image")
 #' )
-#'
-#' @export
+
 package_report <- function(
     package_name,
     package_version,
@@ -75,10 +75,9 @@ package_report <- function(
 
     suppressMessages({suppressWarnings({
       out <- quarto::quarto_render(
-        template,
+        input = template,
         output_format = "all",
         execute_params = params,
-        output_file = prefix_output,
         ...
       )
     })})
@@ -90,8 +89,8 @@ package_report <- function(
     files_template <- files_template[startsWith(basename(files_template),
                                                 file_name)]
     files_template <- files_template[!endsWith(files_template, ".qmd")]
-    output_file = paste0(prefix_output, ".", tools::file_ext(files_template))
-    output_files <- normalizePath(file.path(output_dir(), output_file))
+    output_file <- paste0(prefix_output, ".", tools::file_ext(files_template))
+    output_files <- normalizePath(file.path(output_dir(), output_file), mustWork = FALSE)
     file.rename(files_template, output_files)
     invisible(output_files)
 }

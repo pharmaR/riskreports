@@ -37,6 +37,7 @@ package_report(
   package_name = "dplyr",
   package_version = "1.1.4",
   params = list(
+    assessment_path = "assessments/dplyr.rds",
     image = "rhub/ref-image")
 )
 
