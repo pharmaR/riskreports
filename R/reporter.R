@@ -14,10 +14,9 @@
 #'   package_name = "dplyr",
 #'   package_version = "1.1.4",
 #'   params = list(
-#'     assessment_path = "inst/assessments/dplyr.rds",
+#'     assessment_path = system.file("assessments/dplyr.rds", package = "riskreports"),
 #'     image = "rhub/ref-image")
 #' )
-
 package_report <- function(
     package_name,
     package_version,
