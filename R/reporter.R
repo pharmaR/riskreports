@@ -10,13 +10,15 @@
 #' @return A path to the reports generated, called by its side effects.
 #' @export
 #' @examples
-#' package_report(
+#' pr <- package_report(
 #'   package_name = "dplyr",
 #'   package_version = "1.1.4",
 #'   params = list(
 #'     assessment_path = system.file("assessments/dplyr.rds", package = "riskreports"),
 #'     image = "rhub/ref-image")
 #' )
+#' pr
+#' file.remove(pr)
 package_report <- function(
     package_name,
     package_version,
