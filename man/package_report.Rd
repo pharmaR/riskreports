@@ -27,17 +27,19 @@ package_report(
 \item{...}{Additional arguments passed to \code{quarto::quarto_render()}}
 }
 \value{
-A report
+A path to the reports generated, called by its side effects.
 }
 \description{
 Reports about a package
 }
 \examples{
-package_report(
+pr <- package_report(
   package_name = "dplyr",
   package_version = "1.1.4",
   params = list(
+    assessment_path = system.file("assessments/dplyr.rds", package = "riskreports"),
     image = "rhub/ref-image")
 )
-
+pr
+file.remove(pr)
 }

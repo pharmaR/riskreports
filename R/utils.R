@@ -17,3 +17,18 @@ fill_in <- function(list, names) {
   list[missing_names] <- NA
   list
 }
+
+
+output_dir <- function() {
+  opt <- getOption("riskreports_output_dir", default = NULL)
+  env <- Sys.getenv("RISKREPORTS_OUTPUT_DIR", unset = getwd())
+
+  opt %||% env
+}
+
+rendering_dir <- function() {
+  opt <- getOption("riskreports_rendering_dir", default = NULL)
+  env <- Sys.getenv("RISKREPORTS_RENDERING_DIR", unset = tempdir())
+
+  opt %||% env
+}
