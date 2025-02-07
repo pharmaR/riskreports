@@ -78,7 +78,7 @@ package_report <- function(
 
     output_filepath <- gsub("\\.qmd$", ".html", template_path)
     named_report_path <- file.path(
-      basename(output_filepath),
+      dirname(output_filepath),
       paste0(prefix_output, ".html")
     )
     file.rename(output_filepath, named_report_path)
