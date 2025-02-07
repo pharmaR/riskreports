@@ -67,17 +67,22 @@ package_report <- function(
 
     prefix_output <- paste0("validation_report_", full_name)
 
-    suppressMessages({suppressWarnings({
-      out <- quarto::quarto_render(
+    suppressMessages(suppressWarnings(
+      quarto::quarto_render(
         input = template_path,
         output_format = "all",
         execute_params = params,
         ...
       )
-    })})
+    ))
 
-    output_file <- gsub("\\.qmd$", ".html", template_path)
-    invisible(output_file)
+    output_filepath <- gsub("\\.qmd$", ".html", template_path)
+    named_report_path <- file.path(
+      basename(output_filepath),
+      paste0(prefix_output, ".html")
+    )
+    file.rename(output_filepath, named_report_path)
+    invisible(named_report_path)
 }
 
 is.empty <- function(x) {
