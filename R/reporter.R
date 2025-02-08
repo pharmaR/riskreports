@@ -24,6 +24,7 @@ package_report <- function(
     package_version,
     package = NULL,
     template_path = system.file("report/pkg_template.qmd", package = "riskreports"),
+    output_format = "all",
     params = list(),
     ...
 ) {
@@ -90,7 +91,7 @@ package_report <- function(
     suppressMessages({suppressWarnings({
       out <- quarto::quarto_render(
         input = template,
-        output_format = "all",
+        output_format = output_format,
         execute_params = params,
         ...
       )
