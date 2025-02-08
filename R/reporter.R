@@ -4,6 +4,7 @@
 #' @param package_version Package version number.
 #' @param package Path where to find a package source to retrieve name and version number.
 #' @param template_path Path to a custom quarto template file
+#' @param output_format Output format for the report. Default is "all".
 #' @param params A list of execute parameters passed to the template
 #' @param ... Additional arguments passed to `quarto::quarto_render()`
 #'
