@@ -4,6 +4,7 @@
 #' @param package_version Package version number.
 #' @param package Path where to find a package source to retrieve name and version number.
 #' @param template_path Path to a custom quarto template file
+#' @param output_format Output format for the report. Default is "all".
 #' @param params A list of execute parameters passed to the template
 #' @param ... Additional arguments passed to `quarto::quarto_render()`
 #'
@@ -24,6 +25,7 @@ package_report <- function(
     package_version,
     package = NULL,
     template_path = system.file("report/pkg_template.qmd", package = "riskreports"),
+    output_format = "all",
     params = list(),
     ...
 ) {
@@ -90,7 +92,7 @@ package_report <- function(
     suppressMessages({suppressWarnings({
       out <- quarto::quarto_render(
         input = template,
-        output_format = "all",
+        output_format = output_format,
         execute_params = params,
         ...
       )
