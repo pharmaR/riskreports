@@ -9,6 +9,7 @@ package_report(
   package_version,
   package = NULL,
   template_path = system.file("report/pkg_template.qmd", package = "riskreports"),
+  output_format = "all",
   params = list(),
   ...
 )
@@ -21,6 +22,8 @@ package_report(
 \item{package}{Path where to find a package source to retrieve name and version number.}
 
 \item{template_path}{Path to a custom quarto template file}
+
+\item{output_format}{Output format for the report. Default is "all".}
 
 \item{params}{A list of execute parameters passed to the template}
 
