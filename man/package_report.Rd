@@ -9,6 +9,7 @@ package_report(
   package_version,
   package = NULL,
   template_path = system.file("report/pkg_template.qmd", package = "riskreports"),
+  output_format = "all",
   params = list(),
   ...
 )
@@ -22,22 +23,26 @@ package_report(
 
 \item{template_path}{Path to a custom quarto template file}
 
+\item{output_format}{Output format for the report. Default is "all".}
+
 \item{params}{A list of execute parameters passed to the template}
 
 \item{...}{Additional arguments passed to \code{quarto::quarto_render()}}
 }
 \value{
-A report
+A path to the reports generated, called by its side effects.
 }
 \description{
 Reports about a package
 }
 \examples{
-package_report(
+pr <- package_report(
   package_name = "dplyr",
   package_version = "1.1.4",
   params = list(
+    assessment_path = system.file("assessments/dplyr.rds", package = "riskreports"),
     image = "rhub/ref-image")
 )
-
+pr
+file.remove(pr)
 }
