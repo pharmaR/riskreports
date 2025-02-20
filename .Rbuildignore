@@ -10,10 +10,5 @@ inst/source/*
 inst/source/Library
 inst/source/*Rcheck
 inst/source/*tar.gz
-inst/*.rds
--tests$
-^validation_report_*.html$
-^\.github$
-^_pkgdown\.yml$
-^docs$
-^pkgdown$
+inst/*.rds = = = = =
+=
