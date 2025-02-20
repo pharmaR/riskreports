@@ -9,7 +9,7 @@ Authors@R: c(
 Description: Documents package checks for validation in a pharmaceutic
     context.
 License: MIT + file LICENSE
-URL: https://github.com/pharmaR/riskreports
+URL: https://github.com/pharmaR/riskreports, https://pharmar.github.io/riskreports/
 BugReports: https://github.com/pharmaR/riskreports/issues
 Depends:
     R (>= 4.4.0)
