@@ -1123,7 +1123,7 @@ The package uses .
 | OS             | Windows 11 x64 (build 22631) |
 | Platform       | x86_64-w64-mingw32           |
 | System         | x86_64, mingw32              |
-| Execution Time | 2025-02-20 11:41:38 UTC      |
+| Execution Time | 2025-02-20 14:52:02 UTC      |
 
 **System information**. Table about the system used to check the
 package.
@@ -1153,7 +1153,7 @@ Information about the R environment and capabilities:
 
     loaded via a namespace (and not attached):
      [1] digest_0.6.37          R6_2.6.1               fastmap_1.2.0         
-     [4] xfun_0.50              riskreports_0.0.0.9003 knitr_1.49            
+     [4] xfun_0.50              riskreports_0.0.0.9004 knitr_1.49            
      [7] htmltools_0.5.8.1      rmarkdown_2.29         ps_1.8.1              
     [10] cli_3.6.3              processx_3.8.5         callr_3.7.6           
     [13] compiler_4.4.2         rstudioapi_0.17.1      pkgbuild_1.4.6        
@@ -1245,7 +1245,6 @@ running this report
                             0
     _R_USE_PIPEBIND_        TRUE
     ALLUSERSPROFILE         C:\ProgramData
-    APPDATA                 C:\Users\sanchosl\AppData\Roaming
     AU-PREFIX               Madrid-IT
     BPPDOMAIN_MANAGER_ASM   EdrDotNet, Version+130.0.0.0, Culture+neutral,
                             PublicKeyToken+da1b3922653ea916
@@ -1266,16 +1265,135 @@ running this report
     DENO_TLS_CA_STORE       system,mozilla
     DISPLAY                 :0
     DriverData              C:\Windows\System32\Drivers\DriverData
-    EFC_14064               1
+    EFC_13208               1
+    FPS_BROWSER_APP_PROFILE_STRING
+                            Internet Explorer
+    FPS_BROWSER_USER_PROFILE_STRING
+                            Default
     GFORTRAN_STDERR_UNIT    -1
     GFORTRAN_STDOUT_UNIT    -1
     GIT_ASKPASS             rpostback-askpass
     GIT_LFS_PATH            C:\Program Files\Git LFS
-    GIT_TERMINAL_PROMPT     0
+    GPPSiteSettings         \\Rmamsapp01\gpp
+    HOME                    C:\Users\sanchosl\Documents
+    HOMEDRIVE               C:
+    HOMEPATH                \Users\sanchosl
+    IniLocation             C:\Users\sanchosl\AppData\Local\Roche\Ini
     JABRA_NATIVE_BLUETOOTH
                             true
     LANGUAGE                en
     LIBJABRA_TRACE_LEVEL    INFO
+    LOCALAPPDATA            C:\Users\sanchosl\AppData\Local
+    LOGONSERVER             \\RMAMSEMEA01
+    MPLENGINE               tkAgg
+    MSYS2_ENV_CONV_EXCL     R_ARCH
+    NEXTHINK                C:\Program Files\Nexthink\Collector
+    NO_COLOR                TRUE
+    NUMBER_OF_PROCESSORS    12
+    ORCID_ID                0000-0001-9747-2570
+    ORIGINAL_XDG_CURRENT_DESKTOP
+                            undefined
+    OS                      Windows_NT
+    PATH                    C:\rtools44/x86_64-w64-mingw32.static.posix/bin;C:\rtools44/usr/bin;C:\Rtools\bin;C:\rtools44/x86_64-w64-mingw32.static.posix/bin;C:\rtools44/usr/bin;C:\Rtools\bin;C:\rtools44\x86_64-w64-mingw32.static.posix\bin;C:\rtools44\usr\bin;C:\Rtools\bin;C:\Program
+                            Files\R\R-4.4.2\bin\x64;C:\Program Files
+                            (x86)\Java\jre6\bin;C:\Program
+                            Files\Java\jre6\bin;C:\Windows\System32;C:\Windows;C:\Windows\System32\wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program
+                            Files\WindowsPowerShell\scripts\HP.ClientScriptLibrary;C:\Program
+                            Files\Microsoft VS Code\bin;C:\Program
+                            Files\rig;C:\Program Files\R\bin;C:\Program
+                            Files\Git\cmd;C:\Program
+                            Files\Docker\Docker\resources\bin;C:\Program
+                            Files (x86)\GnuPG\bin;C:\Program
+                            Files\Meld;C:\Program
+                            Files\smimesign;C:\Program Files\Git
+                            LFS;C:\Program
+                            Files\Positron\bin;C:\Users\sanchosl\AppData\Local\Programs\Quarto\bin;C:\Users\sanchosl\AppData\Local\Microsoft\WindowsApps;C:\Users\sanchosl\AppData\Local\GitHubDesktop\bin;C:\Users\sanchosl\AppData\Local\Packages\PythonSoftwareFoundation.Python3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\Scripts;C:\Users\sanchosl\AppData\Local\Pandoc;C:\Users\sanchosl\AppData\Local\Programs\MiKTeX\miktex\bin\x64;C:\Users\sanchosl\AppData\Roaming\TinyTeX\bin\windows;C:\Users\sanchosl\AppData\Local\Microsoft\WinGet\Packages\Schniz.fnm_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\sanchosl\.git-secrets;C:\Users\sanchosl\AppData\Local\Programs\Positron\bin;C:\Users\sanchosl\AppData\Local\Programs\Quarto\bin;C:\Program
+                            Files\RStudio\resources\app\bin\postback
+    PATHEXT                 .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+    PKGLOAD_PARENT_TEMPDIR
+                            C:\Users\sanchosl\AppData\Local\Temp\RtmpcXEmxQ
+    PROCESSOR_ARCHITECTURE
+                            AMD64
+    PROCESSOR_IDENTIFIER    Intel64 Family 6 Model 154 Stepping 4,
+                            GenuineIntel
+    PROCESSOR_LEVEL         6
+    PROCESSOR_REVISION      9a04
+    PROCESSX_PS1a5c5af5b1e_1740063116
+                            YES
+    PROCESSX_PS58a86e991a75_1740063114
+                            YES
+    ProgramData             C:\ProgramData
+    ProgramW6432            C:\Program Files
+    PSModulePath            C:\Program
+                            Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+    PUBLIC                  C:\Users\Public
+    PYTHONIOENCODING        utf-8
+    QUARTO_BIN_PATH         C:\Users\sanchosl\AppData\Local\Programs\Quarto\bin
+    QUARTO_DENO             C:\Users\sanchosl\AppData\Local\Programs\Quarto\bin\tools\x86_64\deno
+    QUARTO_DOCUMENT_PATH    pkgdown\assets
+    QUARTO_FILTER_DEPENDENCY_FILE
+                            C:\Users\sanchosl\AppData\Local\Temp\quarto-session2e28e00c24b432f0\cc2f1233c42dedb5\df7882d49a808b9e
+    QUARTO_PROJECT_ROOT     C:\Code\Rprojects\riskreports\pkgdown\assets
+    QUARTO_SHARE_PATH       C:\Users\sanchosl\AppData\Local\Programs\Quarto\share
+    QUARTO_WIN_CODEPAGE     1252
+    R_ALWAYS_INSTALL_TESTS
+                            0
+    R_ARCH                  /x64
+    R_BROWSER               false
+    R_CLI_HAS_HYPERLINK_IDE_HELP
+                            true
+    R_CLI_HAS_HYPERLINK_IDE_RUN
+                            true
+    R_CLI_HAS_HYPERLINK_IDE_VIGNETTE
+                            true
+    R_COMPILED_BY           gcc 13.3.0
+    R_DOC_DIR               C:/PROGRA~1/R/R-44~1.2/doc
+    R_HOME                  C:/PROGRA~1/R/R-44~1.2
+    R_INCLUDE_DIR           C:/PROGRA~1/R/R-44~1.2/include
+    R_IniPath               C:\Users\sanchosl\AppData\Local\Roche\Ini
+    R_KEEP_PKG_SOURCE       yes
+    R_LIBCURL_SSL_REVOKE_BEST_EFFORT
+                            TRUE
+    R_LIBS_SITE             C:/PROGRA~1/R/R-44~1.2/site-library
+    R_LIBS_USER             C:\Users\sanchosl\AppData\Local/R/win-library/4.4
+    R_PDFVIEWER             false
+    R_PLATFORM              
+    R_RTOOLS44_PATH         C:\rtools44/x86_64-w64-mingw32.static.posix/bin;C:\rtools44/usr/bin
+    R_RUNTIME               ucrt
+    R_SHARE_DIR             C:/PROGRA~1/R/R-44~1.2/share
+    R_TIMEOUT               100
+    RMARKDOWN_MATHJAX_PATH
+                            C:/Program
+                            Files/RStudio/resources/app/resources/mathjax-27
+    RS_LOCAL_PEER           \\.\pipe\27581-rsession
+    RS_LOG_LEVEL            WARN
+    RS_RPOSTBACK_PATH       C:/Program
+                            Files/RStudio/resources/app/bin/rpostback.exe
+    RS_SHARED_SECRET        b68f3683-7ac8-4460-ab9a-ab283830983a
+    RSTUDIO                 1
+    RSTUDIO_CLI_HYPERLINKS
+                            true
+    RSTUDIO_CONSOLE_COLOR   256
+    RSTUDIO_CONSOLE_WIDTH   147
+    RSTUDIO_DESKTOP_EXE     C:\Program Files\RStudio\rstudio.exe
+    RSTUDIO_PANDOC          C:/Program
+                            Files/RStudio/resources/app/bin/quarto/bin/tools
+    RSTUDIO_PROGRAM_MODE    desktop
+    RSTUDIO_SESSION_PID     22696
+    RSTUDIO_SESSION_PORT    27581
+    RSTUDIO_USER_IDENTITY   sanchosl
+    RSTUDIO_WINUTILS        C:/Program
+                            Files/RStudio/resources/app/bin/winutils
+    RTOOLS44_HOME           C:\rtools44
+    SESSIONNAME             Console
+    SSH_ASKPASS             rpostback-askpass
+    SystemDrive             C:
+    SystemRoot              C:\WINDOWS
+    TEMP                    C:\Users\sanchosl\AppData\Local\Temp
+    TERM                    xterm-256color
+    TESTING_DEPTH           5
+    TMP                     C:\Users\sanchosl\AppData\Local\Temp
+    UATDATA                 C:\WINDOWS\CCM\UATData\D9F8C395-CAB8-491d-B8AC-179A1FE1BE77
     windir                  C:\WINDOWS
     ZES_ENABLE_SYSMAN       1
 
@@ -1301,7 +1419,7 @@ These are the options set to generate the report:
             cli_server_default(msg)
         }
     }
-    <bytecode: 0x000002af26732450>
+    <bytecode: 0x000001bfd571f450>
     <environment: namespace:cli>
 
     $catch.script.errors
@@ -1339,7 +1457,7 @@ These are the options set to generate the report:
     function(width = 7, height = 7, ...) {
       grDevices::pdf(NULL, width, height, ...)
     }
-    <bytecode: 0x000002af27a38ff0>
+    <bytecode: 0x000001bfd6a3b140>
     <environment: namespace:knitr>
 
     $device.ask.default
@@ -1502,7 +1620,7 @@ These are the options set to generate the report:
     $str$formatNum
     function (x, ...) 
     format(x, trim = TRUE, drop0trailing = TRUE, ...)
-    <environment: 0x000002af267b2d88>
+    <environment: 0x000001bfd57b2d88>
 
 
     $str.dendrogram.last
