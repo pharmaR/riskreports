@@ -28,7 +28,7 @@ pak::pak("pharmaR/riskreports")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-unlink("validation_report_*")
+unlink("pkgdown/assets/*")
 ```
 
 ``` r
@@ -42,7 +42,6 @@ pr <- package_report(
     assessment_path = system.file("assessments/dplyr.rds", package = "riskreports")),
   quiet = TRUE # To silence quarto output for readability
 )
-
 pr
 #> [1] "pkgdown/assets/validation_report_dplyr_v1.1.4.html"
 #> [2] "pkgdown/assets/validation_report_dplyr_v1.1.4.md"
