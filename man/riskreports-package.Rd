@@ -12,6 +12,7 @@ Documents package checks for validation in a pharmaceutic context.
 Useful links:
 \itemize{
   \item \url{https://github.com/pharmaR/riskreports}
+  \item \url{https://pharmar.github.io/riskreports/}
   \item Report bugs at \url{https://github.com/pharmaR/riskreports/issues}
 }
 
