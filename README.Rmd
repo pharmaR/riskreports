@@ -41,8 +41,8 @@ unlink("validation_report_*")
 
 ```{r example}
 library(riskreports)
-# Specify the folder where the files should go
-options("riskreports_output_dir" = ".")
+# Specify the folder where the files should go (here for easy access on the website)
+options("riskreports_output_dir" = "pkgdown/assets")
 pr <- package_report(
   package_name = "dplyr",
   package_version = "1.1.4",
