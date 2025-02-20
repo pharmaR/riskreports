@@ -33,8 +33,8 @@ unlink("validation_report_*")
 
 ``` r
 library(riskreports)
-# Specify the folder where the files should go
-options("riskreports_output_dir" = ".")
+# Specify the folder where the files should go (here for easy access on the website)
+options("riskreports_output_dir" = "pkgdown/assets")
 pr <- package_report(
   package_name = "dplyr",
   package_version = "1.1.4",
@@ -44,8 +44,8 @@ pr <- package_report(
 )
 
 pr
-#> [1] "./validation_report_dplyr_v1.1.4.html"
-#> [2] "./validation_report_dplyr_v1.1.4.md"
+#> [1] "pkgdown/assets/validation_report_dplyr_v1.1.4.html"
+#> [2] "pkgdown/assets/validation_report_dplyr_v1.1.4.md"
 ```
 
 We first selected were reports should go. Then we used
