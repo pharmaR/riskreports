@@ -4,7 +4,7 @@ Version: 0.0.0.9004
 Authors@R: c(
     person("Lluís", "Revilla Sancho", , "lluis.revilla_sancho@roche.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9747-2570")),
-    person("F. Hoffmann-La Roche AG", role = c("cph", "fnd"))
+    person("R Validation Hub", role = c("cph"))
   )
 Description: Documents package checks for validation in a pharmaceutic
     context.
