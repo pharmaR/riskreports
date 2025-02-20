@@ -1,12 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# riskreports
+# riskreports <a href="https://pharmar.github.io/riskreports/"><img src="man/figures/logo.svg" align="right" height="139" alt="riskreports website" /></a>
 
 <!-- badges: start -->
 
 [![Codecov test
 coverage](https://codecov.io/gh/pharmaR/riskreports/graph/badge.svg)](https://app.codecov.io/gh/pharmaR/riskreports)
+[![R-CMD-check](https://github.com/pharmaR/riskreports/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pharmaR/riskreports/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of riskreports is to documents results of package checks for
@@ -27,8 +28,31 @@ pak::pak("pharmaR/riskreports")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(riskreports)
-
-package_report("xxx")
-#> NULL
+unlink("docs/validation_report_*")
 ```
+
+``` r
+library(riskreports)
+# Specify the folder where the files should go
+options("riskreports_output_dir" = "docs")
+pr <- package_report(
+  package_name = "dplyr",
+  package_version = "1.1.4",
+  params = list(
+    assessment_path = system.file("assessments/dplyr.rds", package = "riskreports")),
+  quiet = TRUE # To silence quarto output for readability
+)
+
+pr
+#> [1] "docs/validation_report_dplyr_v1.1.4.html"
+#> [2] "docs/validation_report_dplyr_v1.1.4.md"
+```
+
+We first selected were reports should go. Then we used
+[{riskmetric}](https://cran.r-project.org/package=riskmetric) data to
+generate the report for the package.
+
+Then we can access those files on the website:
+
+- [HTML](https://pharmar.github.io/validation_report_dplyr_v1.1.4.html)
+- [markdown](https://pharmar.github.io/validation_report_dplyr_v1.1.4.md)
