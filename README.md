@@ -53,5 +53,5 @@ generate the report for the package.
 
 Then we can access those files on the website:
 
-- [HTML](https://pharmar.github.io/validation_report_dplyr_v1.1.4.html)
-- [markdown](https://pharmar.github.io/validation_report_dplyr_v1.1.4.md)
+- [HTML](https://pharmar.github.io/riskreports/validation_report_dplyr_v1.1.4.html)
+- [markdown](https://pharmar.github.io/riskreports/validation_report_dplyr_v1.1.4.md)
