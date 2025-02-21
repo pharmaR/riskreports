@@ -7,6 +7,7 @@ params:
   package: NULL
   image: "rhub/ref-image"
   assessment_path: "assessments/dplyr.rds"
+  revDep: FALSE
 format:
   html: 
     toc: true  
@@ -100,11 +101,14 @@ row.names(deps) <- NULL
 knitr::kable(deps, row.names = TRUE)
 ```
 
-## Reverse dependencies
 
-Overall the package has `r length(d_riskmetric$reverse_dependencies)` reverse dependencies:
+```{r revdependencies, eval=params$revDep, results='asis'}
+cat("## Reverse dependencies")
+cat(paste0("Overall the package has", length(d_riskmetric$reverse_dependencies), " reverse dependencies:"))
+```
 
-```{r dependencies, results='asis'}
+
+```{r dependencies, eval=params$revDep, results='asis'}
 cat(paste(d_riskmetric$reverse_dependencies, collapse = ", "))
 ```
 
