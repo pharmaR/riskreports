@@ -1123,7 +1123,7 @@ The package uses .
 | OS             | Windows 11 x64 (build 22631) |
 | Platform       | x86_64-w64-mingw32           |
 | System         | x86_64, mingw32              |
-| Execution Time | 2025-02-20 14:52:02 UTC      |
+| Execution Time | 2025-02-21 07:44:42 UTC      |
 
 **System information**. Table about the system used to check the
 package.
@@ -1318,9 +1318,9 @@ running this report
                             GenuineIntel
     PROCESSOR_LEVEL         6
     PROCESSOR_REVISION      9a04
-    PROCESSX_PS1a5c5af5b1e_1740063116
+    PROCESSX_PS49103e594277_1740123875
                             YES
-    PROCESSX_PS58a86e991a75_1740063114
+    PROCESSX_PS58a82161cc_1740123864
                             YES
     ProgramData             C:\ProgramData
     ProgramW6432            C:\Program Files
@@ -1332,7 +1332,7 @@ running this report
     QUARTO_DENO             C:\Users\sanchosl\AppData\Local\Programs\Quarto\bin\tools\x86_64\deno
     QUARTO_DOCUMENT_PATH    pkgdown\assets
     QUARTO_FILTER_DEPENDENCY_FILE
-                            C:\Users\sanchosl\AppData\Local\Temp\quarto-session2e28e00c24b432f0\cc2f1233c42dedb5\df7882d49a808b9e
+                            C:\Users\sanchosl\AppData\Local\Temp\quarto-sessiona50f1f7b990f1190\a7b811be45ae0cc1\ca4d27183f23c01b
     QUARTO_PROJECT_ROOT     C:\Code\Rprojects\riskreports\pkgdown\assets
     QUARTO_SHARE_PATH       C:\Users\sanchosl\AppData\Local\Programs\Quarto\share
     QUARTO_WIN_CODEPAGE     1252
@@ -1419,7 +1419,7 @@ These are the options set to generate the report:
             cli_server_default(msg)
         }
     }
-    <bytecode: 0x000001bfd571f450>
+    <bytecode: 0x0000017a0df27450>
     <environment: namespace:cli>
 
     $catch.script.errors
@@ -1457,7 +1457,7 @@ These are the options set to generate the report:
     function(width = 7, height = 7, ...) {
       grDevices::pdf(NULL, width, height, ...)
     }
-    <bytecode: 0x000001bfd6a3b140>
+    <bytecode: 0x0000017a0f23b140>
     <environment: namespace:knitr>
 
     $device.ask.default
@@ -1620,7 +1620,7 @@ These are the options set to generate the report:
     $str$formatNum
     function (x, ...) 
     format(x, trim = TRUE, drop0trailing = TRUE, ...)
-    <environment: 0x000001bfd57b2d88>
+    <environment: 0x0000017a0dfb0d88>
 
 
     $str.dendrogram.last
