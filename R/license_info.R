@@ -1,4 +1,4 @@
-# Matrix obtained from choose a license
+# Matrix obtained from choose a license see inst/choosealicense.R last update 28/02/2025
 license_info <- structure(c("BSD Zero Clause License", "Academic Free License v3.0",
             "GNU Affero General Public License v3.0", "Apache License 2.0",
             "Artistic License 2.0", "Blue Oak Model License 1.0.0", "BSD-2-Clause Plus Patent License",
@@ -125,46 +125,58 @@ license_info <- structure(c("BSD Zero Clause License", "Academic Free License v3
             "limitations", "limitations", "limitations", "limitations", "limitations",
             "limitations", "limitations", "limitations", "limitations", "limitations",
             "limitations", "limitations", "limitations", "limitations", "limitations",
-            "limitations", NA, NA, "limitations", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/",
-            "https://choosealicense.com/appendix/", "https://choosealicense.com/appendix/"
+            "limitations", NA, NA, "limitations", "https://choosealicense.com//licenses/0bsd",
+            "https://choosealicense.com//licenses/afl-3.0", "https://choosealicense.com//licenses/agpl-3.0",
+            "https://choosealicense.com//licenses/apache-2.0", "https://choosealicense.com//licenses/artistic-2.0",
+            "https://choosealicense.com//licenses/blueoak-1.0.0", "https://choosealicense.com//licenses/bsd-2-clause-patent",
+            "https://choosealicense.com//licenses/bsd-2-clause", "https://choosealicense.com//licenses/bsd-3-clause-clear",
+            "https://choosealicense.com//licenses/bsd-3-clause", "https://choosealicense.com//licenses/bsd-4-clause",
+            "https://choosealicense.com//licenses/bsl-1.0", "https://choosealicense.com//licenses/cc-by-4.0",
+            "https://choosealicense.com//licenses/cc-by-sa-4.0", "https://choosealicense.com//licenses/cc0-1.0",
+            "https://choosealicense.com//licenses/cecill-2.1", "https://choosealicense.com//licenses/cern-ohl-p-2.0",
+            "https://choosealicense.com//licenses/cern-ohl-s-2.0", "https://choosealicense.com//licenses/cern-ohl-w-2.0",
+            "https://choosealicense.com//licenses/ecl-2.0", "https://choosealicense.com//licenses/epl-1.0",
+            "https://choosealicense.com//licenses/epl-2.0", "https://choosealicense.com//licenses/eupl-1.1",
+            "https://choosealicense.com//licenses/eupl-1.2", "https://choosealicense.com//licenses/gfdl-1.3",
+            "https://choosealicense.com//licenses/gpl-2.0", "https://choosealicense.com//licenses/gpl-3.0",
+            "https://choosealicense.com//licenses/isc", "https://choosealicense.com//licenses/lgpl-2.1",
+            "https://choosealicense.com//licenses/lgpl-3.0", "https://choosealicense.com//licenses/lppl-1.3c",
+            "https://choosealicense.com//licenses/mit-0", "https://choosealicense.com//licenses/mit",
+            "https://choosealicense.com//licenses/mpl-2.0", "https://choosealicense.com//licenses/ms-pl",
+            "https://choosealicense.com//licenses/ms-rl", "https://choosealicense.com//licenses/mulanpsl-2.0",
+            "https://choosealicense.com//licenses/ncsa", "https://choosealicense.com//licenses/odbl-1.0",
+            "https://choosealicense.com//licenses/ofl-1.1", "https://choosealicense.com//licenses/osl-3.0",
+            "https://choosealicense.com//licenses/postgresql", "https://choosealicense.com//licenses/unlicense",
+            "https://choosealicense.com//licenses/upl-1.0", "https://choosealicense.com//licenses/vim",
+            "https://choosealicense.com//licenses/wtfpl", "https://choosealicense.com//licenses/zlib"
 ), dim = c(47L, 16L), dimnames = list(NULL, c("name", "acronym",
                                               "Commercial use", "Distribution", "Modification", "Patent use",
                                               "Private use", "Disclose source", "License and copyright notice",
                                               "Network use is distribution", "Same license", "State changes",
                                               "Liability", "Trademark use", "Warranty", "url")))
 
+
 # TODO function for matching R package license information with the table above
+
+#' Find info about a license
+#'
+#' @param license Character with license info (usually from DESCRIPTION Liencense field)
+#'
+#' @returns A data.frame with name, acronym, several titles and their permissions and the url to the website.
+#' If no is found NULL
+#' @export
+#'
+#' @examples
+#' licensing_match("GPL (>= 2.0)")
 licensing_match <- function(license) {
   # demo data
-  ap <- available.packages()
-  licenses <- ap[, "License"]
+  licenses <- license
   out <- gsub( ".? ?file LICENSE|.? ?file LICENCE", "", licenses)
   if (any(grepl(pattern = "+", out, fixed = TRUE))) {
     warning("Please report to the package maintainer: the license is not well cleaned.")
   }
   s <- strsplit(out, " | ", fixed = TRUE)
+  df <- as.data.frame(license_info)
   l <- lapply(s, function(x) {
     x <- gsub(" (>= ", "-", trimws(x), fixed = TRUE)
     x <- gsub(" (<= ", "-", x, fixed = TRUE)
@@ -172,31 +184,54 @@ licensing_match <- function(license) {
     x <- gsub(" (> ", "-", x, fixed = TRUE)
     x <- gsub(")", "", x, fixed = TRUE)
 
-    k <- (startsWith(x, "GPL") | startsWith(x, "AGPL")) & grepl("-", x, fixed = TRUE) & !endsWith(x, ".0")
+    k <- grepl("^([AL]?GPL)", x = x) & grepl("-", x, fixed = TRUE) & !endsWith(x, "2.1") & !endsWith(x, ".0")
     x[k] <- paste0(x[k], ".0")
 
     if (any(k <- startsWith(x, "Apache"))) {
       x[k] <- "APACHE-2.0"
     }
+    if (any(k <- x == "FreeBSD")) {
+      x[k] <- "0BSD"
+    }
+    if (any(k <- x == "GNU General Public License")) {
+      x[k] <- "GPL"
+    }
+    if (any(k <- startsWith(x, "CC"))) {
+      x[k] <- gsub("[[:space:]]", "-", x[k])
+    }
     x <- gsub("_", "-", toupper(x), fixed = TRUE)
     m <- match(x, df$acronym)
     if (any(k <- is.na(m))) {
       o <- grep(paste0("^", x[k]), df$acronym)
-      m[k] <- if (length(o) == 0L) NA else o
+      # browser(expr = length(k) > 1)
+      if (length(o) == 0L) {
+        NA
+      } else {
+        warning("License not clear")
+        suppressWarnings(m[k] <- o)
+      }
     }
     m
   })
-  df <- data.frame(license_info, check.names = FALSE)
-
-  match(s[["AER"]], df$acronym)
+  out <- df[unlist(l, FALSE, FALSE), , drop = FALSE]
+  if (is.na(out$acronym)) {
+    return(NULL)
+  }
+  out
 }
 
+
+#' Create the html tag for linking licenses
+#'
+#' Creates a link to the choosealicense.com website.
+#' @param license A data.frame as generated by `licensing_match()`.
+#' @returns A html tag with the link to the license.
+#' @export
+#' @examples
+#' license_url(licensing_match("GPL (>= 2.0)"))
 license_url <- function(license) {
-  df <- data.frame(license_info, check.names = FALSE)
-  df$url[df$acronym == license]
-}
-
-license_table <- function(license) {
-  df <- data.frame(license_info, check.names = FALSE)
-  sub_df <- df[df$acronym == license, -c(1:2, ncol(df))]
+  if (!NROW(license)) {
+    return(NULL)
+  }
+  paste0("<a href=", license$url, ">", license$acronym, "</a>")
 }

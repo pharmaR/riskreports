@@ -29,5 +29,5 @@ legend[legend == "permissions"] <- "permisive"
 dim(legend) <- c(length(cols), length(rows))
 rownames(legend) <- cols
 legendary <- t(legend)
-df <- cbind(name = rows, acronym = acronym, legendary, url = url)
+df <- cbind(name = rows, acronym = acronym, legendary, url = file.path(dirname(url), licenses_url))
 View(df)
