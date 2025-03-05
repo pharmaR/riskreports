@@ -133,7 +133,7 @@ The package uses `r if ("license" %in% names(d_riskmetric) && !is.null(d_riskmet
 ```{r license, eval="license" %in% names(d_riskmetric) && !is.null(d_riskmetric$license)}
 license <- licensing_match(d_riskmetric$license)
 options(knitr.kable.NA = '')
-knitr::kable(license[, -ncol(license), drop = FALSE], row.names = FALSE)
+knitr::kable(t(license[, -c(1:2, ncol(license)), drop = FALSE]), row.names = TRUE, col.names = "What is possible")
 ```
 
 
