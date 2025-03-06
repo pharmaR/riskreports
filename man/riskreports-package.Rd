@@ -22,7 +22,7 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item F. Hoffmann-La Roche AG [copyright holder, funder]
+  \item R Validation Hub \email{r-val-hub-maintainers@lists.r-consortium.org} [copyright holder]
 }
 
 }

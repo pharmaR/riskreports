@@ -93,8 +93,8 @@ d_riskmetric <- readRDS(risk_path)
 
 # Assesment produces a data.frame with one row
 r_riskmetric <- riskreports::assessment(d_riskmetric)
-is_na <- sapply(r_riskmetric, function(x){is.na(x) || (is.character(x) && startsWith(x, "no applicable"))})
-knitr::kable(t(r_riskmetric[, !is_na])) # Use this to have some summary text and report it.
+x <- summary_table(r_riskmetric)
+knitr::kable(x, row.names = FALSE align = "cc") # Use this to have some summary text and report it.
 # d_riskmetric
 ```
 
