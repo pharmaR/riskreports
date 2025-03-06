@@ -31,6 +31,7 @@ knitr::opts_chunk$set(
     cache = FALSE
 )
 library("tools")
+library("riskreports")
 ```
 
 # Context
@@ -117,18 +118,26 @@ Overall the package has `r length(d_riskmetric$exported_namespace)` exported obj
 d_riskmetric$export_help[sort(d_riskmetric$exported_namespace)]
 ```
 
-### Examples
+## Examples
 
 There are `r if (!is_na["has_examples"]) sum(d_riskmetric$has_examples)` help pages with examples, from `r if (!is_na["has_examples"]) {length(d_riskmetric$has_examples)}` (`r if (!is_na["has_examples"]) {sprintf("%0.2f", sum(d_riskmetric$has_examples)/length(d_riskmetric$has_examples)*100)} else {"?"} ` %).
 
-### NEWS
+## NEWS
 
 The package has `r if ("has_news" %in% names(d_riskmetric) && !is.null(d_riskmetric$has_news)) print(d_riskmetric$has_news)` NEWS file and it is `r if (is.null(d_riskmetric$news_current) && !d_riskmetric$news_current) "not"` current.
 
-### License
+## License
 
-The package uses `r if ("license" %in% names(d_riskmetric) && !is.null(d_riskmetric$license)) print(d_riskmetric$license)`.
+The package uses `r if ("license" %in% names(d_riskmetric) && !is.null(d_riskmetric$license)) {d_riskmetric$license}`.
 
+```{r license, eval="license" %in% names(d_riskmetric) && !is.null(d_riskmetric$license)}
+license <- licensing_match(d_riskmetric$license)
+options(knitr.kable.NA = '')
+knitr::kable(t(license[, -c(1:2, ncol(license)), drop = FALSE]), row.names = TRUE, col.names = "What is possible")
+```
+
+
+Check the full license terms for `r if ("license" %in% names(d_riskmetric) && !is.null(d_riskmetric$license)) {license_url(license)}` `r if ("license" %in% names(d_riskmetric) && !is.null(d_riskmetric$license) && grepl(" file " , d_riskmetric$license)) {"but check the license file too"}`.
 
 
 # Installation environment

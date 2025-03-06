@@ -10,5 +10,5 @@ inst/source/*
 inst/source/Library
 inst/source/*Rcheck
 inst/source/*tar.gz
-inst/*.rds = = = = =
-=
+inst/*.rds
+.github
