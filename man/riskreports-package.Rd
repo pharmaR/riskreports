@@ -22,7 +22,7 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item R Validation Hub [copyright holder]
+  \item R Validation Hub \email{r-val-hub-maintainers@lists.r-consortium.org} [copyright holder]
 }
 
 }
