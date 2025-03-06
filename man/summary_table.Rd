@@ -2,7 +2,7 @@
 % Please edit documentation in R/riskmetic.R
 \name{summary_table}
 \alias{summary_table}
-\title{Summary talbe}
+\title{Summary table}
 \usage{
 summary_table(risk)
 }
@@ -13,5 +13,5 @@ summary_table(risk)
 A data.frame with the two columns one for the fields and one for the values.
 }
 \description{
-Summary talbe
+Summary table
 }
