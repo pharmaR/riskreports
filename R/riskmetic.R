@@ -52,3 +52,42 @@ risk_error <- function(output, y) {
   }
   y
 }
+
+is_logical <- function(x) {
+  if (x == 1 || isTRUE(x)) {
+    "Yes"
+  } else {
+    x
+  }
+}
+
+simple_cap <- function(x) {
+  s <- toupper(substr(x, 1, 1))
+  paste0(s, substring(x, 2))
+}
+
+#' Summary talbe
+#'
+#' @param risk The output of `assessment()`.
+#'
+#' @returns A data.frame with the two columns one for the fields and one for the values.
+#' @export
+summary_table <- function(risk) {
+  is_na <- sapply(x, function(x) {
+    is.na(x) || (is.character(x) && startsWith(x, "no applicable"))
+  })
+  y <- risk[, !is_na]
+  y[] <- lapply(y, is_logical)
+  y$has_examples <- sprintf("%.2f%%", y$has_examples*100)
+  y$bugs_status <- sprintf("%.2f%%", y$bugs_status*100)
+  if (y$has_vignettes > 0) {
+    y$has_vignettes <- "Yes"
+  }
+  x <- t(y)
+  yx <- simple_cap(gsub("_", " ", rownames(x), fixed = TRUE))
+  df <- as.data.frame(x)
+  df <- cbind(Section = yx, Values = df)
+  colnames(df) <- c("Section", "Values")
+  rownames(df) <- NULL
+  df
+}

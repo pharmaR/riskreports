@@ -1,12 +1,12 @@
 Package: riskreports
 Title: Package Validation Reports
-Version: 0.0.0.9004
+Version: 0.0.0.9006
 Authors@R: c(
     person("Lluís", "Revilla Sancho", , "lluis.revilla_sancho@roche.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9747-2570")),
     person("R Validation Hub", role = "cph", email = "r-val-hub-maintainers@lists.r-consortium.org")
   )
-Description: Documents package checks for validation in a pharmaceutic
+Description: Documents package checks for validation in a pharmaceutic 
     context.
 License: MIT + file LICENSE
 URL: https://github.com/pharmaR/riskreports, https://pharmar.github.io/riskreports/
