@@ -7,7 +7,7 @@
 licensing_match(license)
 }
 \arguments{
-\item{license}{Character with license info (usually from DESCRIPTION Liencense field)}
+\item{license}{Character with license info (usually from DESCRIPTION License field)}
 }
 \value{
 A data.frame with name, acronym, several titles and their permissions and the url to the website.

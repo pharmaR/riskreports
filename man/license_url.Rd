@@ -13,7 +13,7 @@ license_url(license)
 A html tag with the link to the license.
 }
 \description{
-Creates a link to the choosealicense.com website.
+Creates a link to the <choosealicense.com> website.
 }
 \examples{
 license_url(licensing_match("GPL (>= 2.0)"))
