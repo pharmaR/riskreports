@@ -13,7 +13,7 @@ include_exclude_from <- function(from, include = NULL, exclude = NULL) {
 
 
 fill_in <- function(list, names) {
-  missing_names <- setdiff(names, names(list))
+  missing_names <- setdiff(names(list), names)
   list[missing_names] <- NA
   list
 }

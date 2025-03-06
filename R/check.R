@@ -38,11 +38,7 @@ environ_report <- function(show = NULL, exclude = NULL) {
     return(NULL)
   }
 
-
-  env <- fill_in(environ, keep_names)
-
-  # TODO: See note on truncated variables on Windows
-  env
+  environ[keep_names]
 }
 
 #' Export options
