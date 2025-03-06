@@ -213,12 +213,14 @@ Environmental and options variables affect how package checks and software in it
 Here is the environmental variables when running this report
 
 ```{r computing}
-riskreports::environ_report(exclude = c("GITHUB_PAT", "APPDATA", 
+re <- riskreports::environ_report(exclude = c("GITHUB_PAT", "APPDATA", 
+                                        "GITHUB", "GITLAB_PAT", "GITLAB",
                                         "ProgramFiles", "ProgramFiles(x86)",
                                         "R_USER", "USERNAME", "USERPROFILE", 
                                         "USERDNSDOMAIN", "USERDOMAIN", 
                                         "USERDOMAIN_ROAMINGPROFILE", "R_DptShare"              
                                         ))
+re
 ```
 
 These are the options set to generate the report:

@@ -1,4 +1,8 @@
-url: ~
+url: https://pharmar.github.io/riskreports/
 template:
   bootstrap: 5
-
+  bslib:
+    primary: "#4d8dc9"
+    secondary: "#68b8e5"
+_assets:
+  validation_report*
