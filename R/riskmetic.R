@@ -73,10 +73,7 @@ simple_cap <- function(x) {
 #' @returns A data.frame with the two columns one for the fields and one for the values.
 #' @export
 summary_table <- function(risk) {
-  is_na <- sapply(x, function(x) {
-    is.na(x) || (is.character(x) && startsWith(x, "no applicable"))
-  })
-  y <- risk[, !is_na]
+  y <- risk
   y[] <- lapply(y, is_logical)
   y$has_examples <- sprintf("%.2f%%", y$has_examples*100)
   y$bugs_status <- sprintf("%.2f%%", y$bugs_status*100)
