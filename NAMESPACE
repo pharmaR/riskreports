@@ -3,8 +3,6 @@
 export(assessment)
 export(check_reporter)
 export(environ_report)
-export(license_url)
-export(licensing_match)
 export(options_report)
 export(package_report)
 export(summary_table)

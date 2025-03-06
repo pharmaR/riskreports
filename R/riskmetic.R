@@ -66,7 +66,7 @@ simple_cap <- function(x) {
   paste0(s, substring(x, 2))
 }
 
-#' Summary talbe
+#' Summary table
 #'
 #' @param risk The output of `assessment()`.
 #'
