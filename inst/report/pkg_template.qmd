@@ -102,11 +102,11 @@ knitr::kable(x, row.names = FALSE, align = "cc") # Use this to have some summary
 # d_riskmetric
 ```
 
-::: {.content-hidden unless-meta=`r !is_risk_error(d_riskmetric[["license"]])`}
+::: {.content-visible unless-meta=`r !is_risk_error(d_riskmetric[["license"]])`}
 
 ## License
 
-The package uses `r if ("license" %in% names(d_riskmetric) && !is.null(d_riskmetric$license)) cat(d_riskmetric$license)`.
+The package uses `r as.character(d_riskmetric$license)`.
 
 :::
 
