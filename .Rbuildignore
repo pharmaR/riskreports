@@ -10,5 +10,8 @@ inst/source/*
 inst/source/Library
 inst/source/*Rcheck
 inst/source/*tar.gz
-inst/*.rds = = = = =
-=
+inst/*.rds
+validation_report_*
+_pkgdown.yaml
+pkgdown
+.github

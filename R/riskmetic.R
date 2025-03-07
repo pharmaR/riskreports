@@ -43,6 +43,23 @@ assessment <- function(assessment) {
   list2DF(out)
 }
 
+#' Checks if it is a riskmetric error or not.
+#'
+#' Provide information whether the object metric is an error or not.
+#' @param x An object
+#' @returns A logical value: if it is not a riskmetric metric it returns `NA`, but normally `TRUE` or `FALSE`.
+#'
+#' @export
+#' @examples
+#' is_risk_error(1)
+is_risk_error <- function(x) {
+  if (inherits(x, "pkg_metric")) {
+    inherits(x, "pkg_metric_error") || inherits(x, "error")
+  } else {
+    NA
+  }
+}
+
 risk_error <- function(output, y) {
   if (is.null(output)) {
     return(NULL)
@@ -51,4 +68,49 @@ risk_error <- function(output, y) {
     return(output$message)
   }
   y
+}
+
+is_logical <- function(x) {
+  if (x == 1 || isTRUE(x)) {
+    "Yes"
+  } else {
+    x
+  }
+}
+
+simple_cap <- function(x) {
+  s <- toupper(substr(x, 1, 1))
+  paste0(s, substring(x, 2))
+}
+
+#' Summary table
+#'
+#' @param risk The output of `assessment()`.
+#'
+#' @returns A data.frame with the two columns one for the fields and one for the values.
+#' @export
+summary_table <- function(risk) {
+  y <- risk
+  y[] <- lapply(y, is_logical)
+  y$has_examples <- sprintf("%.2f%%", y$has_examples*100)
+  y$bugs_status <- sprintf("%.2f%% closed", y$bugs_status*100)
+  if (y$has_vignettes > 0) {
+    y$has_vignettes <- "Yes"
+  }
+  x <- t(y)
+
+  # Reorder by
+  fields <- rownames(x)
+  important_fields <- c("downloads_1yr", "reverse_dependencies", "license", "dependencies",
+                        "export_help", "has_vignettes", "has_news", "news_current", "exported_namespace",
+                        "has_bug_reports_url", "bugs_status")
+  x <- x[c(intersect(important_fields, fields),
+           setdiff(fields, important_fields)), , drop = FALSE]
+
+  yx <- simple_cap(gsub("_", " ", rownames(x), fixed = TRUE))
+  df <- as.data.frame(x)
+  df <- cbind(Section = yx, Values = df)
+  colnames(df) <- c("Section", "Values")
+  rownames(df) <- NULL
+  df
 }
