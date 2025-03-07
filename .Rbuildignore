@@ -11,6 +11,7 @@ inst/source/Library
 inst/source/*Rcheck
 inst/source/*tar.gz
 inst/*.rds
+validation_report_*
 _pkgdown.yaml
 pkgdown
 .github
