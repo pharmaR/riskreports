@@ -87,6 +87,49 @@ The following metrics are derived from the `riskmetric` R package.
 d_riskmetric <- readRDS(risk_path)
 ```
 
+```{r}
+library(htmltools)
+
+common_style = "flex: 1; padding: 10px; background-color: #4f5466; border-radius: 10px; margin: 10px"
+
+div(
+  style = "background-color: #1c1c1c; padding: 20px; border-radius: 10px; color: white;",
+  div(
+    style = "display: flex; justify-content: space-between;",
+    
+    # Downloads
+    div(
+      style = common_style,
+      h5("1 year"),
+      h2(d_riskmetric$downloads_1yr),
+      p("Downloads")
+    ),
+    
+    # Reverse Dependencies
+    div(
+      style = common_style,
+      h5("Reverse Dependencies"),
+      h2(length(d_riskmetric$reverse_dependencies))
+    ),
+    
+    # License
+    div(
+      style = common_style,
+      h5("License"),
+      p(d_riskmetric$license)
+    )
+  ),
+  
+  # Origin section
+  div(
+    style = c(common_style, "margin-top: 20px;"),
+    h5("Origin"),
+    p("CRAN, public/github, internal/source, Bioconductor")
+  )
+)
+```
+
+
 
 ```{r general-riskmetric, warning=FALSE}
 #| tab.cap: "**Package general assessment:** Coverage, check results, size, 

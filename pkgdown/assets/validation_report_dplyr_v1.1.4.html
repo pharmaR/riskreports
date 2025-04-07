@@ -3470,7 +3470,7 @@ return!"\t\n\x0B\f\r                　\u2028\u2029
 )) {"Symbol"in self&&"iterator"in Symbol&&"function"==typeof Array.prototype[Symbol.iterator]?CreateMethodProperty(Array.prototype,"values",Array.prototype[Symbol.iterator]):CreateMethodProperty(Array.prototype,"values",function r(){var r=ToObject(this);return new ArrayIterator(r,"value")});}if (!("Symbol"in self&&"iterator"in self.Symbol&&!!Array.prototype[self.Symbol.iterator]
 )) {CreateMethodProperty(Array.prototype,Symbol.iterator,Array.prototype.values);}var StringIterator=function(){var t=function(e){if(!(this instanceof t))return new t(e);e=String(e),Iterator.call(this,e),Object.defineProperty(this,"__length__",{value:e.length,configurable:!1,enumerable:!1,writable:!1})};return Object.setPrototypeOf&&Object.setPrototypeOf(t,Iterator),t.prototype=Object.create(Iterator.prototype,{constructor:{value:t,configurable:!0,enumerable:!1,writable:!0},_next:{value:function(){if(this.__list__)return this.__nextIndex__<this.__length__?this.__nextIndex__++:void this._unBind()},configurable:!0,enumerable:!1,writable:!0},_resolve:{value:function(t){var e,r=this.__list__[t];return this.__nextIndex__===this.__length__?r:(e=r.charCodeAt(0),e>=55296&&e<=56319?r+this.__list__[this.__nextIndex__++]:r)},configurable:!0,enumerable:!1,writable:!0},toString:{value:function(){return"[object String Iterator]"},configurable:!0,enumerable:!1,writable:!0}}),t}();if (!("Symbol"in self&&"iterator"in self.Symbol&&!!String.prototype[self.Symbol.iterator]
 )) {CreateMethodProperty(String.prototype,Symbol.iterator,function(){var r=RequireObjectCoercible(this),t=ToString(r);return new StringIterator(t)});}})('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});</script>
-  
+
   <script>
     (function () {
       var script = document.createElement("script");
@@ -3516,7 +3516,7 @@ window.Quarto = {
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
   <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
-   
+
   <ul>
   <li><a href="#context" id="toc-context" class="nav-link active" data-scroll-target="#context">Context</a></li>
   <li><a href="#package-dplyr" id="toc-package-dplyr" class="nav-link" data-scroll-target="#package-dplyr">Package dplyr</a>
@@ -3548,11 +3548,11 @@ window.Quarto = {
 
 <div class="quarto-title-meta">
 
-    
-  
-    
+
+
+
   </div>
-  
+
 
 
 </header>
@@ -3572,6 +3572,31 @@ window.Quarto = {
 <section id="metric-based-risk-assessment" class="level2">
 <h2 class="anchored" data-anchor-id="metric-based-risk-assessment">Metric based risk assessment</h2>
 <p>The following metrics are derived from the <code>riskmetric</code> R package.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div style="background-color: #1c1c1c; padding: 20px; border-radius: 10px; color: white;">
+<div style="display: flex; justify-content: space-between;">
+<div style="flex: 1; padding: 10px; background-color: #4f5466; border-radius: 10px; margin: 10px">
+<h5 class="anchored">1 year</h5>
+<h2 class="anchored">17965873</h2>
+<p>Downloads</p>
+</div>
+<div style="flex: 1; padding: 10px; background-color: #4f5466; border-radius: 10px; margin: 10px">
+<h5 class="anchored">Reverse Dependencies</h5>
+<h2 class="anchored">5458</h2>
+</div>
+<div style="flex: 1; padding: 10px; background-color: #4f5466; border-radius: 10px; margin: 10px">
+<h5 class="anchored">License</h5>
+<p>MIT + file LICENSE</p>
+</div>
+</div>
+<div style="flex: 1; padding: 10px; background-color: #4f5466; border-radius: 10px; margin: 10px margin-top: 20px;">
+<h5 class="anchored">Origin</h5>
+<p>CRAN, public/github, internal/source, Bioconductor</p>
+</div>
+</div>
+</div>
+</div>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -3745,107 +3770,107 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="namespace">Namespace</h2>
 <p>Overall the package has 293 exported objects. 292 are documented:</p>
 <div class="cell">
-<pre><code>            .data                   %&gt;%                across 
-             TRUE                 FALSE                  TRUE 
-        add_count            add_count_               add_row 
-             TRUE                  TRUE                  TRUE 
-     add_rownames             add_tally            add_tally_ 
-             TRUE                  TRUE                  TRUE 
-        all_equal                all_of              all_vars 
-             TRUE                  TRUE                  TRUE 
-        anti_join                any_of              any_vars 
-             TRUE                  TRUE                  TRUE 
-          arrange              arrange_           arrange_all 
-             TRUE                  TRUE                  TRUE 
-       arrange_at            arrange_if         as_data_frame 
-             TRUE                  TRUE                  TRUE 
-         as_label             as_tibble                as.tbl 
-             TRUE                  TRUE                  TRUE 
-        auto_copy            bench_tbls               between 
-             TRUE                  TRUE                  TRUE 
-        bind_cols             bind_rows              c_across 
-             TRUE                  TRUE                  TRUE 
-       case_match             case_when               changes 
-             TRUE                  TRUE                  TRUE 
-     check_dbplyr              coalesce              collapse 
-             TRUE                  TRUE                  TRUE 
-          collect               combine             common_by 
-             TRUE                  TRUE                  TRUE 
-     compare_tbls         compare_tbls2               compute 
-             TRUE                  TRUE                  TRUE 
-   consecutive_id              contains               copy_to 
-             TRUE                  TRUE                  TRUE 
-            count                count_            cross_join 
-             TRUE                  TRUE                  TRUE 
-           cumall                cumany             cume_dist 
-             TRUE                  TRUE                  TRUE 
-          cummean            cur_column              cur_data 
-             TRUE                  TRUE                  TRUE 
-     cur_data_all             cur_group          cur_group_id 
-             TRUE                  TRUE                  TRUE 
-   cur_group_rows          current_vars            data_frame 
-             TRUE                  TRUE                  TRUE 
-       db_analyze              db_begin             db_commit 
-             TRUE                  TRUE                  TRUE 
-  db_create_index     db_create_indexes       db_create_table 
-             TRUE                  TRUE                  TRUE 
-     db_data_type               db_desc         db_drop_table 
-             TRUE                  TRUE                  TRUE 
-       db_explain          db_has_table        db_insert_into 
-             TRUE                  TRUE                  TRUE 
-   db_list_tables       db_query_fields         db_query_rows 
-             TRUE                  TRUE                  TRUE 
-      db_rollback         db_save_query        db_write_table 
-             TRUE                  TRUE                  TRUE 
-       dense_rank                  desc              dim_desc 
-             TRUE                  TRUE                  TRUE 
-         distinct             distinct_          distinct_all 
-             TRUE                  TRUE                  TRUE 
-      distinct_at           distinct_if      distinct_prepare 
-             TRUE                  TRUE                  TRUE 
-               do                   do_      dplyr_col_modify 
-             TRUE                  TRUE                  TRUE 
-dplyr_reconstruct       dplyr_row_slice             ends_with 
-             TRUE                  TRUE                  TRUE 
-           enexpr               enexprs                 enquo 
-             TRUE                  TRUE                  TRUE 
-           enquos                 ensym                ensyms 
-             TRUE                  TRUE                  TRUE 
-        eval_tbls            eval_tbls2            everything 
-             TRUE                  TRUE                  TRUE 
-          explain                  expr              failwith 
-             TRUE                  TRUE                  TRUE 
-           filter               filter_            filter_all 
-             TRUE                  TRUE                  TRUE 
-        filter_at             filter_if                 first 
-             TRUE                  TRUE                  TRUE 
-        full_join                  funs                 funs_ 
-             TRUE                  TRUE                  TRUE 
-          glimpse              group_by             group_by_ 
-             TRUE                  TRUE                  TRUE 
-     group_by_all           group_by_at group_by_drop_default 
-             TRUE                  TRUE                  TRUE 
-      group_by_if      group_by_prepare            group_cols 
-             TRUE                  TRUE                  TRUE 
-       group_data         group_indices        group_indices_ 
-             TRUE                  TRUE                  TRUE 
-       group_keys             group_map          group_modify 
-             TRUE                  TRUE                  TRUE 
-       group_nest            group_rows            group_size 
-             TRUE                  TRUE                  TRUE 
-      group_split            group_trim            group_vars 
-             TRUE                  TRUE                  TRUE 
-       group_walk            grouped_df                groups 
-             TRUE                  TRUE                  TRUE 
-               id                 ident                if_all 
-             TRUE                  TRUE                  TRUE 
-           if_any               if_else            inner_join 
-             TRUE                  TRUE                  TRUE 
-        intersect         is_grouped_df         is.grouped_df 
-             TRUE                  TRUE                  TRUE 
-           is.src                is.tbl               join_by 
-             TRUE                  TRUE                  TRUE 
-              lag                  last              last_col 
+<pre><code>            .data                   %&gt;%                across
+             TRUE                 FALSE                  TRUE
+        add_count            add_count_               add_row
+             TRUE                  TRUE                  TRUE
+     add_rownames             add_tally            add_tally_
+             TRUE                  TRUE                  TRUE
+        all_equal                all_of              all_vars
+             TRUE                  TRUE                  TRUE
+        anti_join                any_of              any_vars
+             TRUE                  TRUE                  TRUE
+          arrange              arrange_           arrange_all
+             TRUE                  TRUE                  TRUE
+       arrange_at            arrange_if         as_data_frame
+             TRUE                  TRUE                  TRUE
+         as_label             as_tibble                as.tbl
+             TRUE                  TRUE                  TRUE
+        auto_copy            bench_tbls               between
+             TRUE                  TRUE                  TRUE
+        bind_cols             bind_rows              c_across
+             TRUE                  TRUE                  TRUE
+       case_match             case_when               changes
+             TRUE                  TRUE                  TRUE
+     check_dbplyr              coalesce              collapse
+             TRUE                  TRUE                  TRUE
+          collect               combine             common_by
+             TRUE                  TRUE                  TRUE
+     compare_tbls         compare_tbls2               compute
+             TRUE                  TRUE                  TRUE
+   consecutive_id              contains               copy_to
+             TRUE                  TRUE                  TRUE
+            count                count_            cross_join
+             TRUE                  TRUE                  TRUE
+           cumall                cumany             cume_dist
+             TRUE                  TRUE                  TRUE
+          cummean            cur_column              cur_data
+             TRUE                  TRUE                  TRUE
+     cur_data_all             cur_group          cur_group_id
+             TRUE                  TRUE                  TRUE
+   cur_group_rows          current_vars            data_frame
+             TRUE                  TRUE                  TRUE
+       db_analyze              db_begin             db_commit
+             TRUE                  TRUE                  TRUE
+  db_create_index     db_create_indexes       db_create_table
+             TRUE                  TRUE                  TRUE
+     db_data_type               db_desc         db_drop_table
+             TRUE                  TRUE                  TRUE
+       db_explain          db_has_table        db_insert_into
+             TRUE                  TRUE                  TRUE
+   db_list_tables       db_query_fields         db_query_rows
+             TRUE                  TRUE                  TRUE
+      db_rollback         db_save_query        db_write_table
+             TRUE                  TRUE                  TRUE
+       dense_rank                  desc              dim_desc
+             TRUE                  TRUE                  TRUE
+         distinct             distinct_          distinct_all
+             TRUE                  TRUE                  TRUE
+      distinct_at           distinct_if      distinct_prepare
+             TRUE                  TRUE                  TRUE
+               do                   do_      dplyr_col_modify
+             TRUE                  TRUE                  TRUE
+dplyr_reconstruct       dplyr_row_slice             ends_with
+             TRUE                  TRUE                  TRUE
+           enexpr               enexprs                 enquo
+             TRUE                  TRUE                  TRUE
+           enquos                 ensym                ensyms
+             TRUE                  TRUE                  TRUE
+        eval_tbls            eval_tbls2            everything
+             TRUE                  TRUE                  TRUE
+          explain                  expr              failwith
+             TRUE                  TRUE                  TRUE
+           filter               filter_            filter_all
+             TRUE                  TRUE                  TRUE
+        filter_at             filter_if                 first
+             TRUE                  TRUE                  TRUE
+        full_join                  funs                 funs_
+             TRUE                  TRUE                  TRUE
+          glimpse              group_by             group_by_
+             TRUE                  TRUE                  TRUE
+     group_by_all           group_by_at group_by_drop_default
+             TRUE                  TRUE                  TRUE
+      group_by_if      group_by_prepare            group_cols
+             TRUE                  TRUE                  TRUE
+       group_data         group_indices        group_indices_
+             TRUE                  TRUE                  TRUE
+       group_keys             group_map          group_modify
+             TRUE                  TRUE                  TRUE
+       group_nest            group_rows            group_size
+             TRUE                  TRUE                  TRUE
+      group_split            group_trim            group_vars
+             TRUE                  TRUE                  TRUE
+       group_walk            grouped_df                groups
+             TRUE                  TRUE                  TRUE
+               id                 ident                if_all
+             TRUE                  TRUE                  TRUE
+           if_any               if_else            inner_join
+             TRUE                  TRUE                  TRUE
+        intersect         is_grouped_df         is.grouped_df
+             TRUE                  TRUE                  TRUE
+           is.src                is.tbl               join_by
+             TRUE                  TRUE                  TRUE
+              lag                  last              last_col
              TRUE                  TRUE                  TRUE </code></pre>
 <p>last_dplyr_warnings lead left_join TRUE TRUE TRUE location lst make_tbl TRUE TRUE TRUE matches min_rank mutate TRUE TRUE TRUE mutate_ mutate_all mutate_at TRUE TRUE TRUE mutate_each mutate_each_ mutate_if TRUE TRUE TRUE n n_distinct n_groups TRUE TRUE TRUE na_if near nest_by TRUE TRUE TRUE nest_join new_grouped_df new_rowwise_df TRUE TRUE TRUE nth ntile num_range TRUE TRUE TRUE one_of order_by percent_rank TRUE TRUE TRUE pick progress_estimated pull TRUE TRUE TRUE quo quo_name quos TRUE TRUE TRUE recode recode_factor reframe TRUE TRUE TRUE relocate rename rename_ TRUE TRUE TRUE rename_all rename_at rename_if TRUE TRUE TRUE rename_vars rename_vars_ rename_with TRUE TRUE TRUE right_join row_number rows_append TRUE TRUE TRUE rows_delete rows_insert rows_patch TRUE TRUE TRUE rows_update rows_upsert rowwise TRUE TRUE TRUE same_src sample_frac sample_n TRUE TRUE TRUE select select_ select_all TRUE TRUE TRUE select_at select_if select_var TRUE TRUE TRUE select_vars select_vars_ semi_join TRUE TRUE TRUE setdiff setequal show_query TRUE TRUE TRUE slice slice_ slice_head TRUE TRUE TRUE slice_max slice_min slice_sample TRUE TRUE TRUE slice_tail sql sql_escape_ident TRUE TRUE TRUE sql_escape_string sql_join sql_select TRUE TRUE TRUE sql_semi_join sql_set_op sql_subquery TRUE TRUE TRUE sql_translate_env src src_df TRUE TRUE TRUE src_local src_mysql src_postgres TRUE TRUE TRUE src_sqlite src_tbls starts_with TRUE TRUE TRUE summarise summarise_ summarise_all TRUE TRUE TRUE summarise_at summarise_each summarise_each_ TRUE TRUE TRUE summarise_if summarize summarize_ TRUE TRUE TRUE summarize_all summarize_at summarize_each TRUE TRUE TRUE summarize_each_ summarize_if sym TRUE TRUE TRUE symdiff syms tally TRUE TRUE TRUE tally_ tbl tbl_df TRUE TRUE TRUE tbl_nongroup_vars tbl_ptype tbl_vars TRUE TRUE TRUE tibble top_frac top_n TRUE TRUE TRUE transmute transmute_ transmute_all TRUE TRUE TRUE transmute_at transmute_if tribble TRUE TRUE TRUE type_sum ungroup union TRUE TRUE TRUE union_all validate_grouped_df validate_rowwise_df TRUE TRUE TRUE vars where with_groups TRUE TRUE TRUE with_order wrap_dbplyr_obj TRUE TRUE</p>
 </div>
@@ -3892,7 +3917,7 @@ dplyr_reconstruct       dplyr_row_slice             ends_with
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Execution Time</td>
-<td style="text-align: left;">2025-04-07 12:19:04 UTC</td>
+<td style="text-align: left;">2025-04-07 16:22:05 UTC</td>
 </tr>
 </tbody>
 </table>
@@ -3920,14 +3945,12 @@ Information about the R environment and capabilities:
 <p>time zone: Europe/Madrid tzcode source: internal</p>
 <p>attached base packages: [1] tools stats graphics grDevices utils datasets methods<br>
 [8] base</p>
-<p>other attached packages: [1] riskreports_0.0.0.9006 knitr_1.50</p>
+<p>other attached packages: [1] htmltools_0.5.8.1 riskreports_0.0.0.9006 knitr_1.50</p>
 <p>loaded via a namespace (and not attached): [1] digest_0.6.37 R6_2.6.1 fastmap_1.2.0<br>
-[4] xfun_0.51 htmltools_0.5.8.1 rmarkdown_2.29<br>
-[7] ps_1.9.0 cli_3.6.4 processx_3.8.6<br>
-[10] callr_3.7.6 compiler_4.4.3 rstudioapi_0.17.1<br>
-[13] pkgbuild_1.4.5 evaluate_1.0.3 yaml_2.3.10<br>
-[16] BiocManager_1.30.25 rlang_1.1.5 jsonlite_2.0.0<br>
-[19] htmlwidgets_1.6.4</p>
+[4] xfun_0.51 rmarkdown_2.29 ps_1.9.0<br>
+[7] cli_3.6.4 processx_3.8.6 callr_3.7.6<br>
+[10] compiler_4.4.3 rstudioapi_0.17.1 pkgbuild_1.4.5<br>
+[13] evaluate_1.0.3 yaml_2.3.10 BiocManager_1.30.25 [16] rlang_1.1.5 jsonlite_2.0.0 htmlwidgets_1.6.4</p>
 </div>
 </div>
 </div>
@@ -3946,8 +3969,8 @@ Platform used:
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-f386ad965e2a73a44cf3" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-f386ad965e2a73a44cf3">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["OS.type","file.sep","dynlib.ext","GUI","endian","pkgType","path.sep","r_arch"],"value":["unix","/",".so","X11","little","mac.binary.big-sur-arm64",":",""]},"columns":[{"id":".rownames","name":"","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"value","name":"value","type":"character"}],"dataKey":"e9d4126fb9ee439b4135de55906c14fc"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-51e551ec6c26687dce35" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-51e551ec6c26687dce35">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["OS.type","file.sep","dynlib.ext","GUI","endian","pkgType","path.sep","r_arch"],"value":["unix","/",".so","X11","little","mac.binary.big-sur-arm64",":",""]},"columns":[{"id":".rownames","name":"","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"value","name":"value","type":"character"}],"dataKey":"e9d4126fb9ee439b4135de55906c14fc"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -3968,8 +3991,8 @@ R’s capabilities:
 <p>“Capabilities details”</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-cd27689d8a3f03895329" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-cd27689d8a3f03895329">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"capability":["jpeg","png","tiff","tcltk","X11","aqua","http/ftp","sockets","libxml","fifo","cledit","iconv","NLS","Rprof","profmem","cairo","ICU","long.double","libcurl"],"value":[true,true,true,true,true,true,true,true,false,true,false,true,true,true,true,true,true,false,true]},"columns":[{"id":"capability","name":"capability","type":"character"},{"id":"value","name":"value","type":"logical"}],"dataKey":"e26900d5edefbad4c64e8d9ae6272122"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-eaffde7d593a24029e56" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-eaffde7d593a24029e56">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"capability":["jpeg","png","tiff","tcltk","X11","aqua","http/ftp","sockets","libxml","fifo","cledit","iconv","NLS","Rprof","profmem","cairo","ICU","long.double","libcurl"],"value":[true,true,true,true,true,true,true,true,false,true,false,true,true,true,true,true,true,false,true]},"columns":[{"id":"capability","name":"capability","type":"character"},{"id":"value","name":"value","type":"logical"}],"dataKey":"e26900d5edefbad4c64e8d9ae6272122"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -3988,24 +4011,24 @@ External software:
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<pre><code>                                                                           zlib 
-                                                                       &quot;1.2.12&quot; 
-                                                                          bzlib 
-                                                           &quot;1.0.8, 13-Jul-2019&quot; 
-                                                                             xz 
-                                                                        &quot;5.6.3&quot; 
-                                                                     libdeflate 
-                                                                         &quot;1.23&quot; 
-                                                                           PCRE 
-                                                             &quot;10.44 2024-06-07&quot; 
-                                                                            ICU 
-                                                                         &quot;74.2&quot; 
-                                                                            TRE 
-                                                      &quot;TRE 0.8.0 R_fixes (BSD)&quot; 
-                                                                          iconv 
-                                                   &quot;Apple or GNU libiconv 1.11&quot; 
-                                                                       readline 
-                                                                          &quot;5.2&quot; 
+<pre><code>                                                                           zlib
+                                                                       &quot;1.2.12&quot;
+                                                                          bzlib
+                                                           &quot;1.0.8, 13-Jul-2019&quot;
+                                                                             xz
+                                                                        &quot;5.6.3&quot;
+                                                                     libdeflate
+                                                                         &quot;1.23&quot;
+                                                                           PCRE
+                                                             &quot;10.44 2024-06-07&quot;
+                                                                            ICU
+                                                                         &quot;74.2&quot;
+                                                                            TRE
+                                                      &quot;TRE 0.8.0 R_fixes (BSD)&quot;
+                                                                          iconv
+                                                   &quot;Apple or GNU libiconv 1.11&quot;
+                                                                       readline
+                                                                          &quot;5.2&quot;
                                                                            BLAS </code></pre>
 <p>“/Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib”</p>
 </div>
@@ -4025,9 +4048,9 @@ Graphics external software:
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<pre><code>               cairo                  cairoFT                    pango 
-            &quot;1.17.6&quot;                       &quot;&quot;                &quot;1.50.14&quot; 
-              libpng                     jpeg                  libtiff 
+<pre><code>               cairo                  cairoFT                    pango
+            &quot;1.17.6&quot;                       &quot;&quot;                &quot;1.50.14&quot;
+              libpng                     jpeg                  libtiff
             &quot;1.6.44&quot;                    &quot;9.5&quot; &quot;LIBTIFF, Version 4.5.0&quot; </code></pre>
 </div>
 </div>
@@ -4046,11 +4069,11 @@ Numerical characteristics of the machine:
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<pre><code>       double.eps        double.neg.eps           double.xmin 
-     2.220446e-16          1.110223e-16         2.225074e-308 
-      double.xmax           double.base         double.digits 
-    1.797693e+308          2.000000e+00          5.300000e+01 
-  double.rounding          double.guard     double.ulp.digits 
+<pre><code>       double.eps        double.neg.eps           double.xmin
+     2.220446e-16          1.110223e-16         2.225074e-308
+      double.xmax           double.base         double.digits
+    1.797693e+308          2.000000e+00          5.300000e+01
+  double.rounding          double.guard     double.ulp.digits
      5.000000e+00          0.000000e+00         -5.200000e+01 </code></pre>
 <p>double.neg.ulp.digits double.exponent double.min.exp -5.300000e+01 1.100000e+01 -1.022000e+03 double.max.exp integer.max sizeof.long 1.024000e+03 2.147484e+09 8.000000e+00 sizeof.longlong sizeof.longdouble sizeof.pointer 8.000000e+00 8.000000e+00 8.000000e+00 sizeof.time_t 8.000000e+00</p>
 </div>
@@ -4091,9 +4114,9 @@ Environmental and options variables affect how package checks and software in it
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<p>__CF_USER_TEXT_ENCODING 0x1F5:0x0:0x2 __CFBundleIdentifier com.rstudio.desktop CLICOLOR_FORCE 1 COMMAND_MODE unix2003 DENO_DOM_PLUGIN /Users/alvarosanchez/Documents/Appsilon/pharma/quarto/quarto-cli/package/dist/bin/tools/aarch64/deno_dom/libplugin.dylib DENO_NO_UPDATE_CHECK 1 DENO_TLS_CA_STORE system,mozilla DISPLAY /private/tmp/com.apple.launchd.G6zMv6HMqN/org.xquartz:0 DYLD_FALLBACK_LIBRARY_PATH /Library/Frameworks/R.framework/Resources/lib:/Library/Java/JavaVirtualMachines/jdk-11.0.18+10/Contents/Home/lib/server EDITOR vi GIT_ASKPASS rpostback-askpass HOME /Users/alvarosanchez LANG en_US.UTF-8 LC_CTYPE en_US.UTF-8 LN_S ln -s LOGNAME alvarosanchez MAKE make MallocNanoZone 0 MPLENGINE tkAgg ORIGINAL_XDG_CURRENT_DESKTOP undefined PAGER /usr/bin/less PATH /Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.11/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/X11/bin:/Library/Apple/usr/bin:/Users/alvarosanchez/.local/bin:/Applications/quarto/bin:/Library/TeX/texbin:/usr/texbin:/Users/alvarosanchez/Documents/Appsilon/pharma/quarto/quarto-cli/package/dist/bin:/Applications/RStudio.app/Contents/Resources/app/bin/postback PKGLOAD_PARENT_TEMPDIR /var/folders/ng/qfxwj0fx58vc95xf__n87cwc0000gn/T//RtmpLQITWi PROCESSX_PSc96bb3cbbdf_1744028343 YES PWD /Users/alvarosanchez/Documents/Appsilon/pharma/riskreports PYTHONIOENCODING utf-8 QUARTO_BIN_PATH /Users/alvarosanchez/Documents/Appsilon/pharma/quarto/quarto-cli/package/dist/bin QUARTO_DEBUG true QUARTO_DENO /Users/alvarosanchez/Documents/Appsilon/pharma/quarto/quarto-cli/package/dist/bin/tools/aarch64/deno QUARTO_DOCUMENT_FILE validation_report_dplyr_v1.1.4.qmd QUARTO_DOCUMENT_PATH pkgdown/assets QUARTO_PROJECT_ROOT /Users/alvarosanchez/Documents/Appsilon/pharma/riskreports/pkgdown/assets QUARTO_ROOT /Users/alvarosanchez/Documents/Appsilon/pharma/quarto/quarto-cli QUARTO_SHARE_PATH /Users/alvarosanchez/Documents/Appsilon/pharma/quarto/quarto-cli/src/resources/ R_ARCH<br>
-R_BROWSER /usr/bin/open R_BZIPCMD /usr/bin/bzip2 R_CLI_HAS_HYPERLINK_IDE_HELP true R_CLI_HAS_HYPERLINK_IDE_RUN true R_CLI_HAS_HYPERLINK_IDE_VIGNETTE true R_DOC_DIR /Library/Frameworks/R.framework/Resources/doc R_GZIPCMD /usr/bin/gzip R_HOME /Library/Frameworks/R.framework/Resources R_INCLUDE_DIR /Library/Frameworks/R.framework/Resources/include R_LIBS_SITE /Library/Frameworks/R.framework/Resources/site-library R_LIBS_USER /Users/alvarosanchez/Library/R/arm64/4.4/library R_PAPERSIZE a4 R_PAPERSIZE_USER a4 R_PDFVIEWER /usr/bin/open R_PLATFORM aarch64-apple-darwin20 R_PRINTCMD lpr R_QPDF /Library/Frameworks/R.framework/Resources/bin/qpdf R_RD4PDF times,inconsolata,hyper R_RUNTIME<br>
-R_SESSION_TMPDIR /var/folders/ng/qfxwj0fx58vc95xf__n87cwc0000gn/T//RtmpYVqHan R_SHARE_DIR /Library/Frameworks/R.framework/Resources/share R_STRIP_SHARED_LIB strip -x R_STRIP_STATIC_LIB strip -S R_TEXI2DVICMD /opt/R/arm64/bin/texi2dvi R_UNZIPCMD /usr/bin/unzip R_ZIPCMD /usr/bin/zip RMARKDOWN_MATHJAX_PATH /Applications/RStudio.app/Contents/Resources/app/resources/mathjax-27 RS_LOG_LEVEL WARN RS_RPOSTBACK_PATH /Applications/RStudio.app/Contents/Resources/app/bin/rpostback RS_SHARED_SECRET 67d675fa-fe4f-4d42-9f33-b77ec1f61fb6 RSTUDIO 1 RSTUDIO_CLI_HYPERLINKS true RSTUDIO_CONSOLE_COLOR 256 RSTUDIO_CONSOLE_WIDTH 71 RSTUDIO_DESKTOP_EXE /Applications/RStudio.app/Contents/MacOS/RStudio RSTUDIO_FALLBACK_LIBRARY_PATH /var/folders/ng/qfxwj0fx58vc95xf__n87cwc0000gn/T/rstudio-fallback-library-path-1532250 RSTUDIO_PANDOC /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/aarch64 RSTUDIO_PROGRAM_MODE desktop RSTUDIO_SESSION_PID 51563 RSTUDIO_SESSION_PORT 37679 RSTUDIO_USER_IDENTITY alvarosanchez SED /usr/bin/sed SHELL /bin/zsh SHLVL 1 SSH_ASKPASS rpostback-askpass SSH_AUTH_SOCK /private/tmp/com.apple.launchd.lb0MdNPcuS/Listeners TAR /usr/bin/tar TERM xterm-256color TMPDIR /var/folders/ng/qfxwj0fx58vc95xf__n87cwc0000gn/T/ USER alvarosanchez XPC_FLAGS 0x0 XPC_SERVICE_NAME 0</p>
+<p>__CF_USER_TEXT_ENCODING 0x1F5:0x0:0x2 __CFBundleIdentifier com.rstudio.desktop CLICOLOR_FORCE 1 COMMAND_MODE unix2003 DENO_DOM_PLUGIN /Users/person/Documents/project/quarto/quarto-cli/package/dist/bin/tools/aarch64/deno_dom/libplugin.dylib DENO_NO_UPDATE_CHECK 1 DENO_TLS_CA_STORE system,mozilla DISPLAY /private/tmp/com.apple.launchd.G6zMv6HMqN/org.xquartz:0 DYLD_FALLBACK_LIBRARY_PATH /Library/Frameworks/R.framework/Resources/lib:/Library/Java/JavaVirtualMachines/jdk-11.0.18+10/Contents/Home/lib/server EDITOR vi GIT_ASKPASS rpostback-askpass HOME /Users/person LANG en_US.UTF-8 LC_CTYPE en_US.UTF-8 LN_S ln -s LOGNAME person MAKE make MallocNanoZone 0 MPLENGINE tkAgg ORIGINAL_XDG_CURRENT_DESKTOP undefined PAGER /usr/bin/less PATH /Library/Frameworks/Python.framework/Versions/3.10/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.11/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/X11/bin:/Library/Apple/usr/bin:/Users/person/.local/bin:/Applications/quarto/bin:/Library/TeX/texbin:/usr/texbin:/Users/person/Documents/project/quarto/quarto-cli/package/dist/bin:/Applications/RStudio.app/Contents/Resources/app/bin/postback PKGLOAD_PARENT_TEMPDIR /var/folders/ng/qfxwj0fx58vc95xf__n87cwc0000gn/T//RtmpLQITWi PROCESSX_PSe3cf35816977_1744042923 YES PWD /Users/person/Documents/project/riskreports PYTHONIOENCODING utf-8 QUARTO_BIN_PATH /Users/person/Documents/project/quarto/quarto-cli/package/dist/bin QUARTO_DEBUG true QUARTO_DENO /Users/person/Documents/project/quarto/quarto-cli/package/dist/bin/tools/aarch64/deno QUARTO_DOCUMENT_FILE validation_report_dplyr_v1.1.4.qmd QUARTO_DOCUMENT_PATH pkgdown/assets QUARTO_PROJECT_ROOT /Users/person/Documents/project/riskreports/pkgdown/assets QUARTO_ROOT /Users/person/Documents/project/quarto/quarto-cli QUARTO_SHARE_PATH /Users/person/Documents/project/quarto/quarto-cli/src/resources/ R_ARCH<br>
+R_BROWSER /usr/bin/open R_BZIPCMD /usr/bin/bzip2 R_CLI_HAS_HYPERLINK_IDE_HELP true R_CLI_HAS_HYPERLINK_IDE_RUN true R_CLI_HAS_HYPERLINK_IDE_VIGNETTE true R_DOC_DIR /Library/Frameworks/R.framework/Resources/doc R_GZIPCMD /usr/bin/gzip R_HOME /Library/Frameworks/R.framework/Resources R_INCLUDE_DIR /Library/Frameworks/R.framework/Resources/include R_LIBS_SITE /Library/Frameworks/R.framework/Resources/site-library R_LIBS_USER /Users/person/Library/R/arm64/4.4/library R_PAPERSIZE a4 R_PAPERSIZE_USER a4 R_PDFVIEWER /usr/bin/open R_PLATFORM aarch64-apple-darwin20 R_PRINTCMD lpr R_QPDF /Library/Frameworks/R.framework/Resources/bin/qpdf R_RD4PDF times,inconsolata,hyper R_RUNTIME<br>
+R_SESSION_TMPDIR /var/folders/ng/qfxwj0fx58vc95xf__n87cwc0000gn/T//RtmpfQA58x R_SHARE_DIR /Library/Frameworks/R.framework/Resources/share R_STRIP_SHARED_LIB strip -x R_STRIP_STATIC_LIB strip -S R_TEXI2DVICMD /opt/R/arm64/bin/texi2dvi R_UNZIPCMD /usr/bin/unzip R_ZIPCMD /usr/bin/zip RMARKDOWN_MATHJAX_PATH /Applications/RStudio.app/Contents/Resources/app/resources/mathjax-27 RS_LOG_LEVEL WARN RS_RPOSTBACK_PATH /Applications/RStudio.app/Contents/Resources/app/bin/rpostback RS_SHARED_SECRET 67d675fa-fe4f-4d42-9f33-b77ec1f61fb6 RSTUDIO 1 RSTUDIO_CLI_HYPERLINKS true RSTUDIO_CONSOLE_COLOR 256 RSTUDIO_CONSOLE_WIDTH 49 RSTUDIO_DESKTOP_EXE /Applications/RStudio.app/Contents/MacOS/RStudio RSTUDIO_FALLBACK_LIBRARY_PATH /var/folders/ng/qfxwj0fx58vc95xf__n87cwc0000gn/T/rstudio-fallback-library-path-1532250 RSTUDIO_PANDOC /Applications/RStudio.app/Contents/Resources/app/quarto/bin/tools/aarch64 RSTUDIO_PROGRAM_MODE desktop RSTUDIO_SESSION_PID 58319 RSTUDIO_SESSION_PORT 37679 RSTUDIO_USER_IDENTITY person SED /usr/bin/sed SHELL /bin/zsh SHLVL 1 SSH_ASKPASS rpostback-askpass SSH_AUTH_SOCK /private/tmp/com.apple.launchd.lb0MdNPcuS/Listeners TAR /usr/bin/tar TERM xterm-256color TMPDIR /var/folders/ng/qfxwj0fx58vc95xf__n87cwc0000gn/T/ USER person XPC_FLAGS 0x0 XPC_SERVICE_NAME 0</p>
 </div>
 </div>
 </div>
@@ -4115,7 +4138,7 @@ These are the options set to generate the report:
 <p>$bitmapType [1] “quartz”</p>
 <p>$browser [1] “/usr/bin/open”</p>
 <p>$browserNLdisabled [1] FALSE</p>
-<p>$callr.condition_handler_cli_message function (msg) { custom_handler &lt;- getOption(“cli.default_handler”) if (is.function(custom_handler)) { custom_handler(msg) } else { cli_server_default(msg) } } &lt;bytecode: 0x13e542530&gt; &lt;environment: namespace:cli&gt;</p>
+<p>$callr.condition_handler_cli_message function (msg) { custom_handler &lt;- getOption(“cli.default_handler”) if (is.function(custom_handler)) { custom_handler(msg) } else { cli_server_default(msg) } } &lt;bytecode: 0x13a61b330&gt; &lt;environment: namespace:cli&gt;</p>
 <p>$catch.script.errors [1] FALSE</p>
 <p>$CBoundsCheck [1] FALSE</p>
 <p>$check.bounds [1] FALSE</p>
@@ -4126,7 +4149,7 @@ These are the options set to generate the report:
 <p>$defaultPackages [1] “datasets” “utils” “grDevices” “graphics” “stats” “methods”</p>
 <p>$demo.ask [1] “default”</p>
 <p>$deparse.cutoff [1] 60</p>
-<p>$device function (width = 7, height = 7, …) { grDevices::pdf(NULL, width, height, …) } &lt;bytecode: 0x13dbbf6b0&gt; &lt;environment: namespace:knitr&gt;</p>
+<p>$device function (width = 7, height = 7, …) { grDevices::pdf(NULL, width, height, …) } &lt;bytecode: 0x10a12a4b0&gt; &lt;environment: namespace:knitr&gt;</p>
 <p>$device.ask.default [1] FALSE</p>
 <p>$digits [1] 7</p>
 <p>$dplyr.show_progress [1] TRUE</p>
@@ -4181,7 +4204,7 @@ These are the options set to generate the report:
 <p><span class="math inline">\(str\)</span>list.len [1] 99</p>
 <p><span class="math inline">\(str\)</span>deparse.lines NULL</p>
 <p><span class="math inline">\(str\)</span>drop.deparse.attr [1] TRUE</p>
-<p><span class="math inline">\(str\)</span>formatNum function (x, …) format(x, trim = TRUE, drop0trailing = TRUE, …) &lt;environment: 0x13d2e8d20&gt;</p>
+<p><span class="math inline">\(str\)</span>formatNum function (x, …) format(x, trim = TRUE, drop0trailing = TRUE, …) &lt;environment: 0x12a632120&gt;</p>
 <p>$str.dendrogram.last [1] “`”</p>
 <p>$texi2dvi [1] “/opt/R/arm64/bin/texi2dvi”</p>
 <p>$tikzMetricsDictionary [1] “validation_report_dplyr_v1.1.4-tikzDictionary”</p>
@@ -4223,7 +4246,7 @@ can write “yes”</p>
     anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
+        if (clz.startsWith('code-annotation-')) {
           return true;
         }
       }
@@ -4243,11 +4266,11 @@ can write “yes”</p>
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
         button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
+        tooltip = new bootstrap.Tooltip(button,
+          { trigger: "manual",
             customClass: "code-copy-button-tooltip",
             offset: [0, -8]});
-        tooltip.show();    
+        tooltip.show();
       }
       setTimeout(function() {
         if (tooltip) {
@@ -4323,7 +4346,7 @@ can write “yes”</p>
       if (onUntriggerFn) {
         config.onUntrigger = onUntriggerFn;
       }
-      window.tippy(el, config); 
+      window.tippy(el, config);
     }
     const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
     for (var i=0; i<noterefs.length; i++) {
@@ -4398,7 +4421,7 @@ can write “yes”</p>
       tippyHover(xref, undefined, function(instance) {
         instance.disable();
         let url = xref.getAttribute('href');
-        let hash = undefined; 
+        let hash = undefined;
         if (url.startsWith('#')) {
           hash = url;
         } else {
@@ -4426,7 +4449,7 @@ can write “yes”</p>
               if (note !== null) {
                 const html = processXRef(id, note);
                 instance.setContent(html);
-              } 
+              }
             }).finally(() => {
               instance.enable();
               instance.show();
@@ -4450,7 +4473,7 @@ can write “yes”</p>
               }
               const html = processXRef(null, note);
               instance.setContent(html);
-            } 
+            }
           }).finally(() => {
             instance.enable();
             instance.show();
@@ -4490,7 +4513,7 @@ can write “yes”</p>
               height = bottom - top;
             }
             if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
+              // cook up a div (if necessary) and position it
               let div = window.document.getElementById("code-annotation-line-highlight");
               if (div === null) {
                 div = window.document.createElement("div");
