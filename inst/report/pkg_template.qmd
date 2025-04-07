@@ -206,55 +206,55 @@ knitr::kable(tt_sys_info_df)
 
 ## R Session Info
 
-Information about the R environment and capabilities:
-
+::: {.callout-note title="Information about the R environment and capabilities:" collapse=true}
 ```{r session_info}
 sessionInfo()
 ```
+:::
 
-Platform used:
-
-```{r platform}
-unlist(.Platform)
+::: {.callout-note title="Platform used:" collapse=true}
+```{r Platform}
+reactable::reactable(unlist(.Platform) |> as.data.frame())
 ```
+:::
 
-R's capabilities:
-
-```{r capabilities, summary = "Capabilities details"}
-capabilities()
+::: {.callout-note title="R's capabilities:" collapse=true}
+"Capabilities details"
+```{r capabilities}
+reactable::reactable(capabilities() |> as.data.frame())
 ```
+:::
 
-External software:
 
+::: {.callout-note title="External software:" collapse=true}
 ```{r external-software}
 extSoftVersion()
 ```
+:::
 
-Graphics external software:
 
+::: {.callout-note title="Graphics external software:" collapse=true}
 ```{r graphic-software}
 grSoftVersion()
 ```
+:::
 
-Numerical characteristics of the machine:
 
+::: {.callout-note title="Numerical characteristics of the machine:" collapse=true}
 ```{r machine}
 unlist(.Machine)
 ```
+:::
 
-
-Random number generation process:
-
+::: {.callout-note title="Random number generation process:" collapse=true}
 ```{r RNGKind}
 RNGkind()
 ```
-
+:::
 
 ## Information about the environment
 
-Environmental and options variables affect how package checks and software in it might behave.
-Here is the environmental variables when running this report
-
+::: {.callout-note title="Environmental and options variables affect how package checks and software in it might behave. Here is the environmental variables when running this report" collapse=true}
 ```{r computing}
 re <- riskreports::environ_report(exclude = c("GITHUB_PAT", "APPDATA", 
                                         "GITHUB", "GITLAB_PAT", "GITLAB",
@@ -265,10 +265,12 @@ re <- riskreports::environ_report(exclude = c("GITHUB_PAT", "APPDATA",
                                         ))
 re
 ```
+:::
 
-These are the options set to generate the report:
 
+::: {.callout-note title="These are the options set to generate the report:" collapse=true}
 ```{r options}
 riskreports::options_report(exclude = c("usethis.full_name", "usethis.description", "usethis.destdir"))
 ```
+:::
 
