@@ -214,14 +214,23 @@ sessionInfo()
 
 ::: {.callout-note title="Platform used:" collapse=true}
 ```{r Platform}
-reactable::reactable(unlist(.Platform) |> as.data.frame())
+table_platform <- unlist(.Platform) |> as.data.frame()
+colnames(table_platform) <- "value"
+reactable::reactable(table_platform)
 ```
 :::
 
 ::: {.callout-note title="R's capabilities:" collapse=true}
 "Capabilities details"
 ```{r capabilities}
-reactable::reactable(capabilities() |> as.data.frame())
+capabilities_table <- capabilities() |> as.data.frame()
+capabilities_table$capability <- rownames(capabilities_table)
+capabilities_table |> 
+  dplyr::rename("value" = "capabilities()") |> 
+  dplyr::select(capability, value) |> 
+  reactable::reactable(
+    rownames = FALSE
+  )
 ```
 :::
 
