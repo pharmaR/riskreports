@@ -267,7 +267,6 @@ re
 ```
 :::
 
-
 ::: {.callout-note title="These are the options set to generate the report:" collapse=true}
 ```{r options}
 riskreports::options_report(exclude = c("usethis.full_name", "usethis.description", "usethis.destdir"))
