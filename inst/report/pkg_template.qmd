@@ -124,12 +124,34 @@ div(
   div(
     style = c(common_style, "margin-top: 20px;"),
     h5("Origin"),
-    p("CRAN, public/github, internal/source, Bioconductor")
+    p("TO BE DETERMINED")
   )
 )
 ```
 
+```{r prepare_tables}
+namespace_table <- d_riskmetric$export_help[sort(d_riskmetric$exported_namespace)] |>
+  as.data.frame() 
+colnames(namespace_table) <- "value"
 
+namespace_table <- namespace_table |> 
+  reactable::reactable(
+    columns = list(
+      value = reactable::colDef(
+        cell = function(value) {
+          if (value) {
+            # Green checkmark
+            htmltools::span("\u2705", style = "color: #00d26a; font-weight: bold;")
+          } else {
+            # Red cross
+            htmltools::span("\u274C", style = "color: red; font-weight: bold;")
+          }
+        },
+        align = "center"
+      )
+    )
+  )
+```
 
 ```{r general-riskmetric, warning=FALSE}
 #| tab.cap: "**Package general assessment:** Coverage, check results, size, 
@@ -143,7 +165,33 @@ is_na <- sapply(r_riskmetric, function(x) {
 x <- summary_table(r_riskmetric[, !is_na])
 knitr::kable(x, row.names = FALSE, align = "cc") # Use this to have some summary text and report it.
 # d_riskmetric
+
+
+indexes_collapsed_rows <- c(1, 9)
+
+reactable::reactable(
+  x,
+  rownames = FALSE,
+  details = function(index) {
+    
+    if(index %in% indexes_collapsed_rows) {
+      table_collapsed <- NULL
+    
+      if(x$Section[index] == "Exported namespace") table_collapsed <- namespace_table
+        
+      htmltools::div(
+        style = "padding: 1rem",
+        table_collapsed
+      )
+    }
+  }
+)
+
+
+
 ```
+
+
 
 ::: {.content-hidden unless-meta=`r !is_risk_error(d_riskmetric[["license"]])`}
 
