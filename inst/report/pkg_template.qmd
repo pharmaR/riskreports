@@ -87,10 +87,18 @@ The following metrics are derived from the `riskmetric` R package.
 d_riskmetric <- readRDS(risk_path)
 ```
 
+```{r create_r_riskmetric, warning=FALSE}
+# Assesment produces a data.frame with one row
+r_riskmetric <- riskreports::assessment(d_riskmetric)
+is_na <- sapply(r_riskmetric, function(x) {
+  is.na(x) || (is.character(x) && startsWith(x, "no applicable"))
+})
+```
+
 ```{r}
 library(htmltools)
 
-common_style = "flex: 1; padding: 10px; background-color: #4f5466; border-radius: 10px; margin: 10px"
+common_style = "flex: 1; padding: 10px; background-color: #4D8DC933; border-radius: 10px; margin: 10px"
 
 div(
   style = "background-color: #1c1c1c; padding: 20px; border-radius: 10px; color: white;",
@@ -129,7 +137,8 @@ div(
 )
 ```
 
-```{r prepare_tables}
+
+```{r prepare_tables_namespace}
 namespace_table <- d_riskmetric$export_help[sort(d_riskmetric$exported_namespace)] |>
   as.data.frame() 
 colnames(namespace_table) <- "value"
@@ -153,35 +162,70 @@ namespace_table <- namespace_table |>
   )
 ```
 
+
+```{r prepare_tables_dependencies}
+deps <- d_riskmetric$dependencies
+deps$package <- gsub("\\n", " ", deps$package)
+row.names(deps) <- NULL
+dependencies_table <- htmltools::div(
+  htmltools::span(
+    "Overall the package has these dependencies:"
+  ),
+  reactable::reactable(
+    deps
+  )  
+)
+```
+
+```{r prepare_tables_reverse_dependencies}
+reverse_dependencies <- paste(d_riskmetric$reverse_dependencies, collapse = ", ")
+```
+
+```{r prepare_tables_examples}
+examples_content <- paste0("There are ", if (!is_na["has_examples"]) sum(d_riskmetric$has_examples), " examples from ", if (!is_na["has_examples"]) {length(d_riskmetric$has_examples)}, " help pages (", if (!is_na["has_examples"]) {sprintf("%.2f%%", sum(d_riskmetric$has_examples)/length(d_riskmetric$has_examples)*100)} else {"?"} ,").")
+```
+
+
+```{r prepare_tables_news}
+news_content <- paste0("The package has ", if ("has_news" %in% names(d_riskmetric) && !is.null(d_riskmetric$has_news)) d_riskmetric$has_news, " NEWS file and it is ", if (is.null(d_riskmetric$news_current) && !d_riskmetric$news_current) "not", "current.")
+```
+
+
 ```{r general-riskmetric, warning=FALSE}
 #| tab.cap: "**Package general assessment:** Coverage, check results, size, 
 #|  download the last year, reverse dependencies and number of dependencies."
 
-# Assesment produces a data.frame with one row
-r_riskmetric <- riskreports::assessment(d_riskmetric)
-is_na <- sapply(r_riskmetric, function(x) {
-    is.na(x) || (is.character(x) && startsWith(x, "no applicable"))
-  })
 x <- summary_table(r_riskmetric[, !is_na])
-knitr::kable(x, row.names = FALSE, align = "cc") # Use this to have some summary text and report it.
-# d_riskmetric
 
+values_collapsed_rows <- c(
+  "Has news",
+  "Exported namespace",
+  "License",
+  "Has vignettes",
+  "Dependencies",
+  "Reverse dependencies",
+  "Has examples"
+)
 
-indexes_collapsed_rows <- c(1, 9)
+indexes_collapsed_rows <- which(x$Section %in% values_collapsed_rows)
 
 reactable::reactable(
   x,
   rownames = FALSE,
+  pagination = FALSE,
   details = function(index) {
-    
     if(index %in% indexes_collapsed_rows) {
-      table_collapsed <- NULL
+      collapsed_content <- NULL
     
-      if(x$Section[index] == "Exported namespace") table_collapsed <- namespace_table
+      if(x$Section[index] == "Exported namespace") collapsed_content <- namespace_table
+      if(x$Section[index] == "Dependencies") collapsed_content <- dependencies_table
+      if(x$Section[index] == "Reverse dependencies") collapsed_content <- reverse_dependencies
+      if(x$Section[index] == "Has examples") collapsed_content <- examples_content
+      if(x$Section[index] == "Has news") collapsed_content <- news_content
         
       htmltools::div(
         style = "padding: 1rem",
-        table_collapsed
+        collapsed_content
       )
     }
   }
@@ -219,31 +263,6 @@ d_riskmetric[["remote_checks"]]
 
 :::
 
-
-## Dependencies
-
-Overall the package has these dependencies:
-
-```{r dependencies-riskmetric}
-#| tab.cap: "**Package dependencies**"
-deps <- d_riskmetric$dependencies
-deps$package <- gsub("\\n", " ", deps$package)
-row.names(deps) <- NULL
-knitr::kable(deps, row.names = TRUE)
-```
-
-::: {.content-visible unless-meta="hide_reverse_deps"}
-
-## Reverse dependencies
-
-Overall the package has `r length(d_riskmetric$reverse_dependencies)` reverse dependencies.
-
-```{r dependencies, results='asis', eval={length(d_riskmetric$reverse_dependencies) < 500}}
-cat(paste(d_riskmetric$reverse_dependencies, collapse = ", "))
-```
-
-:::
-
 ::: {.content-hidden unless-meta=`r !is_risk_error(d_riskmetric[["covr_coverage"]])`}
 
 ## Code coverage
@@ -254,26 +273,7 @@ Code coverage for this package is:
 d_riskmetric[["covr_coverage"]]
 ```
 
-
 :::
-
-## Namespace
-
-Overall the package has `r length(d_riskmetric$exported_namespace)` exported objects.
-`r sum(d_riskmetric$export_help)` are documented:
-
-```{r namespace}
-d_riskmetric$export_help[sort(d_riskmetric$exported_namespace)]
-```
-
-## Examples
-
-There are `r if (!is_na["has_examples"]) sum(d_riskmetric$has_examples)` examples from `r if (!is_na["has_examples"]) {length(d_riskmetric$has_examples)}` help pages (`r if (!is_na["has_examples"]) {sprintf("%.2f%%", sum(d_riskmetric$has_examples)/length(d_riskmetric$has_examples)*100)} else {"?"} `).
-
-## NEWS
-
-The package has `r if ("has_news" %in% names(d_riskmetric) && !is.null(d_riskmetric$has_news)) print(d_riskmetric$has_news)` NEWS file and it is `r if (is.null(d_riskmetric$news_current) && !d_riskmetric$news_current) "not"` current.
-
 
 # Installation environment
 
