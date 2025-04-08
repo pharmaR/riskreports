@@ -209,30 +209,47 @@ values_collapsed_rows <- c(
 
 indexes_collapsed_rows <- which(x$Section %in% values_collapsed_rows)
 
+# Certain rows of this table are collapsible, containing detailed information.
 reactable::reactable(
   x,
   rownames = FALSE,
   pagination = FALSE,
   details = function(index) {
     if(index %in% indexes_collapsed_rows) {
-      collapsed_content <- NULL
-    
-      if(x$Section[index] == "Exported namespace") collapsed_content <- namespace_table
-      if(x$Section[index] == "Dependencies") collapsed_content <- dependencies_table
-      if(x$Section[index] == "Reverse dependencies") collapsed_content <- reverse_dependencies
-      if(x$Section[index] == "Has examples") collapsed_content <- examples_content
-      if(x$Section[index] == "Has news") collapsed_content <- news_content
-        
+      collapsed_content <- switch(x$Section[index],
+        "Exported namespace" = namespace_table,
+        "Dependencies" =  dependencies_table,
+        "Reverse dependencies" = reverse_dependencies,
+        "Has examples" = examples_content,
+        "Has news" = news_content
+      )
       htmltools::div(
-        style = "padding: 1rem",
+        style = "padding: 1rem;",
         collapsed_content
       )
     }
-  }
+  },
+  columns = list(
+    Section = reactable::colDef(
+      name = ""
+    ),
+    Values = reactable::colDef(
+      name = "",
+      cell = function(value) {
+        if (value ==  "Yes") {
+          # Green 'Yes'
+          htmltools::span(value, style = "color: #00d26a; font-weight: bold;")
+        } else if (value == "No") {
+          # Red 'No'
+          htmltools::span(value, style = "color: red; font-weight: bold;")
+        } else {
+          htmltools::span(value, style = "color: #1a1826; font-weight: bold;")
+        }
+      },
+      align = "center"
+    )
+  )
 )
-
-
-
 ```
 
 
