@@ -127,12 +127,30 @@ reverse_dependencies <- paste(d_riskmetric$reverse_dependencies, collapse = ", "
 ```
 
 ```{r prepare_tables_examples}
-examples_content <- paste0("There are ", if (!is_na["has_examples"]) sum(d_riskmetric$has_examples), " examples from ", if (!is_na["has_examples"]) {length(d_riskmetric$has_examples)}, " help pages (", if (!is_na["has_examples"]) {sprintf("%.2f%%", sum(d_riskmetric$has_examples)/length(d_riskmetric$has_examples)*100)} else {"?"} ,").")
+examples_content <- paste0(
+  "There are ",
+  if (!is_na["has_examples"]) sum(d_riskmetric$has_examples),
+  " examples from ",
+  if (!is_na["has_examples"]) length(d_riskmetric$has_examples),
+  " help pages (",
+  if (!is_na["has_examples"]) {
+    sprintf("%.2f%%", sum(d_riskmetric$has_examples) / length(d_riskmetric$has_examples) * 100)
+    } else {
+      "?"
+    },
+  ")."
+)
 ```
 
 
 ```{r prepare_tables_news}
-news_content <- paste0("The package has ", if ("has_news" %in% names(d_riskmetric) && !is.null(d_riskmetric$has_news)) d_riskmetric$has_news, " NEWS file and it is ", if (is.null(d_riskmetric$news_current) && !d_riskmetric$news_current) "not", "current.")
+news_content <- paste0(
+  "The package has ",
+  if ("has_news" %in% names(d_riskmetric) && !is.null(d_riskmetric$has_news)) d_riskmetric$has_news,
+  " NEWS file and it is ",
+  if (is.null(d_riskmetric$news_current) && !d_riskmetric$news_current) "not",
+  "current."
+)
 ```
 
 
