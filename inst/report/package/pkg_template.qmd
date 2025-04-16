@@ -14,7 +14,7 @@ format:
     embed-resources: true
     theme: 
       dark: [darkly, custom.scss]
-      light: [default]
+      light: [default, custom.scss]
   gfm:
     html-math-method: webtex    
   typst:
