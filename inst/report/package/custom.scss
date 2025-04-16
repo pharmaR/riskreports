@@ -1,0 +1,83 @@
+/*-- scss:defaults --*/
+$link-color: #4697d2 !default;
+$card-color: #2a424e;
+$card-header-color: #cdcdcd;
+
+/*-- scss:rules --*/
+
+.card {
+    background-color: $card-color;
+    border-radius: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 0.5em;
+
+    .card-header {
+        display: flex;
+        gap: 1em;
+        border-bottom: unset;
+        background-color: unset;
+        color: $card-header-color;
+        margin-left: 5px;
+
+        i {
+            color: $link-color;
+            padding-top: 0.15em;
+            font-size: 27px;
+        }
+    }
+
+    .card-title {
+        padding-left: 0.75em;
+    }
+
+    .card-text {
+        color: $card-header-color;
+        padding-left: 1em;
+    }
+
+
+}
+
+.top-card {
+    display: flex;
+    gap: 1em;
+
+    .top-left-card {
+        .card-title {
+            margin-top: 0.5rem;
+        }
+    }
+
+    .top-right-card {
+        display: flex;
+        flex: 1 2;
+
+        .left-card {
+            border-radius: 15px 0px 0px 15px;
+            border-right: unset;
+            width: 100%;
+        }
+
+        .right-card {
+            border-radius: 0% 15px 15px 0;
+            width: 100%;
+            border-left: unset;
+        }
+    }
+}
+
+.bottom-card {
+    display: flex;
+    flex-direction: row;
+
+    .card-title {
+        margin-top: 10px;
+        padding-top: 10px;
+
+    }
+
+    .card-header {
+        flex: 1;
+        margin-top: 10px
+    }
+}
