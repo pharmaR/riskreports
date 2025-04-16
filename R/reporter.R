@@ -24,7 +24,7 @@ package_report <- function(
     package_name,
     package_version,
     package = NULL,
-    template_path = system.file("report/pkg_template.qmd", package = "riskreports"),
+    template_path = system.file("report/package", package = "riskreports"),
     output_format = "all",
     params = list(),
     ...
@@ -70,35 +70,45 @@ package_report <- function(
     # quarto rendering happens in the same place as the file/project
     # To avoid issues copy to a different place and render there.
     render_dir <- output_dir()
-    fc <- file.copy(from = template_path,
-                    to = file.path(render_dir, output_file), overwrite = TRUE,
+    files_to_copy <- list.files(template_path)
+    fc <- file.copy(from = file.path(template_path, files_to_copy),
+                    to = render_dir,
+                    overwrite = TRUE,
                     copy.date = TRUE)
 
     if (any(!fc)) {
       stop("Copying to the rendering directory failed.")
     }
 
-    template <- list.files(render_dir, full.names = TRUE)
-    template <- template[endsWith(template, "qmd")]
+    template_all_files <- file.path(render_dir, files_to_copy)
+    template <- template_all_files[endsWith(template_all_files, "qmd")]
 
     if (length(template) > 1) {
       stop("There are more than one template!\n",
            "Please have only one quarto file on the directory.")
     }
 
-    prefix_output <- paste0("validation_report_", full_name)
+    prefix_output <- file.path(render_dir, paste0("validation_report_", full_name, ".qmd"))
+    file.rename(template, prefix_output)
+
     pre_rendering <- list.files(render_dir, full.names = TRUE)
 
     suppressMessages({suppressWarnings({
       out <- quarto::quarto_render(
-        input = template,
+        input = prefix_output,
         output_format = output_format,
         execute_params = params,
         ...
       )
     })})
 
-    fr <- file.remove(file.path(render_dir, output_file))
+    files_to_remove <- replace(
+      template_all_files,
+      which(template_all_files == template),
+      prefix_output
+    )
+
+    fr <- file.remove(files_to_remove)
     if (any(!fr)) {
       warning("Failed to remove the quarto template used from the directory.")
     }

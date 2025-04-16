@@ -4,7 +4,7 @@
       create_info_card("test title")
     Output
       <div class="card ">
-        <h5 class="card-title">test title</h5>
+        <h3 class="card-title">test title</h3>
       </div>
 
 # Card is created with the expected components depending on arguments: has title and header
@@ -14,7 +14,7 @@
     Output
       <div class="card ">
         <div class="card-header">Information header</div>
-        <h5 class="card-title">test title</h5>
+        <h3 class="card-title">test title</h3>
       </div>
 
 # Card is created with the expected components depending on arguments: has all arguments set
@@ -24,7 +24,7 @@
     Output
       <div class="card ">
         <div class="card-header">Information header</div>
-        <h5 class="card-title">test title</h5>
+        <h3 class="card-title">test title</h3>
         <div class="card-text">Extra test</div>
       </div>
 
