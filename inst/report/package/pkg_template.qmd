@@ -104,27 +104,7 @@ riskreports:::create_metrics_cards(r_riskmetric)
 ```
 
 ```{r prepare_tables_namespace}
-namespace_table <- d_riskmetric$export_help[sort(d_riskmetric$exported_namespace)] |>
-  as.data.frame() 
-colnames(namespace_table) <- "value"
-
-namespace_table <- namespace_table |> 
-  reactable::reactable(
-    columns = list(
-      value = reactable::colDef(
-        cell = function(value) {
-          if (value) {
-            # Green checkmark
-            htmltools::span("\u2705", style = "color: #00d26a; font-weight: bold;")
-          } else {
-            # Red cross
-            htmltools::span("\u274C", style = "color: red; font-weight: bold;")
-          }
-        },
-        align = "center"
-      )
-    )
-  )
+namespace_table <- riskreports:::prepare_namespace_table(d_riskmetric)
 ```
 
 
@@ -208,7 +188,7 @@ reactable::reactable(
           # Red 'No'
           htmltools::span(value, style = "color: red; font-weight: bold;")
         } else {
-          htmltools::span(value, style = "color: #1a1826; font-weight: bold;")
+          htmltools::span(value, style = "color: var(--bs-body-color); font-weight: bold;")
         }
       },
       align = "center"
