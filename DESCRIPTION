@@ -15,7 +15,8 @@ Depends:
     R (>= 4.4.0)
 Imports: 
     methods,
-    quarto (>= 1.4.4)
+    quarto (>= 1.4.4),
+    htmltools
 Suggests: 
     knitr,
     riskmetric (>= 0.2.4),
