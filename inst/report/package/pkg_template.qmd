@@ -1,6 +1,8 @@
 ---
-title: "Validation Report - `r paste0(params$package_name, '@', params$package_version)`"
-date-format: "ddd MMM DD hh:mm:ss A YYYY"
+title: "This report is fully automated and builds on [`r params$image`](`r paste('https://hub.docker.com/r', params$image, sep = '/')`) image."
+date-format: "YYYY-MM-DD hh:mm:ss"
+date: today
+published-title: ""
 params:
   package_name: dplyr
   package_version: 1.0.0
@@ -61,18 +63,6 @@ risk_path <- params$assessment_path
 image <- params$image
 ```
 
-
-```{r image}
-image <- Sys.getenv("DOCKER_IMAGE", unset = NA)
-is_empty <- function(x) {
-  is.null(x) || is.na(x) || !nzchar(x)
-}
-if (is_empty(image) && !is_empty(params$image)) {
-  image <- params$image
-}
-```
-
-This report is fully automated and builds on `r image` image.
 Documents the installation of this package on an open source R environment, focusing on:
 
 - Installation environment description

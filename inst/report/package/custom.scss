@@ -7,6 +7,10 @@ $code-bg: $card-color !default;
 $code-color: var(--bs-body-color) !default;
 /*-- scss:rules --*/
 
+#quarto-content {
+    padding-top: 2rem;
+}
+
 .top-page {
     display: flex;
     padding: 15px 15px 15px 45px;

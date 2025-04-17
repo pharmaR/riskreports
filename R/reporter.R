@@ -49,7 +49,7 @@ package_report <- function(
 
     params$package_name <- package_name
     params$package_version <- package_version
-
+    params$image <- get_image_name(params)
 
     if (is.null(template_path)) {
         template_path <- system.file("report/pkg_template.qmd",
