@@ -1,4 +1,4 @@
-# ' Create a info card for the report
+#' Create a info card for the report
 #'
 #' @importFrom htmltools div
 #' @param title text to include in the card title
