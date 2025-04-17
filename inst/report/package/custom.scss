@@ -7,6 +7,24 @@ $code-bg: $card-color !default;
 $code-color: var(--bs-body-color) !default;
 /*-- scss:rules --*/
 
+.top-page {
+    display: flex;
+    padding: 15px 15px 15px 45px;
+    gap: 1rem;
+    box-shadow: 0px 5px 75px var(--bs-black);
+    align-items: center;
+   
+    .btn {
+        margin-top: 5px;
+    }
+
+    p   {
+        font-weight: bold;
+        font-size: larger;
+        margin-top: 1.2rem;
+    }
+}
+
 .card {
     background-color: $card-color;
     border-radius: 15px;
@@ -87,6 +105,7 @@ $code-color: var(--bs-body-color) !default;
 .metrics-table {
     color: $card-header-color;
     border-color: $card-header-color;
+    background-color: var(--bs-body-bg) !important;
 
     .rt-expander::after {
         border-top: 7px solid $card-header-color;
