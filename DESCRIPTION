@@ -16,7 +16,8 @@ Depends:
 Imports: 
     methods,
     quarto (>= 1.4.4),
-    htmltools
+    htmltools,
+    reactable
 Suggests: 
     knitr,
     riskmetric (>= 0.2.4),
