@@ -40,3 +40,19 @@ create_metrics_cards <- function(assessment_info) {
       create_info_card(title = "To be determined", header = "Origin", extra_class = "bottom-card")
   )
 }
+
+#' Return the Docker Image name to be printed on the report
+#'
+#' @keywords internal
+get_image_name <- function(params) {
+  default_image <- "rhub/ref-image"
+  image <- Sys.getenv("DOCKER_IMAGE", unset = NA)
+  is_empty <- function(x) {
+    is.null(x) || is.na(x) || !nzchar(x)
+  }
+  if (is_empty(image) && !is_empty(params$image)) {
+    image <- params$image
+  } else if (is_empty(image)) image <- default_image
+  image
+}
+
