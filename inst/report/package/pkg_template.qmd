@@ -12,6 +12,7 @@ format:
   html: 
     toc: true  
     embed-resources: true
+    include-in-header: "top-page.html"
     theme: 
       dark: [darkly, custom.scss]
       light: [default, custom.scss]
@@ -27,12 +28,7 @@ format:
 ---
 
 ```{r setup, include = FALSE}
-options(
-  width = 80L,
-  covr.record_tests = TRUE,
-  reactable.theme = reactable::reactableTheme(
-    backgroundColor = "var(--bs-body-bg);"
-  ))
+options(width = 80L, covr.record_tests = TRUE)
 
 knitr::opts_chunk$set(
     echo = FALSE,
@@ -295,7 +291,7 @@ sessionInfo()
 ```{r Platform}
 table_platform <- unlist(.Platform) |> as.data.frame()
 colnames(table_platform) <- "value"
-reactable::reactable(table_platform)
+reactable::reactable(table_platform, class = "metrics-table")
 ```
 :::
 
@@ -308,7 +304,8 @@ capabilities_table |>
   dplyr::rename("value" = "capabilities()") |> 
   dplyr::select(capability, value) |> 
   reactable::reactable(
-    rownames = FALSE
+    rownames = FALSE,
+    class = "metrics-table"
   )
 ```
 :::
