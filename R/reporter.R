@@ -91,6 +91,13 @@ package_report <- function(
     prefix_output <- file.path(render_dir, paste0("validation_report_", full_name, ".qmd"))
     file.rename(template, prefix_output)
 
+    # replace the title of the place header by the package name and header
+    top_page_file <- readLines(file.path(render_dir, "top-page.html"))
+    title_line <- grep("<p", top_page_file)
+    top_page_file[title_line] <- htmltools::p(paste0("Validation Report - ", package_name, "@", package_version)) |>
+      as.character()
+    writeLines(top_page_file, file.path(render_dir, "top-page.html"))
+
     pre_rendering <- list.files(render_dir, full.names = TRUE)
 
     suppressMessages({suppressWarnings({
