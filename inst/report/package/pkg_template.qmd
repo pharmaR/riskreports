@@ -27,7 +27,13 @@ format:
 ---
 
 ```{r setup, include = FALSE}
-options(width = 80L, covr.record_tests = TRUE)
+options(
+  width = 80L,
+  covr.record_tests = TRUE,
+  reactable.theme = reactable::reactableTheme(
+    backgroundColor = "var(--bs-body-bg);"
+  ))
+
 knitr::opts_chunk$set(
     echo = FALSE,
     eval = TRUE,
@@ -117,7 +123,8 @@ dependencies_table <- htmltools::div(
     "Overall the package has these dependencies:"
   ),
   reactable::reactable(
-    deps
+    deps,
+    class = "metrics-table"
   )  
 )
 ```
@@ -201,17 +208,18 @@ reactable::reactable(
       cell = function(value) {
         if (value ==  "Yes") {
           # Green 'Yes'
-          htmltools::span(value, style = "color: #00d26a; font-weight: bold;")
+          htmltools::span(value, style = "color:var(--bs-success); font-weight: bold;")
         } else if (value == "No") {
           # Red 'No'
-          htmltools::span(value, style = "color: red; font-weight: bold;")
+          htmltools::span(value, style = "color: var(--bs-danger); font-weight: bold;")
         } else {
           htmltools::span(value, style = "color: var(--bs-body-color); font-weight: bold;")
         }
       },
       align = "center"
     )
-  )
+  ),
+  class = "metrics-table"
 )
 ```
 
@@ -277,7 +285,7 @@ knitr::kable(tt_sys_info_df)
 
 ## R Session Info
 
-::: {.callout-note title="Information about the R environment and capabilities:" collapse=true}
+::: {.callout-note title="Information about the R environment and capabilities:" collapse=true, }
 ```{r session_info}
 sessionInfo()
 ```

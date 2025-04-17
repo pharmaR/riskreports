@@ -3,6 +3,8 @@ $link-color: #4697d2 !default;
 $card-color: #2a424e;
 $card-header-color: #cdcdcd;
 
+$code-bg: $card-color !default;
+$code-color: var(--bs-body-color) !default;
 /*-- scss:rules --*/
 
 .card {
@@ -79,5 +81,27 @@ $card-header-color: #cdcdcd;
     .card-header {
         flex: 1;
         margin-top: 10px
+    }
+}
+
+.metrics-table {
+    color: $card-header-color;
+    border-color: $card-header-color;
+
+    .rt-expander::after {
+        border-top: 7px solid $card-header-color;
+    }
+}
+
+.callout-body {
+    p {
+        color: $link-color;
+        font-family: monospace;
+    }
+
+    pre {
+        code {
+            color: $link-color;
+        }
     }
 }
