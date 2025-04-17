@@ -23,6 +23,7 @@ prepare_namespace_table <- function(riskmetric_assessment) {
           },
           align = "center"
         )
-      )
+      ),
+      class = "metrics-table"
     )
 }
