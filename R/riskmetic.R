@@ -101,11 +101,16 @@ summary_table <- function(risk) {
 
   # Reorder by
   fields <- rownames(x)
-  important_fields <- c("downloads_1yr", "reverse_dependencies", "license", "dependencies",
-                        "export_help", "has_vignettes", "has_news", "news_current", "exported_namespace",
-                        "has_bug_reports_url", "bugs_status")
+  important_fields <- c("has_news", "exported_namespace", "license", "has_vignettes", "export_help",
+                        "has_website", "has_maintainer", "bugs_status", "size_codebase", 
+                        "has_bug_reports_url", "has_examples", "dependencies", "reverse_dependencies")
+  # fields in cards are duplicated and should be removed
+  fields_in_cards <- c("downloads_1yr", "reverse_dependencies", "license")
+
   x <- x[c(intersect(important_fields, fields),
-           setdiff(fields, important_fields)), , drop = FALSE]
+           setdiff(fields, important_fields)) |>
+            setdiff(fields_in_cards), ,drop = FALSE]
+  
 
   yx <- simple_cap(gsub("_", " ", rownames(x), fixed = TRUE))
   df <- as.data.frame(x)
