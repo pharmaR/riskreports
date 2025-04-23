@@ -33,7 +33,7 @@ create_metrics_cards <- function(assessment_info) {
           ),
         div(
           class = "top-right-card",
-          create_info_card(title = length(assessment_info$reverse_dependencies), header = "Reverse Dependencies", extra_class = "left-card"),
+          create_info_card(title = assessment_info$reverse_dependencies, header = "Reverse Dependencies", extra_class = "left-card"),
           create_info_card(title = assessment_info$license, header = "License", text = ">=2", extra_class = "right-card")
         )
       ),
