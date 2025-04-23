@@ -9,6 +9,8 @@
 #' @param ... Additional arguments passed to `quarto::quarto_render()`
 #'
 #' @return A path to the reports generated, called by its side effects.
+#' @details Please include source as part of `params` content. Source is returned after
+#' calling function `riskmetric::pkg_ref` before the risk assessment is executed
 #' @export
 #' @examples
 #' pr <- package_report(
@@ -66,6 +68,9 @@ package_report <- function(
     if (v < package_version("1.7.13")) {
       warning("Please install the latest (devel) version of Quarto")
     }
+
+    if (is.null(params$source)) warning("Please provide the source of the package assessment")
+
     # https://github.com/quarto-dev/quarto-r/issues/81#issuecomment-1375691267
     # quarto rendering happens in the same place as the file/project
     # To avoid issues copy to a different place and render there.

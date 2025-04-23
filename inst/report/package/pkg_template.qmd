@@ -10,6 +10,7 @@ params:
   image: "rhub/ref-image"
   assessment_path: "assessments/dplyr.rds"
   hide_reverse_deps: true
+  source: "pgk_install"
 format:
   html: 
     toc: true  
@@ -88,6 +89,7 @@ r_riskmetric <- riskreports::assessment(d_riskmetric)
 is_na <- sapply(r_riskmetric, function(x) {
   is.na(x) || (is.character(x) && startsWith(x, "no applicable"))
 })
+r_riskmetric$origin <- riskreports:::get_pkg_origin(params$source)
 ```
 
 
@@ -328,8 +330,9 @@ RNGkind()
 :::
 
 ## Information about the environment
+Environmental and options variables affect how package checks and software in it might behave.
 
-::: {.callout-note title="Environmental and options variables affect how package checks and software in it might behave. Here is the environmental variables when running this report" collapse=true}
+::: {.callout-note title="Environmental variables when running this report" collapse=true}
 ```{r computing}
 re <- riskreports::environ_report(exclude = c("GITHUB_PAT", "APPDATA", 
                                         "GITHUB", "GITLAB_PAT", "GITLAB",
