@@ -95,6 +95,7 @@ r_riskmetric$origin <- riskreports:::get_pkg_origin(params$source)
 
 ```{r info_cards}
 riskreports:::create_metrics_cards(r_riskmetric)
+r_riskmetric$origin <- NULL
 ```
 
 ```{r prepare_tables_namespace}
@@ -158,8 +159,6 @@ x <- summary_table(r_riskmetric[, !is.na(as.vector(r_riskmetric))])
 values_collapsed_rows <- c(
   "Has news",
   "Exported namespace",
-  "License",
-  "Has vignettes",
   "Dependencies",
   "Reverse dependencies",
   "Has examples"
