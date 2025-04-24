@@ -18,7 +18,7 @@ format:
     include-in-header: "top-page.html"
     theme: 
       dark: [darkly, custom.scss]
-      light: [default, custom.scss]
+      light: [default, custom.scss, custom_light.scss]
   gfm:
     html-math-method: webtex    
   typst:
