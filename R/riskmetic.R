@@ -90,32 +90,38 @@ simple_cap <- function(x) {
 #' @returns A data.frame with the two columns one for the fields and one for the values.
 #' @export
 summary_table <- function(risk) {
-  y <- risk
-  y[] <- lapply(y, is_logical)
-  y$has_examples <- sprintf("%.2f%%", y$has_examples*100)
-  y$bugs_status <- sprintf("%.2f%% closed", y$bugs_status*100)
-  if (y$has_vignettes > 0) {
-    y$has_vignettes <- "Yes"
+  # excluded columns do not need to be analyzed by `is_logical`` to display information on the summary table
+  # for example, has_examples could go to 1 and be transformed (wrongly) to "Yes"
+  excluded_columns <- c("has_examples", "bug_status")
+  for (column in setdiff(colnames(risk), excluded_columns)) {
+    risk[,column] <- is_logical(risk[, column])
   }
-  x <- t(y)
+  risk$has_examples <- sprintf("%.2f%%", risk$has_examples*100)
+  risk$bugs_status <- sprintf("%.2f%% closed", risk$bugs_status*100)
+  # We change to numeric because it is a list with different elements we only use the numeric value
+  if(!is.null(risk$size_codebase)) risk$size_codebase <- as.numeric(risk$size_codebase) 
+  if (risk$has_vignettes > 0) {
+    risk$has_vignettes <- "Yes"
+  }
+  transposed_risk <- t(risk)
 
   # Reorder by
-  fields <- rownames(x)
+  fields <- rownames(transposed_risk)
   important_fields <- c("has_news", "exported_namespace", "license", "has_vignettes", "export_help",
                         "has_website", "has_maintainer", "bugs_status", "size_codebase", 
                         "has_bug_reports_url", "has_examples", "dependencies", "reverse_dependencies")
-  # fields in cards are duplicated and should be removed
+  # fields in report cards are duplicated and should be removed
   fields_in_cards <- c("downloads_1yr", "reverse_dependencies", "license")
 
-  x <- x[c(intersect(important_fields, fields),
+  transposed_risk <- transposed_risk[c(intersect(important_fields, fields),
            setdiff(fields, important_fields)) |>
             setdiff(fields_in_cards), ,drop = FALSE]
   
 
-  yx <- simple_cap(gsub("_", " ", rownames(x), fixed = TRUE))
-  df <- as.data.frame(x)
-  df <- cbind(Section = yx, Values = df)
-  colnames(df) <- c("Section", "Values")
-  rownames(df) <- NULL
-  df
+  transformed_risk <- simple_cap(gsub("_", " ", rownames(transposed_risk), fixed = TRUE))
+  summary_data <- as.data.frame(transposed_risk)
+  summary_data <- cbind(Section = transformed_risk, Values = summary_data)
+  colnames(summary_data) <- c("Section", "Values")
+  rownames(summary_data) <- NULL
+  summary_data
 }
