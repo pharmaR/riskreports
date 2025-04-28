@@ -1,3 +1,31 @@
+#' analyze license output from risk assessment to display in cards
+#'
+#' @param assessment object returning from riskmetric assessment, it can also be data.frame from riskreports::assessment
+#' @return list with main card license string and footer if available
+#' @details The function analyzes if the license is standard. If it is standard, then it will see if there is available
+#' information for the footer. The footer information is only the multiple version number for the moment.
+#' @keywords internal
+extract_license <- function(assessment) {
+  license_output <- list(main = as.character(assessment$license))
+
+  license_analysis <- tools::analyze_license(license_output$main)
+
+  if (isTRUE(license_analysis$is_standardizable)) {
+    license_output$main <- sub("\\(.+\\)", "", license_analysis$components[1])
+    if (grepl("\\(.+\\)",license_analysis$components[1])) {
+    license_output$footer <- sub("^.+\\((.+)\\)", "\\1", license_analysis$components[1])
+    }
+
+    if (length(license_analysis$components) > 1) {
+      license_output$footer <- paste(
+        c(license_output$footer,
+          license_analysis$components[seq(2, length(license_analysis$components))])
+        , collapse = "|")
+    }
+  }
+  license_output
+}
+
 #' Create a info card for the report
 #'
 #' @importFrom htmltools div
@@ -20,6 +48,7 @@ create_info_card <- function(title, header = NULL, text = NULL, extra_class = NU
 }
 
 create_metrics_cards <- function(assessment_info) {
+  license_card_values <- extract_license(assessment_info)
   div(
     class = "info-card",
       div(
@@ -34,7 +63,7 @@ create_metrics_cards <- function(assessment_info) {
         div(
           class = "top-right-card",
           create_info_card(title = assessment_info$reverse_dependencies, header = "Reverse Dependencies", extra_class = "left-card"),
-          create_info_card(title = assessment_info$license, header = "License", text = ">=2", extra_class = "right-card")
+          create_info_card(title = license_card_values$main, header = "License", text = license_card_values$footer, extra_class = "right-card")
         )
       ),
       create_info_card(title = assessment_info$origin, header = "Origin", extra_class = "bottom-card")

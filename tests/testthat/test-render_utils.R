@@ -36,3 +36,54 @@ describe("get_image_name returns the expected name depending on the arguments", 
     expect_false(is.na(image_name))
   })
 })
+
+describe("the license information is correctly processed for the cards", {
+  it("returns license with empty footer if the license is non standarizable", {
+    # Given
+    assessment <- list(license = "random license")
+
+    # When
+    license_for_card <- extract_license(assessment)
+
+    # Then
+    expect_true(is.null(license_for_card$footer))
+    expect_equal(license_for_card$main, assessment$license)
+  })
+
+  it("returns license with footer if the license is standarizable and with multiple version number", {
+    # Given
+    assessment <- list(license = "LGPL (>= 2.0, < 3) | Mozilla Public License")
+
+    # When
+    license_for_card <- extract_license(assessment)
+
+    # Then
+    expect_false(is.null(license_for_card$footer))
+    expect_false(license_for_card$main == assessment$license)
+  })
+
+  it("returns license with no footer if provided standardizable license with single version number", {
+    # Given
+    assessment <- list(license = "GPL2")
+
+    # When
+    license_for_card <- extract_license(assessment)
+
+    # Then
+    expect_true(is.null(license_for_card$footer))
+    expect_false(license_for_card$main == assessment$license)
+  })
+
+    it("returns license with footer if provided standardizable license with more components", {
+    # Given
+    assessment <- list(license = "GPL-2 | file LICENCE")
+
+    # When
+    license_for_card <- extract_license(assessment)
+
+    # Then
+    expect_false(is.null(license_for_card$footer))
+    expect_false(license_for_card$main == assessment$license)
+  })
+
+})
