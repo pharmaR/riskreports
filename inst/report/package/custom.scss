@@ -5,7 +5,9 @@ $card-header-color: #cdcdcd;
 $foldable-color: #0f0f0f;
 
 $code-bg: $card-color !default;
-$code-color: var(--bs-body-color) !default;
+$btn-code-copy-color: $link-color !default;
+$btn-code-copy-color-active: white !default;
+
 /*-- scss:rules --*/
 
 #quarto-content {
@@ -133,4 +135,5 @@ pre.details {
     background-color: $foldable-color;
     border-radius: 0px;
     padding: 10px 1rem 10px 1rem;
+
 }
