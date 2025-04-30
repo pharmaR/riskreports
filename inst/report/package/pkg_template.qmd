@@ -28,6 +28,8 @@ format:
     margin:
       x: 2cm
       y: 2cm
+filters:
+  - foldable_code.lua
 ---
 
 ```{r setup, include = FALSE}
@@ -41,15 +43,16 @@ knitr::opts_chunk$set(
 )
 library("tools")
 # Adapted from https://stackoverflow.com/a/52327256
+# NOTE: This code is commented because it is making the lua colapsible filter not to work
 library("knitr")
 library("riskreports")
-hook_old <- knitr::knit_hooks$get("output")
-knit_hooks$set(output = function(x, options) {
-  if (!is.null(options$summary)){
-      x <- paste0("<details><br><summary>", options$summary,"</summary><br>", hook_old(x, options), "<br></details>")
-  } 
-  x
-})
+# hook_old <- knitr::knit_hooks$get("output")
+# knit_hooks$set(output = function(x, options) {
+#   if (!is.null(options$summary)){
+#       x <- paste0("<details><br><summary>", options$summary,"</summary><br>", hook_old(x, options), "<br></details>")
+#   } 
+#   x
+# })
 
 ```
 
@@ -270,83 +273,59 @@ tt_sys_info_df <- data.frame(
 knitr::kable(tt_sys_info_df)
 ```
 
+<!--
+From here we use the lua filter based on this issue from Quarto itself
+https://github.com/quarto-dev/quarto-cli/issues/341
+Please take into account that not all content in the chunks will be correctly folded
+- character vectors are
+- reactable tables are not
+An alternative is to use callout blocks with collapse = TRUE
+The advantage of the lua filter is that the code is printed exactly as in the R console
+-->
+
 ## R Session Info
 
-::: {.callout-note title="Information about the R environment and capabilities:" collapse=true, }
-```{r session_info}
+```{r session_info, attr.output='.details summary="Session info"'}
 sessionInfo()
 ```
-:::
 
-::: {.callout-note title="Platform used:" collapse=true}
-```{r Platform}
-table_platform <- unlist(.Platform) |> as.data.frame()
-colnames(table_platform) <- "value"
-reactable::reactable(table_platform, class = "metrics-table")
+```{r Platform, attr.output='.details summary="Platform"'}
+unlist(.Platform)
 ```
-:::
 
-::: {.callout-note title="R's capabilities:" collapse=true}
-
-```{r capabilities}
-capabilities_table <- capabilities() |> as.data.frame()
-capabilities_table$capability <- rownames(capabilities_table)
-capabilities_table |> 
-  dplyr::rename("value" = "capabilities()") |> 
-  dplyr::select(capability, value) |> 
-  reactable::reactable(
-    rownames = FALSE,
-    class = "metrics-table"
-  )
+```{r capabilities, attr.output='.details summary="R\'s capabilities"'}
+capabilities()
 ```
-:::
 
-
-::: {.callout-note title="External software:" collapse=true}
-```{r external-software}
+```{r external-software, attr.output='.details summary="External software"'}
 extSoftVersion()
 ```
-:::
 
-
-::: {.callout-note title="Graphics external software:" collapse=true}
-```{r graphic-software}
+```{r graphic-software, attr.output='.details summary="Graphics external software"'}
 grSoftVersion()
 ```
-:::
 
-
-::: {.callout-note title="Numerical characteristics of the machine:" collapse=true}
-```{r machine}
+```{r machine, attr.output='.details summary="Numerical characteristics of the machine"'}
 unlist(.Machine)
 ```
-:::
 
-::: {.callout-note title="Random number generation process:" collapse=true}
-```{r RNGKind}
+```{r RNGKind, attr.output='.details summary="Random number generation process"'}
 RNGkind()
 ```
-:::
 
 ## Information about the environment
 Environmental and options variables affect how package checks and software in it might behave.
 
-::: {.callout-note title="Environmental variables when running this report" collapse=true}
-```{r computing}
-re <- riskreports::environ_report(exclude = c("GITHUB_PAT", "APPDATA", 
+```{r computing, attr.output='.details summary="Environmental variables when running this report"'}
+riskreports::environ_report(exclude = c("GITHUB_PAT", "APPDATA", 
                                         "GITHUB", "GITLAB_PAT", "GITLAB",
                                         "ProgramFiles", "ProgramFiles(x86)",
                                         "R_USER", "USERNAME", "USERPROFILE", 
                                         "USERDNSDOMAIN", "USERDOMAIN", 
                                         "USERDOMAIN_ROAMINGPROFILE", "R_DptShare"              
                                         ))
-re
 ```
-:::
 
-::: {.callout-note title="These are the options set to generate the report:" collapse=true}
-```{r options}
+```{r options, attr.output='.details summary="These are the options set to generate the report"'}
 riskreports::options_report(exclude = c("usethis.full_name", "usethis.description", "usethis.destdir"))
 ```
-:::
-
