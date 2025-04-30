@@ -5,10 +5,7 @@ $card-light-color: #fcfcf7 !default;
 $card-header-light-color: #636363;
 $card-header-color: $card-header-light-color !default;
 
-$code-bg: #bcd6dd !default;
-$callout-color-note: #cfeff9 !default;
-$callout-icon-scale: 0% !default;
-$callout-border-width: 0px !default;
+$code-bg: #d6e9f7 !default;
 /*-- scss:rules --*/
 
 .card {
@@ -49,31 +46,15 @@ $callout-border-width: 0px !default;
     }
 }
 
-.callout-body {
-    p {
-        color: var(--bs-body-color);
-        font-family: monospace;
-        background-color: $callout-color-note;
-    }
-
-    pre {
-        code {
-            color: var(--bs-body-color);
-            background-color: $callout-color-note;
-        }
-    }
-
+details > summary {
+    background-color: $code-bg;
+    color: var(--bs-body-color);
 }
 
-.callout.callout-style-default {
-        background-color: $callout-color-note;
-        border-left: 0px solid;
-        border-radius: 10px 10px 0px 0px;
-    }
-
-.callout-header {
-    background-color: $callout-color-note!important;
-    border-bottom: 1px solid $link-color !important;
-    border-radius: 10px 10px 0px 0px;
+pre.details {
+    color: var(--bs-body-color);
+    background-color: $code-bg;
 }
+
+
 

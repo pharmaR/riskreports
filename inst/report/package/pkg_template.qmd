@@ -280,7 +280,7 @@ Please take into account that not all content in the chunks will be correctly fo
 - character vectors are
 - reactable tables are not
 An alternative is to use callout blocks with collapse = TRUE
-The advantage of the lua filter is that the code is printed exactly as in the R console
+The advantage of the foldable_code lua filter is that the code is printed exactly as in the R console
 -->
 
 ## R Session Info

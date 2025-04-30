@@ -13,10 +13,10 @@ URL: https://github.com/pharmaR/riskreports, https://pharmar.github.io/riskrepor
 BugReports: https://github.com/pharmaR/riskreports/issues
 Depends:
     R (>= 4.5.0)
-Imports: 
+Imports:
     methods,
-    quarto (>= 1.4.4),
     htmltools,
+    quarto (>= 1.4.4),
     reactable
 Suggests: 
     knitr,
