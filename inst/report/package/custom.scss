@@ -2,6 +2,7 @@
 $link-color: #4697d2 !default;
 $card-color: #2a424e;
 $card-header-color: #cdcdcd;
+$foldable-color: #0f0f0f;
 
 $code-bg: $card-color !default;
 $code-color: var(--bs-body-color) !default;
@@ -116,15 +117,20 @@ $code-color: var(--bs-body-color) !default;
     }
 }
 
-.callout-body {
-    p {
-        color: $link-color;
-        font-family: monospace;
-    }
 
-    pre {
-        code {
-            color: $link-color;
-        }
-    }
+details > summary {
+    color: $card-header-color;
+    background-color: $foldable-color;
+    padding: 10px 1rem 10px 1rem;
+    border-bottom: 2px solid $link-color;
+    border-radius: 10px 10px 0px 0px;
+    font-weight: bold;
+    font-size: medium;
+}
+
+pre.details {
+    color: $link-color;
+    background-color: $foldable-color;
+    border-radius: 0px;
+    padding: 10px 1rem 10px 1rem;
 }
