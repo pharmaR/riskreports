@@ -97,15 +97,21 @@ r_riskmetric$origin <- riskreports:::get_pkg_origin(params$source)
 ```
 
 
+::: {.content-visible when-format="html"}
+
 ```{r info_cards}
 riskreports:::create_metrics_cards(r_riskmetric)
 r_riskmetric$origin <- NULL
 ```
 
+:::
+
 ```{r prepare_tables_namespace}
 namespace_table <- riskreports:::prepare_namespace_table(d_riskmetric)
 ```
 
+
+::: {.content-visible when-format="html"}
 
 ```{r prepare_tables_dependencies}
 deps <- d_riskmetric$dependencies
@@ -118,9 +124,11 @@ dependencies_table <- htmltools::div(
   reactable::reactable(
     deps,
     class = "metrics-table"
-  )  
+  )
 )
 ```
+
+:::
 
 ```{r prepare_tables_reverse_dependencies}
 reverse_dependencies <- paste(d_riskmetric$reverse_dependencies, collapse = ", ")
@@ -142,7 +150,6 @@ examples_content <- paste0(
 )
 ```
 
-
 ```{r prepare_tables_news}
 news_content <- paste0(
   "The package has ",
@@ -152,7 +159,6 @@ news_content <- paste0(
   "current."
 )
 ```
-
 
 ```{r general-riskmetric, warning=FALSE}
 #| tab.cap: "**Package general assessment:** Coverage, check results, size, 
@@ -170,8 +176,11 @@ values_collapsed_rows <- c(
 
 indexes_collapsed_rows <- which(x$Section %in% values_collapsed_rows)
 
+is_html <- knitr::is_html_output(excludes = "markdown")
+
 # Certain rows of this table are collapsible, containing detailed information.
-reactable::reactable(
+if (isTRUE(is_html)) {
+  reactable::reactable(
   x,
   rownames = FALSE,
   pagination = FALSE,
@@ -212,9 +221,8 @@ reactable::reactable(
   ),
   class = "metrics-table"
 )
+}
 ```
-
-
 
 ::: {.content-hidden unless-meta=`r !is_risk_error(d_riskmetric[["license"]])`}
 
