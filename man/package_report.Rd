@@ -8,7 +8,7 @@ package_report(
   package_name,
   package_version,
   package = NULL,
-  template_path = system.file("report/pkg_template.qmd", package = "riskreports"),
+  template_path = system.file("report/package", package = "riskreports"),
   output_format = "all",
   params = list(),
   ...

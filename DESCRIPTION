@@ -12,10 +12,12 @@ License: MIT + file LICENSE
 URL: https://github.com/pharmaR/riskreports, https://pharmar.github.io/riskreports/
 BugReports: https://github.com/pharmaR/riskreports/issues
 Depends:
-    R (>= 4.4.0)
-Imports: 
+    R (>= 4.5.0)
+Imports:
     methods,
-    quarto (>= 1.4.4)
+    htmltools,
+    quarto (>= 1.4.4),
+    reactable
 Suggests: 
     knitr,
     riskmetric (>= 0.2.4),
