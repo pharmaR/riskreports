@@ -32,3 +32,21 @@ rendering_dir <- function() {
 
   opt %||% env
 }
+
+is_empty <- function(x) {
+  is.null(x) || is.na(x) || !nzchar(x)
+}
+
+#' Return string to display Origin depending on source of the assessment
+#' 
+#' @param source return value of function `pkg_ref`
+#' @returns depending on source transformed string for the origin
+#' @keywords internal
+#' @details Please check `riskmetric::pkg_ref_class_hierarchy` and `riskmetric::pkg_ref` code
+#' to see the allowed values and structure
+get_pkg_origin <- function(source) {
+  source_values <- unlist(riskmetric:::pkg_ref_class_hierarchy)
+  report_source_values <- c("Missing Origin", "Source Package", "Internal Package", "CRAN", "Bioconductor", "Github")
+  names(report_source_values) <- source_values
+  report_source_values[source]
+}
