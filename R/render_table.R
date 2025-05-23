@@ -1,10 +1,10 @@
 #' Prepare subtable for metric based risk assessment main table
 #'
-#' @param rismetric_assessment object coming from rismetric::pkg_assess function
+#' @param riskmetric_assessment object coming from rismetric::pkg_assess function
 #' @keywords internal
 prepare_namespace_table <- function(riskmetric_assessment) {
   namespace_table <- riskmetric_assessment$export_help[sort(riskmetric_assessment$exported_namespace)] |>
-  as.data.frame() 
+  as.data.frame()
   colnames(namespace_table) <- "value"
 
   namespace_table |>

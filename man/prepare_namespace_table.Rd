@@ -7,7 +7,7 @@
 prepare_namespace_table(riskmetric_assessment)
 }
 \arguments{
-\item{rismetric_assessment}{object coming from rismetric::pkg_assess function}
+\item{riskmetric_assessment}{object coming from rismetric::pkg_assess function}
 }
 \description{
 Prepare subtable for metric based risk assessment main table
