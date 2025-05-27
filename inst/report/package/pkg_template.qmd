@@ -43,18 +43,8 @@ knitr::opts_chunk$set(
     cache = FALSE
 )
 library("tools")
-# Adapted from https://stackoverflow.com/a/52327256
-# NOTE: This code is commented because it is making the lua colapsible filter not to work
 library("knitr")
 library("riskreports")
-# hook_old <- knitr::knit_hooks$get("output")
-# knit_hooks$set(output = function(x, options) {
-#   if (!is.null(options$summary)){
-#       x <- paste0("<details><br><summary>", options$summary,"</summary><br>", hook_old(x, options), "<br></details>")
-#   } 
-#   x
-# })
-
 ```
 
 # Context
