@@ -7,19 +7,20 @@ params:
   package: NULL
   image: "rhub/ref-image"
   assessment_path: "assessments/dplyr.rds"
+  hide_reverse_deps: true
 format:
   html: 
     toc: true  
     embed-resources: true
   gfm:
     html-math-method: webtex    
-  # typst:
-  #   toc: true
-  #   section-numbering: 1.1.1
-  #   df-print: default
-  #   margin:
-  #     x: 2cm
-  #     y: 2cm
+  typst:
+    toc: true
+    section-numbering: 1.1.1
+    df-print: default
+    margin:
+      x: 2cm
+      y: 2cm
 ---
 
 ```{r setup, include = FALSE}
@@ -31,6 +32,17 @@ knitr::opts_chunk$set(
     cache = FALSE
 )
 library("tools")
+# Adapted from https://stackoverflow.com/a/52327256
+library("knitr")
+library("riskreports")
+hook_old <- knitr::knit_hooks$get("output")
+knit_hooks$set(output = function(x, options) {
+  if (!is.null(options$summary)){
+      x <- paste0("<details><br><summary>", options$summary,"</summary><br>", hook_old(x, options), "<br></details>")
+  } 
+  x
+})
+
 ```
 
 # Context
@@ -82,10 +94,39 @@ d_riskmetric <- readRDS(risk_path)
 
 # Assesment produces a data.frame with one row
 r_riskmetric <- riskreports::assessment(d_riskmetric)
-is_na <- sapply(r_riskmetric, function(x){is.na(x) || (is.character(x) && startsWith(x, "no applicable"))})
-knitr::kable(t(r_riskmetric[, !is_na])) # Use this to have some summary text and report it.
+is_na <- sapply(r_riskmetric, function(x) {
+    is.na(x) || (is.character(x) && startsWith(x, "no applicable"))
+  })
+x <- summary_table(r_riskmetric[, !is_na])
+knitr::kable(x, row.names = FALSE, align = "cc") # Use this to have some summary text and report it.
 # d_riskmetric
 ```
+
+::: {.content-visible unless-meta=`r !is_risk_error(d_riskmetric[["license"]])`}
+
+## License
+
+The package uses `r as.character(d_riskmetric$license)`.
+
+:::
+
+::: {.content-hidden unless-meta=`r !is_risk_error(d_riskmetric[["r_cmd_check"]]) || !is_risk_error(d_riskmetric[["remote_checks"]])`}
+
+## Code checks
+
+Code checks for this package are: 
+
+```{r r_cmd_check, eval=!is_risk_error(d_riskmetric[["r_cmd_check"]])}
+d_riskmetric[["r_cmd_check"]]
+```
+
+
+
+```{r remote_checks, eval=!is_risk_error(d_riskmetric[["remote_checks"]])}
+d_riskmetric[["remote_checks"]]
+```
+
+:::
 
 
 ## Dependencies
@@ -100,13 +141,30 @@ row.names(deps) <- NULL
 knitr::kable(deps, row.names = TRUE)
 ```
 
+::: {.content-visible unless-meta="hide_reverse_deps"}
+
 ## Reverse dependencies
 
-Overall the package has `r length(d_riskmetric$reverse_dependencies)` reverse dependencies:
+Overall the package has `r length(d_riskmetric$reverse_dependencies)` reverse dependencies.
 
-```{r dependencies, results='asis'}
+```{r dependencies, results='asis', eval={length(d_riskmetric$reverse_dependencies) < 500}}
 cat(paste(d_riskmetric$reverse_dependencies, collapse = ", "))
 ```
+
+:::
+
+::: {.content-hidden unless-meta=`r !is_risk_error(d_riskmetric[["covr_coverage"]])`}
+
+## Code coverage
+
+Code coverage for this package is: 
+
+```{r covr_coverage}
+d_riskmetric[["covr_coverage"]]
+```
+
+
+:::
 
 ## Namespace
 
@@ -117,18 +175,13 @@ Overall the package has `r length(d_riskmetric$exported_namespace)` exported obj
 d_riskmetric$export_help[sort(d_riskmetric$exported_namespace)]
 ```
 
-### Examples
+## Examples
 
-There are `r if (!is_na["has_examples"]) sum(d_riskmetric$has_examples)` help pages with examples, from `r if (!is_na["has_examples"]) {length(d_riskmetric$has_examples)}` (`r if (!is_na["has_examples"]) {sprintf("%0.2f", sum(d_riskmetric$has_examples)/length(d_riskmetric$has_examples)*100)} else {"?"} ` %).
+There are `r if (!is_na["has_examples"]) sum(d_riskmetric$has_examples)` examples from `r if (!is_na["has_examples"]) {length(d_riskmetric$has_examples)}` help pages (`r if (!is_na["has_examples"]) {sprintf("%.2f%%", sum(d_riskmetric$has_examples)/length(d_riskmetric$has_examples)*100)} else {"?"} `).
 
-### NEWS
+## NEWS
 
 The package has `r if ("has_news" %in% names(d_riskmetric) && !is.null(d_riskmetric$has_news)) print(d_riskmetric$has_news)` NEWS file and it is `r if (is.null(d_riskmetric$news_current) && !d_riskmetric$news_current) "not"` current.
-
-### License
-
-The package uses `r if ("license" %in% names(d_riskmetric) && !is.null(d_riskmetric$license)) print(d_riskmetric$license)`.
-
 
 
 # Installation environment
@@ -167,7 +220,7 @@ unlist(.Platform)
 
 R's capabilities:
 
-```{r capabilities}
+```{r capabilities, summary = "Capabilities details"}
 capabilities()
 ```
 
