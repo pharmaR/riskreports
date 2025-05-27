@@ -1,27 +1,30 @@
 Package: riskreports
 Title: Package Validation Reports
-Version: 0.0.0.9004
+Version: 0.0.0.9006
 Authors@R: c(
     person("Lluís", "Revilla Sancho", , "lluis.revilla_sancho@roche.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9747-2570")),
     person("R Validation Hub", role = "cph", email = "r-val-hub-maintainers@lists.r-consortium.org")
   )
-Description: Documents package checks for validation in a pharmaceutic
+Description: Documents package checks for validation in a pharmaceutic 
     context.
 License: MIT + file LICENSE
 URL: https://github.com/pharmaR/riskreports, https://pharmar.github.io/riskreports/
 BugReports: https://github.com/pharmaR/riskreports/issues
 Depends:
-    R (>= 4.4.0)
-Imports: 
+    R (>= 4.5.0)
+Imports:
     methods,
-    quarto (>= 1.4.4)
+    htmltools,
+    quarto (>= 1.4.4),
+    reactable
 Suggests: 
     knitr,
     riskmetric (>= 0.2.4),
     rmarkdown,
     spelling,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    withr (>= 3.0.2)
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3

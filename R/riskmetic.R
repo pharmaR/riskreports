@@ -43,6 +43,23 @@ assessment <- function(assessment) {
   list2DF(out)
 }
 
+#' Checks if it is a riskmetric error or not.
+#'
+#' Provide information whether the object metric is an error or not.
+#' @param x An object
+#' @returns A logical value: if it is not a riskmetric metric it returns `NA`, but normally `TRUE` or `FALSE`.
+#'
+#' @export
+#' @examples
+#' is_risk_error(1)
+is_risk_error <- function(x) {
+  if (inherits(x, "pkg_metric")) {
+    inherits(x, "pkg_metric_error") || inherits(x, "error")
+  } else {
+    NA
+  }
+}
+
 risk_error <- function(output, y) {
   if (is.null(output)) {
     return(NULL)
@@ -51,4 +68,60 @@ risk_error <- function(output, y) {
     return(output$message)
   }
   y
+}
+
+is_logical <- function(x) {
+  if (x == 1 || isTRUE(x)) {
+    "Yes"
+  } else {
+    x
+  }
+}
+
+simple_cap <- function(x) {
+  s <- toupper(substr(x, 1, 1))
+  paste0(s, substring(x, 2))
+}
+
+#' Summary table
+#'
+#' @param risk The output of `assessment()`.
+#'
+#' @returns A data.frame with the two columns one for the fields and one for the values.
+#' @export
+summary_table <- function(risk) {
+  # excluded columns do not need to be analyzed by `is_logical`` to display information on the summary table
+  # for example, has_examples could go to 1 and be transformed (wrongly) to "Yes"
+  excluded_columns <- c("has_examples", "bug_status")
+  for (column in setdiff(colnames(risk), excluded_columns)) {
+    risk[,column] <- is_logical(risk[, column])
+  }
+  risk$has_examples <- sprintf("%.2f%%", risk$has_examples*100)
+  risk$bugs_status <- sprintf("%.2f%% closed", risk$bugs_status*100)
+  # We change to numeric because it is a list with different elements we only use the numeric value
+  if(!is.null(risk$size_codebase)) risk$size_codebase <- as.numeric(risk$size_codebase) 
+  if (risk$has_vignettes > 0) {
+    risk$has_vignettes <- "Yes"
+  }
+  transposed_risk <- t(risk)
+
+  # Reorder by
+  fields <- rownames(transposed_risk)
+  important_fields <- c("has_news", "exported_namespace", "license", "has_vignettes", "export_help",
+                        "has_website", "has_maintainer", "bugs_status", "size_codebase", 
+                        "has_bug_reports_url", "has_examples", "dependencies", "reverse_dependencies")
+  # fields in report cards are duplicated and should be removed
+  fields_in_cards <- c("downloads_1yr", "reverse_dependencies", "license")
+
+  transposed_risk <- transposed_risk[c(intersect(important_fields, fields),
+           setdiff(fields, important_fields)) |>
+            setdiff(fields_in_cards), ,drop = FALSE]
+  
+
+  transformed_risk <- simple_cap(gsub("_", " ", rownames(transposed_risk), fixed = TRUE))
+  summary_data <- as.data.frame(transposed_risk)
+  summary_data <- cbind(Section = transformed_risk, Values = summary_data)
+  colnames(summary_data) <- c("Section", "Values")
+  rownames(summary_data) <- NULL
+  summary_data
 }

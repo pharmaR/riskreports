@@ -8,7 +8,7 @@ package_report(
   package_name,
   package_version,
   package = NULL,
-  template_path = system.file("report/pkg_template.qmd", package = "riskreports"),
+  template_path = system.file("report/package", package = "riskreports"),
   output_format = "all",
   params = list(),
   ...
@@ -34,6 +34,10 @@ A path to the reports generated, called by its side effects.
 }
 \description{
 Reports about a package
+}
+\details{
+Please include source as part of \code{params} content. Source is returned after
+calling function \code{riskmetric::pkg_ref} before the risk assessment is executed
 }
 \examples{
 pr <- package_report(

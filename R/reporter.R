@@ -9,6 +9,8 @@
 #' @param ... Additional arguments passed to `quarto::quarto_render()`
 #'
 #' @return A path to the reports generated, called by its side effects.
+#' @details Please include source as part of `params` content. Source is returned after
+#' calling function `riskmetric::pkg_ref` before the risk assessment is executed
 #' @export
 #' @examples
 #' pr <- package_report(
@@ -24,7 +26,7 @@ package_report <- function(
     package_name,
     package_version,
     package = NULL,
-    template_path = system.file("report/pkg_template.qmd", package = "riskreports"),
+    template_path = system.file("report/package", package = "riskreports"),
     output_format = "all",
     params = list(),
     ...
@@ -49,7 +51,7 @@ package_report <- function(
 
     params$package_name <- package_name
     params$package_version <- package_version
-
+    params$image <- get_image_name(params)
 
     if (is.null(template_path)) {
         template_path <- system.file("report/pkg_template.qmd",
@@ -66,39 +68,59 @@ package_report <- function(
     if (v < package_version("1.7.13")) {
       warning("Please install the latest (devel) version of Quarto")
     }
+
+    if (is.null(params$source)) warning("Please provide the source of the package assessment")
+
     # https://github.com/quarto-dev/quarto-r/issues/81#issuecomment-1375691267
     # quarto rendering happens in the same place as the file/project
     # To avoid issues copy to a different place and render there.
     render_dir <- output_dir()
-    fc <- file.copy(from = template_path,
-                    to = file.path(render_dir, output_file), overwrite = TRUE,
+    files_to_copy <- list.files(template_path)
+    fc <- file.copy(from = file.path(template_path, files_to_copy),
+                    to = render_dir,
+                    overwrite = TRUE,
                     copy.date = TRUE)
 
     if (any(!fc)) {
       stop("Copying to the rendering directory failed.")
     }
 
-    template <- list.files(render_dir, full.names = TRUE)
-    template <- template[endsWith(template, "qmd")]
+    template_all_files <- file.path(render_dir, files_to_copy)
+    template <- template_all_files[endsWith(template_all_files, "qmd")]
 
     if (length(template) > 1) {
       stop("There are more than one template!\n",
            "Please have only one quarto file on the directory.")
     }
 
-    prefix_output <- paste0("validation_report_", full_name)
+    prefix_output <- file.path(render_dir, paste0("validation_report_", full_name, ".qmd"))
+    file.rename(template, prefix_output)
+
+    # replace the title of the place header by the package name and header
+    top_page_file <- readLines(file.path(render_dir, "top_page.html"))
+    title_line <- grep("<p", top_page_file)
+    top_page_file[title_line] <- htmltools::p(paste0("Validation Report - ", package_name, "@", package_version)) |>
+      as.character()
+    writeLines(top_page_file, file.path(render_dir, "top_page.html"))
+
     pre_rendering <- list.files(render_dir, full.names = TRUE)
 
     suppressMessages({suppressWarnings({
       out <- quarto::quarto_render(
-        input = template,
+        input = prefix_output,
         output_format = output_format,
         execute_params = params,
         ...
       )
     })})
 
-    fr <- file.remove(file.path(render_dir, output_file))
+    files_to_remove <- replace(
+      template_all_files,
+      which(template_all_files == template),
+      prefix_output
+    )
+
+    fr <- file.remove(files_to_remove)
     if (any(!fr)) {
       warning("Failed to remove the quarto template used from the directory.")
     }
