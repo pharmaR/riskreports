@@ -190,7 +190,7 @@ if (isTRUE(is_html)) {
   pagination = FALSE,
   details = function(index) {
     if(index %in% indexes_collapsed_rows) {
-      collapsed_content <- switch(x$Section[index],
+      collapsed_content <- switch(summary_data$Section[index],
         "Exported namespace" = namespace_table,
         "Dependencies" =  dependencies_table,
         "Reverse dependencies" = reverse_dependencies,
