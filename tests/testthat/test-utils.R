@@ -17,3 +17,12 @@ test_that("is_empty returns TRUE if the argument is withint the expected empty c
   expect_true(is_empty(""))
   expect_false(is_empty(letters[1]))
 })
+
+test_that("replace_zero_or_false_by_no returns 'No' if value is zero ir FALSE", {
+  value_1 <- FALSE
+  value_2 <- 0
+
+  expect_identical("No", replace_zero_or_false_by_no(value_1))
+  expect_identical("No", replace_zero_or_false_by_no(value_2))
+  expect_identical(TRUE, replace_zero_or_false_by_no(TRUE))
+})
