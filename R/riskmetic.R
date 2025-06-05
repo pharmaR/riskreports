@@ -78,6 +78,17 @@ is_logical <- function(x) {
   }
 }
 
+#' Replace 0 or FALSE by no in the summary table
+#' @keywords internal
+replace_zero_or_false_by_no <- function(value) {
+  if (value == 0 || isFALSE(value)) {
+    "No"
+  } else {
+    value
+  }
+}
+
+
 simple_cap <- function(x) {
   s <- toupper(substr(x, 1, 1))
   paste0(s, substring(x, 2))
@@ -96,8 +107,15 @@ summary_table <- function(risk) {
   for (column in setdiff(colnames(risk), excluded_columns)) {
     risk[,column] <- is_logical(risk[, column])
   }
-  risk$has_examples <- sprintf("%.2f%%", risk$has_examples*100)
-  risk$bugs_status <- sprintf("%.2f%% closed", risk$bugs_status*100)
+
+  columns_to_add_no <- c("has_news", "has_vignettes", "has_website", "has_bug_reports_url", "news_current") |>
+    intersect(colnames(risk))
+  for (column in columns_to_add_no) risk[,column] <- replace_zero_or_false_by_no(risk[, column])
+
+
+  if(is.numeric(risk$has_examples)) risk$has_examples <- sprintf("%.2f%%", risk$has_examples*100)
+  if(is.numeric(risk$bugs_status)) risk$bugs_status <- sprintf("%.2f%% closed", risk$bugs_status*100)
+
   # We change to numeric because it is a list with different elements we only use the numeric value
   if(!is.null(risk$size_codebase)) risk$size_codebase <- as.numeric(risk$size_codebase) 
   if (risk$has_vignettes > 0) {
