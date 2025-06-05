@@ -75,6 +75,11 @@ The following metrics are derived from the `riskmetric` R package.
 
 ```{r read-riskmetric, warning=FALSE}
 d_riskmetric <- readRDS(risk_path)
+
+# Ensure r_cmd_check exists to avoid errors
+if (!"r_cmd_check" %in% names(d_riskmetric)) {
+  d_riskmetric[["r_cmd_check"]] <- structure(NA, class = "risk_metric_error")
+}
 ```
 
 ```{r create_r_riskmetric, warning=FALSE}
