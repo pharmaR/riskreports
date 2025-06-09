@@ -75,6 +75,17 @@ The following metrics are derived from the `riskmetric` R package.
 
 ```{r read-riskmetric, warning=FALSE}
 d_riskmetric <- readRDS(risk_path)
+
+# Required fields
+required_fields <- c("r_cmd_check", "license", "remote_checks", "covr_coverage")
+
+# Missing fields
+missing_fields <- setdiff(required_fields, names(d_riskmetric))
+
+# Assign default error structure for missing fields to avoid errors
+for (field in missing_fields) {
+  d_riskmetric[[field]] <- structure(NA, class = "risk_metric_error")
+}
 ```
 
 ```{r create_r_riskmetric, warning=FALSE}
@@ -190,7 +201,7 @@ if (isTRUE(is_html)) {
   pagination = FALSE,
   details = function(index) {
     if(index %in% indexes_collapsed_rows) {
-      collapsed_content <- switch(x$Section[index],
+      collapsed_content <- switch(summary_data$Section[index],
         "Exported namespace" = namespace_table,
         "Dependencies" =  dependencies_table,
         "Reverse dependencies" = reverse_dependencies,
