@@ -4,6 +4,7 @@
 .Ruserdata
 riskreports.Rproj
 inst/doc
+vignettes/articles/Generate-Customized-Report_gbbfx.Rmd
 inst/assessments
 inst/source/Outputs/
 inst/source/Library

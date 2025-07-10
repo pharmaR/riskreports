@@ -132,9 +132,12 @@ package_report <- function(
   logo_light_dest <- file.path(render_dir, "logo_light.png")
   logo_dark_dest <- file.path(render_dir, "logo_dark.png")
   r_validation_logo_dest <- file.path(render_dir, "r_validation_logo.png")
-  
+  logo_to_remove <- c()
   if (file.exists(logo_path)) {
     file.copy(logo_path, logo_light_dest, overwrite = TRUE)
+    if(logo_path != logo_light_dest) {
+      logo_to_remove <- c(logo_to_remove, logo_light_dest)
+    }
     message("Copied light mode logo to rendering directory.")
   }else{
     message("Either your logo_path specification is wrong or your light mode logo already exists in rendering directory.")
@@ -142,6 +145,9 @@ package_report <- function(
   
   if (file.exists(logo_path_dark) && logo_path_dark != logo_path && (normalizePath(logo_path_dark) != normalizePath(logo_dark_dest))) {
     file.copy(logo_path_dark, logo_dark_dest, overwrite = TRUE)
+    if(logo_path_dark != logo_dark_dest) {
+      logo_to_remove <- c(logo_to_remove, logo_dark_dest)
+    }
     message("Copied dark mode logo to rendering directory.")
   }else{
     message("Dark mode logo already exists in rendering directory.")
@@ -237,7 +243,7 @@ package_report <- function(
     prefix_output
   )
   
-  fr <- file.remove(files_to_remove)
+  fr <- file.remove(c(files_to_remove,logo_to_remove))
   if (any(!fr)) {
     warning("Failed to remove the quarto template used from the directory.")
   }
