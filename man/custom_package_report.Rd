@@ -55,6 +55,7 @@ The \code{primary_color} and \code{secondary_color} arguments are placeholders f
 and are not currently applied. See the function code for a placeholder to add custom CSS or SCSS styling.
 }
 \examples{
+\dontrun{
 pr <- package_report(
   package_name = "dplyr",
   package_version = "1.1.4",
@@ -69,4 +70,5 @@ pr <- package_report(
 )
 pr
 file.remove(pr)
+}
 }

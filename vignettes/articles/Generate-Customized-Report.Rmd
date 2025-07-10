@@ -15,15 +15,16 @@ knitr::opts_chunk$set(
 library(riskreports)
 ```
 
+## Standard R Validation Report
 
-
-```{r}
+```{r eval=FALSE}
 
 library(riskreports)
 # Specify the folder where the files should go (here for easy access on the website)
-options("riskreports_output_dir" = "C:/Users/gbbfx/GitProjects/TMP_tests")
+options("riskreports_output_dir" = "C:/Users/XXXX/GitProjects/TMP_tests")
 
 pr <- package_report(
+  template_path = system.file("report/package", package = "riskreports"),
   package_name = "dplyr",
   package_version = "1.1.4",
   params = list(
@@ -33,22 +34,27 @@ pr <- package_report(
 pr
 ```
 
+## A Customized Report for a Package
 
-```{r}
+- Include customized log in input parameters `logo_path` and `logo_path_dark`.
+- Other customized css can be included by modify the css files in the template path.
+
+```{r eval=FALSE}
 library(riskreports)
 # Specify the folder where the files should go (here for easy access on the website)
-options("riskreports_output_dir" = "C:/Users/gbbfx/GitProjects/TMP_tests")
+options("riskreports_output_dir" = "C:/Users/XXXX/GitProjects/TMP_tests")
 
 # Example usage
- pr <- custom_package_report(
-   template_path = "C:/Users/gbbfx/GitProjects/riskreports/inst/custom_report/package",
+ pr <- package_report(
+   template_path = "C:/Users/XXXXXX/GitProjects/riskreports/inst/custom_report/package",
    package_name = "dplyr",
    package_version = "1.1.4",
    params = list(
      assessment_path = system.file("assessments/dplyr.rds", package = "riskreports"),
      image = "rhub/ref-image"
    ),
-   logo_path = "C:/Users/gbbfx/GitProjects/TMP_tests/logo.png"
+   logo_path = "C:/Users/gbbfx/GitProjects/TMP_tests/logo.png",
+   logo_path_dark = "C:/Users/gbbfx/GitProjects/TMP_tests/logo_dark.png"
  )
  pr
 #' file.remove(pr)
