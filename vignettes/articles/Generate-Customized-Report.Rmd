@@ -1,0 +1,55 @@
+---
+title: "Generate Customized Report"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(riskreports)
+```
+
+
+
+```{r}
+
+library(riskreports)
+# Specify the folder where the files should go (here for easy access on the website)
+options("riskreports_output_dir" = "C:/Users/gbbfx/GitProjects/TMP_tests")
+
+pr <- package_report(
+  package_name = "dplyr",
+  package_version = "1.1.4",
+  params = list(
+    assessment_path = system.file("assessments/dplyr.rds", package = "riskreports")),
+  quiet = FALSE # To silence quarto output for readability
+)
+pr
+```
+
+
+```{r}
+library(riskreports)
+# Specify the folder where the files should go (here for easy access on the website)
+options("riskreports_output_dir" = "C:/Users/gbbfx/GitProjects/TMP_tests")
+
+# Example usage
+ pr <- custom_package_report(
+   template_path = "C:/Users/gbbfx/GitProjects/riskreports/inst/custom_report/package",
+   package_name = "dplyr",
+   package_version = "1.1.4",
+   params = list(
+     assessment_path = system.file("assessments/dplyr.rds", package = "riskreports"),
+     image = "rhub/ref-image"
+   ),
+   logo_path = "C:/Users/gbbfx/GitProjects/TMP_tests/logo.png"
+ )
+ pr
+#' file.remove(pr)
+```
