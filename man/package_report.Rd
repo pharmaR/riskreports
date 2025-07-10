@@ -66,8 +66,8 @@ pr <- package_report(
     assessment_path = system.file("assessments/dplyr.rds", package = "riskreports"),
     image = "rhub/ref-image"
   ),
-  logo_path = "path/to/light_bayer_logo.png",
-  logo_path_dark = "path/to/dark_bayer_logo.png",
+  logo_path = "r_validation_logo.png",
+  logo_path_dark = "r_validation_logo.png",
   r_validation_logo_path = "path/to/r_validation_logo.png",
   primary_color = "#4697D2",
   secondary_color = "#E8F7F7"
