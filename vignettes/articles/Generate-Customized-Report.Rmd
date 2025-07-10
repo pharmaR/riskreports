@@ -42,19 +42,19 @@ pr
 ```{r eval=FALSE}
 library(riskreports)
 # Specify the folder where the files should go (here for easy access on the website)
-options("riskreports_output_dir" = "C:/Users/XXXX/GitProjects/TMP_tests")
+options("riskreports_output_dir" = "C:/Users/XXXXX/GitProjects/TMP_tests")
 
 # Example usage
  pr <- package_report(
-   template_path = "C:/Users/XXXXXX/GitProjects/riskreports/inst/custom_report/package",
+   template_path = "C:/Users/XXXXX/GitProjects/riskreports/inst/report/package",
    package_name = "dplyr",
    package_version = "1.1.4",
    params = list(
      assessment_path = system.file("assessments/dplyr.rds", package = "riskreports"),
      image = "rhub/ref-image"
    ),
-   logo_path = "C:/Users/gbbfx/GitProjects/TMP_tests/logo.png",
-   logo_path_dark = "C:/Users/gbbfx/GitProjects/TMP_tests/logo_dark.png"
+   logo_path = "C:/Users/XXXXX/GitProjects/TMP_tests/logo.png",
+   logo_path_dark = "C:/Users/XXXXX/GitProjects/TMP_tests/logo_dark.png"
  )
  pr
 #' file.remove(pr)
