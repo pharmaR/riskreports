@@ -36,7 +36,7 @@ pr
 
 ## A Customized Report for a Package
 
-- Include customized log in input parameters `logo_path` and `logo_path_dark`.
+- Include customized logo in input parameters `logo_path` and `logo_path_dark`.
 - Other customized css can be included by modify the css files in the template path.
 
 ```{r eval=FALSE}
