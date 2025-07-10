@@ -12,7 +12,7 @@ License: MIT + file LICENSE
 URL: https://github.com/pharmaR/riskreports, https://pharmar.github.io/riskreports/
 BugReports: https://github.com/pharmaR/riskreports/issues
 Depends:
-    R (>= 4.5.1)
+    R (>= 4.5.0)
 Imports:
     methods,
     htmltools,
