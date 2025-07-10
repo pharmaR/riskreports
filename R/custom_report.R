@@ -8,7 +8,6 @@
 #' @param params A list of execute parameters passed to the template.
 #' @param logo_path Path to a custom logo image file for light mode (e.g., PNG, JPG). Defaults to "r_validation_logo.png".
 #' @param logo_path_dark Path to a custom logo image file for dark mode (e.g., PNG, JPG). Defaults to the value of `logo_path` if not specified.
-#' @param r_validation_logo_path Path to the R Validation Hub logo image file to display at the bottom of the report. Defaults to "r_validation_logo.png".
 #' @param primary_color Hex color code for primary styling (e.g., links, headers). Defaults to "#007BFF" (blue). Currently not applied; reserved for future customization.
 #' @param secondary_color Hex color code for secondary styling (e.g., backgrounds, borders). Defaults to "#2A424E" (dark gray). Currently not applied; reserved for future customization.
 #' @param ... Additional arguments passed to `quarto::quarto_render()`.
@@ -17,11 +16,10 @@
 #' @details Please include source as part of `params` content. Source is returned after
 #' calling function `riskmetric::pkg_ref` before the risk assessment is executed.
 #' The `logo_path` and `logo_path_dark` allow customization of the report's logo for light and dark modes.
-#' The `r_validation_logo_path` allows adding the R Validation Hub logo at the bottom of the report.
 #' The `primary_color` and `secondary_color` arguments are placeholders for future branding customization
 #' and are not currently applied. See the function code for a placeholder to add custom CSS or SCSS styling.
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' pr <- package_report(
 #'   package_name = "dplyr",
 #'   package_version = "1.1.4",
@@ -29,24 +27,23 @@
 #'     assessment_path = system.file("assessments/dplyr.rds", package = "riskreports"),
 #'     image = "rhub/ref-image"
 #'   ),
-#'   logo_path = "r_validation_logo.png",
-#'   logo_path_dark = "r_validation_logo.png",
-#'   r_validation_logo_path = "path/to/r_validation_logo.png",
+#'   logo_path = "path/to/light_bayer_logo.png",
+#'   logo_path_dark = "path/to/dark_bayer_logo.png",
 #'   primary_color = "#4697D2",
 #'   secondary_color = "#E8F7F7"
 #' )
 #' pr
 #' file.remove(pr)
-package_report <- function(
+#' }
+custom_package_report <- function(
     package_name,
     package_version,
     package = NULL,
-    template_path = system.file("report/package", package = "riskreports"),
+    template_path = system.file("custom_report/package", package = "riskreports"),
     output_format = "all",
     params = list(),
     logo_path = "r_validation_logo.png",
     logo_path_dark = logo_path,
-    r_validation_logo_path = "r_validation_logo.png",
     primary_color = "#007BFF",
     secondary_color = "#2A424E",
     ...
@@ -73,10 +70,8 @@ package_report <- function(
   params$image <- get_image_name(params)
   params$logo_path <- logo_path
   params$logo_path_dark <- logo_path_dark
-  params$r_validation_logo_path <- r_validation_logo_path
   params$primary_color <- primary_color
   params$secondary_color <- secondary_color
-  # Removed params$output_format to avoid error if not declared in YAML
   
   if (is.null(template_path)) {
     template_path <- system.file("report/pkg_template.qmd",
@@ -128,43 +123,22 @@ package_report <- function(
     message("Removed custom_color.css from rendering directory to prevent rendering errors.")
   }
   
-  # Copy logo files to rendering directory to ensure accessibility
-  logo_light_dest <- file.path(render_dir, "logo_light.png")
-  logo_dark_dest <- file.path(render_dir, "logo_dark.png")
-  r_validation_logo_dest <- file.path(render_dir, "r_validation_logo.png")
-  logo_to_remove <- c()
-  if (file.exists(logo_path)) {
-    file.copy(logo_path, logo_light_dest, overwrite = TRUE)
-    if(logo_path != logo_light_dest) {
-      logo_to_remove <- c(logo_to_remove, logo_light_dest)
-    }
-    message("Copied light mode logo to rendering directory.")
-  }else{
-    message("Either your logo_path specification is wrong or your light mode logo already exists in rendering directory.")
-  }
-  
-  if (file.exists(logo_path_dark) && logo_path_dark != logo_path && (normalizePath(logo_path_dark) != normalizePath(logo_dark_dest))) {
-    file.copy(logo_path_dark, logo_dark_dest, overwrite = TRUE)
-    if(logo_path_dark != logo_dark_dest) {
-      logo_to_remove <- c(logo_to_remove, logo_dark_dest)
-    }
-    message("Copied dark mode logo to rendering directory.")
-  }else{
-    message("Dark mode logo already exists in rendering directory.")
-  }
-  if (file.exists(r_validation_logo_path)) {
-    file.copy(r_validation_logo_path, r_validation_logo_dest, overwrite = TRUE)
-    message("Copied R Validation Hub logo to rendering directory.")
-  }
-  
   # Replace the title and logo in top_page.html
   top_page_file <- readLines(file.path(render_dir, "top_page.html"))
   title_line <- grep("<p", top_page_file)
-  top_page_file[title_line] <- htmltools::p(class="title",
-                                            paste0("Validation Report - ", package_name, "@", package_version)) |>
+  top_page_file[title_line] <- htmltools::p(paste0("Validation Report - ", package_name, "@", package_version)) |>
     as.character()
-  top_page_file <- gsub("LOGO_LIGHT_PLACEHOLDER", basename(params$logo_path), top_page_file)
-  top_page_file <- gsub("LOGO_DARK_PLACEHOLDER", basename(params$logo_path_dark), top_page_file)
+  logo_line <- grep("<img src=", top_page_file)
+  if (length(logo_line) > 0) {
+    # Replace the single logo with a dual-logo setup for light and dark modes
+    logo_html <- c(
+      '<div class="logo-container">',
+      paste0('  <img src="', logo_path, '" alt="Light Mode Logo" class="logo-light">'),
+      paste0('  <img src="', logo_path_dark, '" alt="Dark Mode Logo" class="logo-dark">'),
+      '</div>'
+    )
+    top_page_file <- c(top_page_file[1:(logo_line-1)], logo_html, top_page_file[(logo_line+1):length(top_page_file)])
+  }
   # Placeholder for custom CSS or SCSS styling
   # Note: Add custom styling here in the future. Options include:
   # - Inline CSS by appending a <style> block to top_page_file with custom styles using params$primary_color and params$secondary_color.
@@ -175,56 +149,16 @@ package_report <- function(
     "<style>",
     "  /* Dual-logo styling for light and dark modes */",
     "  .logo-container { position: relative; display: inline-block; }",
-    "  .logo-light { display: block !important; }",
-    "  .logo-dark { display: none !important; }",
-    "  /* System preference for dark mode */",
+    "  .logo-light { display: block; }",
+    "  .logo-dark { display: none; }",
     "  @media (prefers-color-scheme: dark) {",
-    "    .logo-light { display: none !important; }",
-    "    .logo-dark { display: block !important; }",
-    "  }",
-    "  /* Quarto manual theme switcher support - high specificity */",
-    "  body.quarto-dark .logo-container .logo-light {",
-    "    display: none !important;",
-    "  }",
-    "  body.quarto-dark .logo-container .logo-dark {",
-    "    display: block !important;",
-    "  }",
-    "  /* Additional Quarto theme attribute variations */",
-    "  html[data-bs-theme=\"dark\"] .logo-container .logo-light {",
-    "    display: none !important;",
-    "  }",
-    "  html[data-bs-theme=\"dark\"] .logo-container .logo-dark {",
-    "    display: block !important;",
-    "  }",
-    "  html[data-theme=\"dark\"] .logo-container .logo-light {",
-    "    display: none !important;",
-    "  }",
-    "  html[data-theme=\"dark\"] .logo-container .logo-dark {",
-    "    display: block !important;",
-    "  }",
-    "  /* Fallback for custom dark mode class on body or html */",
-    "  body.dark .logo-container .logo-light, html.dark .logo-container .logo-light,",
-    "  body.dark-mode .logo-container .logo-light, html.dark-mode .logo-container .logo-light {",
-    "    display: none !important;",
-    "  }",
-    "  body.dark .logo-container .logo-dark, html.dark .logo-container .logo-dark,",
-    "  body.dark-mode .logo-container .logo-dark, html.dark-mode .logo-container .logo-dark {",
-    "    display: block !important;",
+    "    .logo-light { display: none; }",
+    "    .logo-dark { display: block; }",
     "  }",
     "</style>"
   )
   top_page_file <- c(top_page_file, custom_style)
   writeLines(top_page_file, file.path(render_dir, "top_page.html"))
-  ##browser()
-  ## Dynamically write the footer.html. Not necessary in most cases.
-  # Create footer.html for R Validation Hub logo and text at the bottom (for HTML output)
-  # footer_content <- c(
-  #   '<div class="report-footer" style="text-align: center; margin-top: 2em; padding: 1em; font-size: 0.9em; color: #666;">',
-  #   '  <p>Generated by R-Validation Hub workflow</p>',
-  #   paste0('  <img src="r_validation_logo.png" alt="R Validation Hub Logo" style="width: 100px; margin-top: 0.5em;">'),
-  #   '</div>'
-  # )
-  # writeLines(footer_content, file.path(render_dir, "footer.html"))
   
   pre_rendering <- list.files(render_dir, full.names = TRUE)
   
@@ -243,7 +177,7 @@ package_report <- function(
     prefix_output
   )
   
-  fr <- file.remove(c(files_to_remove,logo_to_remove))
+  fr <- file.remove(files_to_remove)
   if (any(!fr)) {
     warning("Failed to remove the quarto template used from the directory.")
   }
