@@ -19,7 +19,7 @@
 #' The `primary_color` and `secondary_color` arguments are placeholders for future branding customization
 #' and are not currently applied. See the function code for a placeholder to add custom CSS or SCSS styling.
 #' @export
-#' @examples
+#' @examples \dontrun{
 #' pr <- package_report(
 #'   package_name = "dplyr",
 #'   package_version = "1.1.4",
@@ -34,6 +34,7 @@
 #' )
 #' pr
 #' file.remove(pr)
+#' }
 custom_package_report <- function(
     package_name,
     package_version,
@@ -186,6 +187,3 @@ custom_package_report <- function(
   invisible(output_files)
 }
 
-is.empty <- function(x) {
-  is.null(x) || is.na(x) || !nzchar(x)
-}
