@@ -2,6 +2,7 @@
 
 export(assessment)
 export(check_reporter)
+export(custom_package_report)
 export(environ_report)
 export(is_risk_error)
 export(options_report)
