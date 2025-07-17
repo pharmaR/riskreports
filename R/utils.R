@@ -37,6 +37,11 @@ is_empty <- function(x) {
   is.null(x) || is.na(x) || !nzchar(x)
 }
 
+
+is.empty <- function(x) {
+  is.null(x) || is.na(x) || !nzchar(x)
+}
+
 #' Return string to display Origin depending on source of the assessment
 #' 
 #' @param source return value of function `pkg_ref`
