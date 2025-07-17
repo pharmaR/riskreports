@@ -53,7 +53,10 @@ assessment <- function(assessment) {
 #' @examples
 #' is_risk_error(1)
 is_risk_error <- function(x) {
-  if (inherits(x, "pkg_metric")) {
+  x <- tryCatch(x, error = identity)
+  if (is(x, "simpleError")) {
+    FALSE
+  } else if (inherits(x, "pkg_metric")) {
     inherits(x, "pkg_metric_error") || inherits(x, "error")
   } else {
     NA
