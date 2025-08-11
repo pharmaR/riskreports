@@ -94,10 +94,12 @@ custom_package_report <- function(
   # https://github.com/quarto-dev/quarto-r/issues/81#issuecomment-1375691267
   # quarto rendering happens in the same place as the file/project
   # To avoid issues copy to a different place and render there.
+  ##**ZG** This will copy all files, including those in subfolders, 
+  # to the rendering directory and preserve their structure.
   render_dir <- output_dir()
-  files_to_copy <- list.files(template_path)
+  files_to_copy <- list.files(template_path, recursive = TRUE)
   fc <- file.copy(from = file.path(template_path, files_to_copy),
-                  to = render_dir,
+                  to = file.path(render_dir, files_to_copy),
                   overwrite = TRUE,
                   copy.date = TRUE)
   
