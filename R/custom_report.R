@@ -75,6 +75,7 @@ custom_package_report <- function(
   params$primary_color <- primary_color
   params$secondary_color <- secondary_color
   params$r_validation_logo_path <- r_validation_logo_path
+
   if (is.null(template_path)) {
     template_path <- system.file("report/custom_package",
                                  package = "riskreports")
@@ -235,6 +236,7 @@ custom_package_report <- function(
       input = prefix_output,
       output_format = output_format,
       execute_params = params,
+      pandoc_args = c("--self-contained"),
       ...
     )
   })})
