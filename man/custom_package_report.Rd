@@ -56,7 +56,7 @@ and are not currently applied. See the function code for a placeholder to add cu
 }
 \examples{
 \dontrun{
-pr <- package_report(
+pr <- custom_package_report(
   package_name = "dplyr",
   package_version = "1.1.4",
   params = list(

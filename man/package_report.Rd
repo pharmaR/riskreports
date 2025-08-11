@@ -11,11 +11,6 @@ package_report(
   template_path = system.file("report/package", package = "riskreports"),
   output_format = "all",
   params = list(),
-  logo_path = "r_validation_logo.png",
-  logo_path_dark = logo_path,
-  r_validation_logo_path = "r_validation_logo.png",
-  primary_color = "#007BFF",
-  secondary_color = "#2A424E",
   ...
 )
 }
@@ -26,23 +21,13 @@ package_report(
 
 \item{package}{Path where to find a package source to retrieve name and version number.}
 
-\item{template_path}{Path to a custom quarto template file.}
+\item{template_path}{Path to a custom quarto template file}
 
 \item{output_format}{Output format for the report. Default is "all".}
 
-\item{params}{A list of execute parameters passed to the template.}
+\item{params}{A list of execute parameters passed to the template}
 
-\item{logo_path}{Path to a custom logo image file for light mode (e.g., PNG, JPG). Defaults to "r_validation_logo.png".}
-
-\item{logo_path_dark}{Path to a custom logo image file for dark mode (e.g., PNG, JPG). Defaults to the value of \code{logo_path} if not specified.}
-
-\item{r_validation_logo_path}{Path to the R Validation Hub logo image file to display at the bottom of the report. Defaults to "r_validation_logo.png".}
-
-\item{primary_color}{Hex color code for primary styling (e.g., links, headers). Defaults to "#007BFF" (blue). Currently not applied; reserved for future customization.}
-
-\item{secondary_color}{Hex color code for secondary styling (e.g., backgrounds, borders). Defaults to "#2A424E" (dark gray). Currently not applied; reserved for future customization.}
-
-\item{...}{Additional arguments passed to \code{quarto::quarto_render()}.}
+\item{...}{Additional arguments passed to \code{quarto::quarto_render()}}
 }
 \value{
 A path to the reports generated, called by its side effects.
@@ -52,11 +37,7 @@ Reports about a package
 }
 \details{
 Please include source as part of \code{params} content. Source is returned after
-calling function \code{riskmetric::pkg_ref} before the risk assessment is executed.
-The \code{logo_path} and \code{logo_path_dark} allow customization of the report's logo for light and dark modes.
-The \code{r_validation_logo_path} allows adding the R Validation Hub logo at the bottom of the report.
-The \code{primary_color} and \code{secondary_color} arguments are placeholders for future branding customization
-and are not currently applied. See the function code for a placeholder to add custom CSS or SCSS styling.
+calling function \code{riskmetric::pkg_ref} before the risk assessment is executed
 }
 \examples{
 pr <- package_report(
@@ -64,13 +45,7 @@ pr <- package_report(
   package_version = "1.1.4",
   params = list(
     assessment_path = system.file("assessments/dplyr.rds", package = "riskreports"),
-    image = "rhub/ref-image"
-  ),
-  logo_path = "r_validation_logo.png",
-  logo_path_dark = "r_validation_logo.png",
-  r_validation_logo_path = "path/to/r_validation_logo.png",
-  primary_color = "#4697D2",
-  secondary_color = "#E8F7F7"
+    image = "rhub/ref-image")
 )
 pr
 file.remove(pr)

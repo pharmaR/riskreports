@@ -24,15 +24,14 @@ library(riskreports)
 options("riskreports_output_dir" = "C:/Users/XXXX/GitProjects/TMP_tests")
 
 pr <- package_report(
-  template_path = system.file("report/package", package = "riskreports"),
   package_name = "dplyr",
   package_version = "1.1.4",
   params = list(
     assessment_path = system.file("assessments/dplyr.rds", package = "riskreports"),
-    brand_path= "C:/Users/gbbfx/GitProjects/riskreports/inst/report/package/_brand.yml"),
-  quiet = FALSE # To silence quarto output for readability
+    image = "rhub/ref-image")
 )
 pr
+file.remove(pr)
 ```
 
 ## A Customized Report for a Package
@@ -40,23 +39,24 @@ pr
 - Include customized logo in input parameters `logo_path` and `logo_path_dark`.
 - Other customized css can be included by modify the css files in the template path.
 
+It is also possible to build a completely new template path with everything defined by yourself. 
+
+
 ```{r eval=FALSE}
 library(riskreports)
 # Specify the folder where the files should go (here for easy access on the website)
 options("riskreports_output_dir" = "C:/Users/XXXXX/GitProjects/TMP_tests")
 
 # Example usage
- pr <- package_report(
-   template_path = "C:/Users/XXXXX/GitProjects/riskreports/inst/report/package",
+ pr <- custom_package_report(
+   template_path = "C:/Users/XXXXX/GitProjects/riskreports/inst/report/custom_package",
    package_name = "dplyr",
    package_version = "1.1.4",
    params = list(
      assessment_path = system.file("assessments/dplyr.rds", package = "riskreports"),
      image = "rhub/ref-image"
-   ),
-   logo_path = "C:/Users/XXXXX/GitProjects/TMP_tests/logo.png",
-   logo_path_dark = "C:/Users/XXXXX/GitProjects/TMP_tests/logo_dark.png"
+   )
  )
  pr
-#' file.remove(pr)
+file.remove(pr)
 ```
