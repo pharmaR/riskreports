@@ -1,0 +1,11 @@
+logo:
+  images:
+    icon: logos/icon.png
+    header: logos/header-logo.png
+    header-white: logos/header-logo-white.png
+    full: logos/full-logo.svg
+  small: icon
+  medium:
+    light: header
+    dark: header-white
+  large: full

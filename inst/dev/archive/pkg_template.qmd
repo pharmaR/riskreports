@@ -56,7 +56,6 @@ pkg_name <- params$package_name
 pkg_version <- params$package_version
 risk_path <- params$assessment_path
 image <- params$image
-if(is.null(pkg)) pkg <- pkg_name
 ```
 
 Documents the installation of this package on an open source R environment, focusing on:
