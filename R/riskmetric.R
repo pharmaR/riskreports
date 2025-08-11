@@ -53,7 +53,10 @@ assessment <- function(assessment) {
 #' @examples
 #' is_risk_error(1)
 is_risk_error <- function(x) {
-  if (inherits(x, "pkg_metric")) {
+  x <- tryCatch(x, error = identity)
+  if (is(x, "simpleError")) {
+    FALSE
+  } else if (inherits(x, "pkg_metric")) {
     inherits(x, "pkg_metric_error") || inherits(x, "error")
   } else {
     NA
@@ -117,7 +120,7 @@ summary_table <- function(risk) {
   if(is.numeric(risk$bugs_status)) risk$bugs_status <- sprintf("%.2f%% closed", risk$bugs_status*100)
 
   # We change to numeric because it is a list with different elements we only use the numeric value
-  if(!is.null(risk$size_codebase)) risk$size_codebase <- as.numeric(risk$size_codebase) 
+  if(!is.null(risk$size_codebase)) risk$size_codebase <- as.numeric(risk$size_codebase)
   if (risk$has_vignettes > 0) {
     risk$has_vignettes <- "Yes"
   }
@@ -126,7 +129,7 @@ summary_table <- function(risk) {
   # Reorder by
   fields <- rownames(transposed_risk)
   important_fields <- c("has_news", "exported_namespace", "license", "has_vignettes", "export_help",
-                        "has_website", "has_maintainer", "bugs_status", "size_codebase", 
+                        "has_website", "has_maintainer", "bugs_status", "size_codebase",
                         "has_bug_reports_url", "has_examples", "dependencies", "reverse_dependencies")
   # fields in report cards are duplicated and should be removed
   fields_in_cards <- c("downloads_1yr", "reverse_dependencies", "license")
@@ -134,7 +137,7 @@ summary_table <- function(risk) {
   transposed_risk <- transposed_risk[c(intersect(important_fields, fields),
            setdiff(fields, important_fields)) |>
             setdiff(fields_in_cards), ,drop = FALSE]
-  
+
 
   transformed_risk <- simple_cap(gsub("_", " ", rownames(transposed_risk), fixed = TRUE))
   summary_data <- as.data.frame(transposed_risk)
