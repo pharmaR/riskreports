@@ -28,7 +28,8 @@ pr <- package_report(
   package_name = "dplyr",
   package_version = "1.1.4",
   params = list(
-    assessment_path = system.file("assessments/dplyr.rds", package = "riskreports")),
+    assessment_path = system.file("assessments/dplyr.rds", package = "riskreports"),
+    brand_path= "C:/Users/gbbfx/GitProjects/riskreports/inst/report/package/_brand.yml"),
   quiet = FALSE # To silence quarto output for readability
 )
 pr
