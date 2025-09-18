@@ -5,10 +5,16 @@
 #' @details The function analyzes if the license is standard. If it is standard, then it will see if there is available
 #' information for the footer. The footer information is only the multiple version number for the moment.
 #' @keywords internal
+#' @importFrom utils getFromNamespace
 extract_license <- function(assessment) {
   license_output <- list(main = as.character(assessment$license))
-
-  license_analysis <- tools::analyze_license(license_output$main)
+  # We use the internal version so that we can use old R versions analyze_license
+  if (getRversion() < "4.4.0") {
+    analyze_license <- utils::getFromNamespace("tools", "analyze_license") # nolint
+  } else {
+    analyze_license <- tools::analyze_license
+  }
+  license_analysis <- analyze_license(license_output$main)
 
   if (isTRUE(license_analysis$is_standardizable)) {
     license_output$main <- sub("\\(.+\\)", "", license_analysis$components[1])
