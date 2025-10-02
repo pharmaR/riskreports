@@ -18,6 +18,9 @@ fill_in <- function(list, names) {
   list
 }
 
+`%||%` <-  function (x, y) {
+  if (is.null(x)) y else x
+}
 
 output_dir <- function() {
   opt <- getOption("riskreports_output_dir", default = NULL)
