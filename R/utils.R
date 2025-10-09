@@ -18,6 +18,9 @@ fill_in <- function(list, names) {
   list
 }
 
+`%||%` <-  function (x, y) {
+  if (is.null(x)) y else x
+}
 
 output_dir <- function() {
   opt <- getOption("riskreports_output_dir", default = NULL)
@@ -43,7 +46,7 @@ is.empty <- function(x) {
 }
 
 #' Return string to display Origin depending on source of the assessment
-#' 
+#'
 #' @param source return value of function `pkg_ref`
 #' @returns depending on source transformed string for the origin
 #' @keywords internal
