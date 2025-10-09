@@ -13,3 +13,4 @@ inst/source/*tar.gz
 inst/source/
 inst/checks/
 docs
+inst/dev/TMP_tests
