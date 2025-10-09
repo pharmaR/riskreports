@@ -21,7 +21,7 @@ library(riskreports)
 
 library(riskreports)
 # Specify the folder where the files should go (here for easy access on the website)
-options("riskreports_output_dir" = "C:/Users/XXXX/GitProjects/TMP_tests")
+options("riskreports_output_dir" = "inst/dev/TMP_tests")
 
 pr <- package_report(
   package_name = "dplyr",
