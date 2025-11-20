@@ -20,7 +20,14 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/pharmaR/riskreports/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pharmaR/riskreports/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
+
+
 The goal of riskreports is to documents results of package checks for validation.
+
+```{=gfm}
+> [!IMPORTANT]  
+> The development of the package continues on [val.report](https://github.com/pharmar/val.report)
+```
 
 ## Installation
 

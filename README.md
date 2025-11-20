@@ -13,6 +13,9 @@ coverage](https://codecov.io/gh/pharmaR/riskreports/graph/badge.svg)](https://ap
 The goal of riskreports is to documents results of package checks for
 validation.
 
+> [!IMPORTANT]  
+> The development of the package continues on [val.report](https://github.com/pharmar/val.report)
+
 ## Installation
 
 You can install the development version of riskreports from
@@ -42,9 +45,12 @@ pr <- package_report(
     assessment_path = system.file("assessments/dplyr.rds", package = "riskreports")),
   quiet = TRUE # To silence quarto output for readability
 )
+#> Warning in package_report(package_name = "dplyr", package_version = "1.1.4", :
+#> Please provide the source of the package assessment
 pr
 #> [1] "pkgdown/assets/validation_report_dplyr_v1.1.4.html"
-#> [2] "pkgdown/assets/validation_report_dplyr_v1.1.4.md"
+#> [2] "pkgdown/assets/validation_report_dplyr_v1.1.4.md"  
+#> [3] "pkgdown/assets/validation_report_dplyr_v1.1.4.pdf"
 ```
 
 We first selected were reports should go. Then we used
