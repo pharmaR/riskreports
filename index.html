@@ -66,6 +66,10 @@
 <!-- badges: start -->
 
 <p>The goal of riskreports is to documents results of package checks for validation.</p>
+<blockquote>
+<p>[!IMPORTANT]<br>
+The development of the package continues on <a href="https://github.com/pharmar/val.report" class="external-link">val.report</a></p>
+</blockquote>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -91,9 +95,12 @@
 <span>    assessment_path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"assessments/dplyr.rds"</span>, package <span class="op">=</span> <span class="st">"riskreports"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  quiet <span class="op">=</span> <span class="cn">TRUE</span> <span class="co"># To silence quarto output for readability</span></span>
 <span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in package_report(package_name = "dplyr", package_version = "1.1.4", :</span></span>
+<span><span class="co">#&gt; Please provide the source of the package assessment</span></span>
 <span><span class="va">pr</span></span>
 <span><span class="co">#&gt; [1] "pkgdown/assets/validation_report_dplyr_v1.1.4.html"</span></span>
-<span><span class="co">#&gt; [2] "pkgdown/assets/validation_report_dplyr_v1.1.4.md"</span></span></code></pre></div>
+<span><span class="co">#&gt; [2] "pkgdown/assets/validation_report_dplyr_v1.1.4.md"  </span></span>
+<span><span class="co">#&gt; [3] "pkgdown/assets/validation_report_dplyr_v1.1.4.pdf"</span></span></code></pre></div>
 <p>We first selected were reports should go. Then we used <a href="https://cran.r-project.org/package=riskmetric" class="external-link">{riskmetric}</a> data to generate the report for the package.</p>
 <p>Then we can access those files on the website:</p>
 <ul>

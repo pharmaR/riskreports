@@ -34,7 +34,7 @@ environ_report()
 #> ANDROID_NDK             /usr/local/lib/android/sdk/ndk/27.3.13750724
 #> ANDROID_NDK_HOME        /usr/local/lib/android/sdk/ndk/27.3.13750724
 #> ANDROID_NDK_LATEST_HOME
-#>                         /usr/local/lib/android/sdk/ndk/28.2.13676358
+#>                         /usr/local/lib/android/sdk/ndk/29.0.14206865
 #> ANDROID_NDK_ROOT        /usr/local/lib/android/sdk/ndk/27.3.13750724
 #> ANDROID_SDK_ROOT        /usr/local/lib/android/sdk
 #> ANT_HOME                /usr/share/ant
@@ -67,15 +67,15 @@ environ_report()
 #> GITHUB_ACTOR_ID         185338939
 #> GITHUB_API_URL          https://api.github.com
 #> GITHUB_BASE_REF         
-#> GITHUB_ENV              /home/runner/work/_temp/_runner_file_commands/set_env_620aeece-4e03-4271-94fb-6874d880e7c5
+#> GITHUB_ENV              /home/runner/work/_temp/_runner_file_commands/set_env_45d09236-6a42-442a-be67-d71d8d4f3536
 #> GITHUB_EVENT_NAME       push
 #> GITHUB_EVENT_PATH       /home/runner/work/_temp/_github_workflow/event.json
 #> GITHUB_GRAPHQL_URL      https://api.github.com/graphql
 #> GITHUB_HEAD_REF         
 #> GITHUB_JOB              pkgdown
-#> GITHUB_OUTPUT           /home/runner/work/_temp/_runner_file_commands/set_output_620aeece-4e03-4271-94fb-6874d880e7c5
-#> GITHUB_PAT              ghs_2ff0toqsRqfFTBormaCQC8nv0o4PxM3XoW3q
-#> GITHUB_PATH             /home/runner/work/_temp/_runner_file_commands/add_path_620aeece-4e03-4271-94fb-6874d880e7c5
+#> GITHUB_OUTPUT           /home/runner/work/_temp/_runner_file_commands/set_output_45d09236-6a42-442a-be67-d71d8d4f3536
+#> GITHUB_PAT              ghs_OMtiwdJU2TL5U5e1Y4vzknpL47Ioxu3wgHgO
+#> GITHUB_PATH             /home/runner/work/_temp/_runner_file_commands/add_path_45d09236-6a42-442a-be67-d71d8d4f3536
 #> GITHUB_REF              refs/heads/main
 #> GITHUB_REF_NAME         main
 #> GITHUB_REF_PROTECTED    true
@@ -88,39 +88,39 @@ environ_report()
 #>                         42115094
 #> GITHUB_RETENTION_DAYS   90
 #> GITHUB_RUN_ATTEMPT      1
-#> GITHUB_RUN_ID           19339256984
-#> GITHUB_RUN_NUMBER       72
+#> GITHUB_RUN_ID           19543911609
+#> GITHUB_RUN_NUMBER       73
 #> GITHUB_SERVER_URL       https://github.com
-#> GITHUB_SHA              3e389b1bb551969a23996bd3624dc06640987087
-#> GITHUB_STATE            /home/runner/work/_temp/_runner_file_commands/save_state_620aeece-4e03-4271-94fb-6874d880e7c5
-#> GITHUB_STEP_SUMMARY     /home/runner/work/_temp/_runner_file_commands/step_summary_620aeece-4e03-4271-94fb-6874d880e7c5
+#> GITHUB_SHA              fbc96714ffe0f513ec398a6d045b7ec087a7203d
+#> GITHUB_STATE            /home/runner/work/_temp/_runner_file_commands/save_state_45d09236-6a42-442a-be67-d71d8d4f3536
+#> GITHUB_STEP_SUMMARY     /home/runner/work/_temp/_runner_file_commands/step_summary_45d09236-6a42-442a-be67-d71d8d4f3536
 #> GITHUB_TRIGGERING_ACTOR
 #>                         llrs-roche
 #> GITHUB_WORKFLOW         pkgdown.yaml
 #> GITHUB_WORKFLOW_REF     pharmaR/riskreports/.github/workflows/pkgdown.yaml@refs/heads/main
-#> GITHUB_WORKFLOW_SHA     3e389b1bb551969a23996bd3624dc06640987087
+#> GITHUB_WORKFLOW_SHA     fbc96714ffe0f513ec398a6d045b7ec087a7203d
 #> GITHUB_WORKSPACE        /home/runner/work/riskreports/riskreports
 #> GOROOT_1_22_X64         /opt/hostedtoolcache/go/1.22.12/x64
 #> GOROOT_1_23_X64         /opt/hostedtoolcache/go/1.23.12/x64
-#> GOROOT_1_24_X64         /opt/hostedtoolcache/go/1.24.9/x64
-#> GOROOT_1_25_X64         /opt/hostedtoolcache/go/1.25.3/x64
+#> GOROOT_1_24_X64         /opt/hostedtoolcache/go/1.24.10/x64
+#> GOROOT_1_25_X64         /opt/hostedtoolcache/go/1.25.4/x64
 #> GRADLE_HOME             /usr/share/gradle-9.2.0
 #> HOME                    /home/runner
 #> HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS
 #>                         3650
 #> HOMEBREW_NO_AUTO_UPDATE
 #>                         1
-#> INVOCATION_ID           e22feb4ecb574724b6f83acd17c7ea8d
+#> INVOCATION_ID           5f791ba872f845efa0dc7a1734e59c27
 #> IN_PKGDOWN              true
 #> ImageOS                 ubuntu24
-#> ImageVersion            20251102.99.1
+#> ImageVersion            20251112.124.1
 #> JAVA_HOME               /usr/lib/jvm/temurin-17-jdk-amd64
 #> JAVA_HOME_11_X64        /usr/lib/jvm/temurin-11-jdk-amd64
 #> JAVA_HOME_17_X64        /usr/lib/jvm/temurin-17-jdk-amd64
 #> JAVA_HOME_21_X64        /usr/lib/jvm/temurin-21-jdk-amd64
 #> JAVA_HOME_25_X64        /usr/lib/jvm/temurin-25-jdk-amd64
 #> JAVA_HOME_8_X64         /usr/lib/jvm/temurin-8-jdk-amd64
-#> JOURNAL_STREAM          9:10848
+#> JOURNAL_STREAM          9:11235
 #> LANG                    C.UTF-8
 #> LANGUAGE                en-US
 #> LC_COLLATE              C
@@ -145,11 +145,11 @@ environ_report()
 #> RSPM                    https://packagemanager.posit.co/cran/__linux__/noble/latest
 #> RUNNER_ARCH             X64
 #> RUNNER_ENVIRONMENT      github-hosted
-#> RUNNER_NAME             GitHub Actions 1000001972
+#> RUNNER_NAME             GitHub Actions 1000002091
 #> RUNNER_OS               Linux
 #> RUNNER_TEMP             /home/runner/work/_temp
 #> RUNNER_TOOL_CACHE       /opt/hostedtoolcache
-#> RUNNER_TRACKING_ID      github_d6b48995-e636-445c-ba7f-dad49e74a4e3
+#> RUNNER_TRACKING_ID      github_02f4ff23-c7cb-4994-8ff3-a2688b228fb7
 #> RUNNER_WORKSPACE        /home/runner/work/riskreports
 #> R_ARCH                  
 #> R_BROWSER               xdg-open
@@ -166,7 +166,7 @@ environ_report()
 #> R_PLATFORM              x86_64-pc-linux-gnu
 #> R_PRINTCMD              /usr/bin/lpr
 #> R_RD4PDF                times,inconsolata,hyper
-#> R_SESSION_TMPDIR        /tmp/RtmpC0wElZ
+#> R_SESSION_TMPDIR        /tmp/RtmpM97538
 #> R_SHARE_DIR             /opt/R/4.5.2/lib/R/share
 #> R_STRIP_SHARED_LIB      strip --strip-unneeded
 #> R_STRIP_STATIC_LIB      strip --strip-debug
@@ -179,7 +179,7 @@ environ_report()
 #> SHELL                   /bin/bash
 #> SHLVL                   0
 #> SWIFT_PATH              /usr/share/swift/usr/bin
-#> SYSTEMD_EXEC_PID        1879
+#> SYSTEMD_EXEC_PID        1886
 #> TAR                     /usr/bin/tar
 #> TZ                      UTC
 #> USER                    runner

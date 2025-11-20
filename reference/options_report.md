@@ -70,7 +70,7 @@ options_report()
 #>         cli_server_default(msg)
 #>     }
 #> }
-#> <bytecode: 0x55a1eb4879c8>
+#> <bytecode: 0x56127462a9c8>
 #> <environment: namespace:cli>
 #> 
 #> $catch.script.errors
@@ -149,8 +149,8 @@ options_report()
 #> $device
 #> function (...) 
 #> ragg::agg_png(..., bg = bg)
-#> <bytecode: 0x55a1ea8aa180>
-#> <environment: 0x55a1eaa98728>
+#> <bytecode: 0x5612739d7988>
+#> <environment: 0x56127566d248>
 #> 
 #> $device.ask.default
 #> [1] FALSE
@@ -186,7 +186,7 @@ options_report()
 #>     local_long_messages()
 #>     warning(cnd)
 #> }
-#> <bytecode: 0x55a1eca125f0>
+#> <bytecode: 0x561275d66098>
 #> <environment: namespace:rlang>
 #> 
 #> $devtools.install.args
@@ -343,7 +343,7 @@ options_report()
 #> [1] FALSE
 #> 
 #> $rlang_trace_top_env
-#> <environment: 0x55a1ebcaaf08>
+#> <environment: 0x561274ef4578>
 #> 
 #> $scipen
 #> [1] 0
@@ -388,7 +388,7 @@ options_report()
 #> $str$formatNum
 #> function (x, ...) 
 #> format(x, trim = TRUE, drop0trailing = TRUE, ...)
-#> <environment: 0x55a1e94c9f18>
+#> <environment: 0x56127266cf18>
 #> 
 #> 
 #> $str.dendrogram.last
